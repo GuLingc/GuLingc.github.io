@@ -1,255 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>React项目搭建</title>
-    <url>/2023/07/15/React%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/</url>
-    <content><![CDATA[<p><a name="RMA4X"></a></p>
-<h4 id="1-工具：搭建React项目的脚手架"><a href="#1-工具：搭建React项目的脚手架" class="headerlink" title="1.工具：搭建React项目的脚手架"></a>1.工具：搭建React项目的脚手架</h4><ul>
-<li>create-react-app 项目名称</li>
-</ul>
-<p>如果采用<strong>create-react-app 项目名称</strong>的方式搭建脚手架则生成的项目中<strong>不含TS配置</strong>需要自己手动搭建TS配置。存在的弊端如下：</p>
-<ul>
-<li>弊端一：项目基于webpack，webpack所有配置是隐藏的</li>
-<li>弊端二：TS React项目配置难度较大。并且将ts代码转化成js代码的编译方式有TS Compiler和Lable两种方式，两者最好都要配置，难度较大。</li>
-<li>**create-react-app 项目名称 –template typescript	**—&gt;利用git bash窗口创建，如果利用黑窗口前面加npm或npx</li>
-</ul>
-<p>上面脚手架配置的好处：</p>
-<ul>
-<li>create-react-app：创建了一个react项目</li>
-<li>后面内容的存在同时配置TS的支持<br><a name="ZEINP"></a></li>
-</ul>
-<h4 id="2-项目配置"><a href="#2-项目配置" class="headerlink" title="2.项目配置"></a>2.项目配置</h4><ul>
-<li><input checked="" disabled="" type="checkbox"> 配置项目的icon</li>
-<li><input checked="" disabled="" type="checkbox"> 配置项目的标题</li>
-<li><input checked="" disabled="" type="checkbox"> 配置项目别名等（craco.config.ts）—&gt;配置src的别名放置出现多个..&#x2F;..&#x2F;的嵌套</li>
-</ul>
-<p>因为别名的配置是基于webpack配置的，它的东西又被隐藏了，所以需要借助craco:create-react-app config。因为react5.0版本太新，所以在安装craco的时候也需要安装最新版本 <strong>npm install @craco&#x2F;craco@alpha -D</strong></p>
-<ul>
-<li><input checked="" disabled="" type="checkbox"> 配置tsconfig.json</li>
-</ul>
-<hr>
-<ol>
-<li>配置项目别名步骤<ol>
-<li>安装craco</li>
-</ol>
-</li>
-</ol>
-<p>如果react采用的是4.0版本采用 npm install @craco&#x2F;craco -D<br />如果react采用的是5.0版本使用 npm install @craco&#x2F;craco@alpha -D</p>
-<pre><code>  2. 创建craco.config.js文件
-</code></pre>
-<p>在根目录下即src外层创建该文件；</p>
-<pre><code>  3. 配置文件内容
-</code></pre>
-<p>__dirname:当前目录；<br />craco.config.js文件内容代码配置如下：<br /><img src="https://cdn.nlark.com/yuque/0/2023/png/36149953/1688779766826-45a8cbe1-cce1-4934-bc87-4c7f43b7d959.png#averageHue=%231f1f1e&clientId=u1852a6ab-090d-4&from=paste&height=239&id=VfUjZ&originHeight=358&originWidth=1262&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=40751&status=done&style=none&taskId=u46fe2aaf-0645-43b2-a9a9-fac4e5958f5&title=&width=841.3333333333334" alt="image.png"><br />然后在tsconfig.json文件里配置路径的相关内容，否则在其他文件中无法使用<img src="https://cdn.nlark.com/yuque/0/2023/png/36149953/1688780000886-adf4a7e7-46dd-41ab-874d-cd0e9d9eb97e.png#averageHue=%231f1e1e&clientId=u1852a6ab-090d-4&from=paste&height=211&id=OJNOL&originHeight=439&originWidth=1642&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=81403&status=done&style=none&taskId=u0dac8866-f677-4ad2-95e4-57c7f4dcbc2&title=&width=791" alt="image.png"><br />并且将package.json中前三个的react-script改成craco,进行合并使用，否则在编译生成页面的时候仍会报错<br /><img src="https://cdn.nlark.com/yuque/0/2023/png/36149953/1688780248235-74205790-13db-4768-b459-a36783256b38.png#averageHue=%23201f1f&clientId=u1852a6ab-090d-4&from=paste&height=331&id=rEXck&originHeight=496&originWidth=1376&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=59791&status=done&style=none&taskId=u692a69e1-85cd-4bc8-82cd-b1bc1364a86&title=&width=917.3333333333334" alt="image.png"></p>
-<hr>
-<p><a name="bf73J"></a></p>
-<h4 id="3-代码规范"><a href="#3-代码规范" class="headerlink" title="3.代码规范"></a>3.代码规范</h4><p><a name="KTJUH"></a></p>
-<h5 id="集成editorgonfid配置"><a href="#集成editorgonfid配置" class="headerlink" title="集成editorgonfid配置"></a>集成editorgonfid配置</h5><p>editorConfig配置有助于为不同的IDE编译器上处理同一个项目的多个开发人员维护一致的编码风格。<br />新建.editorconfig文件，无后缀</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># http://editorconfig.org</span></span><br><span class="line"></span><br><span class="line"><span class="string">root</span> <span class="string">=</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">[<span class="string">*</span>] <span class="comment"># 表示所有文件适用</span></span><br><span class="line"><span class="string">charset</span> <span class="string">=</span> <span class="string">utf-8</span> <span class="comment"># 设置文件字符集为 utf-8</span></span><br><span class="line"><span class="string">indent_style</span> <span class="string">=</span> <span class="string">space</span> <span class="comment"># 缩进风格（tab | space）</span></span><br><span class="line"><span class="string">indent_size</span> <span class="string">=</span> <span class="number">2</span> <span class="comment"># 缩进大小</span></span><br><span class="line"><span class="string">end_of_line</span> <span class="string">=</span> <span class="string">lf</span> <span class="comment"># 控制换行类型(lf | cr | crlf)</span></span><br><span class="line"><span class="string">trim_trailing_whitespace</span> <span class="string">=</span> <span class="literal">true</span> <span class="comment"># 去除行尾的任意空白字符</span></span><br><span class="line"><span class="string">insert_final_newline</span> <span class="string">=</span> <span class="literal">true</span> <span class="comment"># 始终在文件末尾插入一个新行</span></span><br><span class="line"></span><br><span class="line">[<span class="string">*.md</span>] <span class="comment"># 表示仅 md 文件适用以下规则</span></span><br><span class="line"><span class="string">max_line_length</span> <span class="string">=</span> <span class="string">off</span></span><br><span class="line"><span class="string">trim_trailing_whitespace</span> <span class="string">=</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
-
-<p><a name="RYthi"></a></p>
-<h5 id="prettier"><a href="#prettier" class="headerlink" title="prettier"></a>prettier</h5><p>prettier保持代码的某一种风格，格式化代码，使其更加美观</p>
-<pre><code>  1. 安装prettier:  npm install prettier -D
-  2. 在项目的根目录下创建.prettierrc文件
-  3. 测试prettier是否生效
-     - 在代码中保存代码；
-     - 配置一次性修改的命令
-</code></pre>
-<p>在package.json中配置一个script</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;prettier&quot;</span><span class="punctuation">:</span><span class="string">&quot;prettier --writer .&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>可以输入命令手动格式化所有未被忽略的文件：</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">npm run prettier</span><br></pre></td></tr></table></figure>
-
-<p>   1.4**.忽略不被格式化的文件**</p>
-<ul>
-<li>在根目录下创建.prettierignore文件</li>
-<li>在文件中写入要忽略的文件</li>
-</ul>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># /build/*</span></span><br><span class="line"><span class="comment"># .local</span></span><br><span class="line"><span class="comment"># .output.js</span></span><br><span class="line"><span class="comment"># /node_modules/**</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># **/*.svg</span></span><br><span class="line"><span class="comment"># **/*.sh</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># /public/*</span></span><br></pre></td></tr></table></figure>
-
-<p><a name="Dneg3"></a></p>
-<h5 id="使用EsLint检测"><a href="#使用EsLint检测" class="headerlink" title="使用EsLint检测"></a>使用EsLint检测</h5><pre><code>  1. 安装eslint:  npm install selint -D
-  2. 由于eslint的配置比较多所以采用命令的方式自动生成配置文件
-</code></pre>
-<ul>
-<li>对eslint进行初始化：npx eslint –init</li>
-<li>输入y生成配置文件</li>
-<li>在三个选项中选择第二个，检测错误并发现问题，第三个选项多个一个强制代码转换，由于上面配置过prettier所以不需要</li>
-<li>选择第一个js模块化</li>
-</ul>
-<p><img src="https://cdn.nlark.com/yuque/0/2023/png/36149953/1688787438696-77368468-8679-48e6-acd1-fcc007851d99.png#averageHue=%232a2624&clientId=u1852a6ab-090d-4&from=paste&height=86&id=uce8802d4&originHeight=129&originWidth=560&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=18463&status=done&style=none&taskId=ue3d7ef62-1bc2-4b1a-9ff3-8632ea9a94a&title=&width=373.3333333333333" alt="image.png"></p>
-<ul>
-<li>因为这个项目是React项目所以选择React</li>
-<li>因为使用了TS所以是yes</li>
-<li>选择浏览器Browser;选择js文件；选择yes;选择npm</li>
-</ul>
-<p><img src="https://cdn.nlark.com/yuque/0/2023/png/36149953/1688787835482-e4f2da1c-14fb-4c6f-8320-fa870ae72fea.png#averageHue=%2321201f&clientId=u1852a6ab-090d-4&from=paste&height=372&id=u919de287&originHeight=558&originWidth=1253&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=89605&status=done&style=none&taskId=u699203ee-314f-40b6-bc7a-3426cc05c11&title=&width=835.3333333333334" alt="image.png"><br />1.3 修改生成的配置文件<br />     由于上方生成的配置文件只选择在浏览器环境下运行，而项目中又参杂了node所以为了保证可以在node环境下进行，需要在配置文件的“env”里加入:</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;node&quot;</span>:<span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
-<p>为了使require正常使用要在配置文件的rules中加入如下代码：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;@typescript-eslint/no-var-requires&#x27;</span>: <span class="string">&#x27;off&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<p>1.4  vsCode需要安装eslint插件<br />1.5解决eslint和prettier冲突的问题：<br />安装插件：（vue在创建项目时，如果选择prettier，那么这两个插件会自动安装。<br />npm install eslint-plugin-prettier eslint-config-prettier -D<br />安装成功之后在.eslintrc.js中增加下方代码：使eslint与prettier代码风格一致。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;plugin:prettier/recommended&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<p>prettier和eslint存在冲突，暂时不要用尤其是eslint;<br><a name="mZATs"></a></p>
-<h4 id="4-项目目录结构的划分"><a href="#4-项目目录结构的划分" class="headerlink" title="4.项目目录结构的划分"></a>4.项目目录结构的划分</h4><ul>
-<li>assets放置静态资源：例如：css,img</li>
-<li>base-ui多个项目使用的共同组件</li>
-<li>components:存放当前项目中多出使用到的共同组件</li>
-<li>hook:自定义hook———–&gt;一般不单独建文件夹</li>
-<li>router</li>
-<li>store</li>
-<li>service:网络请求</li>
-<li>utils:存放工具，例如：全局自定义弹窗</li>
-<li>views:存放视图，展示不同页面的组件<br><a name="Bya3Z"></a></li>
-</ul>
-<h4 id="5-对CSS样式的重置"><a href="#5-对CSS样式的重置" class="headerlink" title="5.对CSS样式的重置"></a>5.对CSS样式的重置</h4><ul>
-<li>normalize.css:  npm install normalize.css</li>
-</ul>
-<p>在tsx文件中引入normalize.css,从而对默认的css进行重置</p>
-<ul>
-<li>reset.less：自己在静态文件夹下的css文件中建立文档，定义 jk重置的css样式</li>
-</ul>
-<p>如果使用less需要安装指定版本：<br />npm install <a href="mailto:&#99;&#x72;&#97;&#x63;&#111;&#x2d;&#108;&#x65;&#115;&#115;&#x40;&#x32;&#x2e;&#x31;&#46;&#48;&#x2d;&#97;&#108;&#x70;&#104;&#x61;&#46;&#x30;">&#99;&#x72;&#97;&#x63;&#111;&#x2d;&#108;&#x65;&#115;&#115;&#x40;&#x32;&#x2e;&#x31;&#46;&#48;&#x2d;&#97;&#108;&#x70;&#104;&#x61;&#46;&#x30;</a><br><a name="Q38Z8"></a></p>
-<h4 id="6-路由的配置"><a href="#6-路由的配置" class="headerlink" title="6.路由的配置"></a>6.路由的配置</h4><pre><code>  1. 路由的搭建：npm install react-router-dom
-  2. 在写路由的时候与vue使用compoent不同的是React用的element，并且element后面跟的是组件实例（&lt;Discover /&gt;）而非Discover。由于组件实例属于jsx语法，所以写路有的文件不能是.ts应该是.tsx。凡是tsx文件都需要引入React(import React from &#39;react&#39;)。
-  3. 如果使用路由，最外层的index.tsx中的APP必须被router包裹
-</code></pre>
-<figure class="highlight tsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span> <span class="keyword">from</span> <span class="string">&quot;react&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">ReactDOM</span> <span class="keyword">from</span> <span class="string">&quot;react-dom/client&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">HashRouter</span> &#125; <span class="keyword">from</span> <span class="string">&quot;react-router-dom&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;normalize.css&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;./assets/css/index.less&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">App</span> <span class="keyword">from</span> <span class="string">&quot;@/App&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> root = <span class="title class_">ReactDOM</span>.<span class="title function_">createRoot</span>(</span><br><span class="line">  <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;root&quot;</span>) <span class="keyword">as</span> <span class="title class_">HTMLElement</span></span><br><span class="line">);</span><br><span class="line">root.<span class="title function_">render</span>(</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">HashRouter</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">App</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">HashRouter</span>&gt;</span></span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<pre><code>1.4：写路由组件的一般做法：
-</code></pre>
-<figure class="highlight tsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>,&#123;memo&#125; <span class="keyword">from</span> <span class="string">&quot;react&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="keyword">type</span> &#123; <span class="title class_">ReactNode</span> &#125; <span class="keyword">from</span> <span class="string">&quot;react&quot;</span>;</span><br><span class="line"><span class="comment">//如果想要读取组件中包括的子组件需要定义children,因为props本身中没有children，不能直接读取传入的子组件</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">IProps</span> &#123;</span><br><span class="line">  children?: <span class="title class_">ReactNode</span>; <span class="comment">//传入children写，不传则去掉</span></span><br><span class="line">  <span class="attr">name</span>: <span class="built_in">string</span>;</span><br><span class="line">  <span class="attr">age</span>: <span class="built_in">number</span>;</span><br><span class="line">  height?: <span class="built_in">number</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//方式一：直接对props进行类型约束：props:IProps</span></span><br><span class="line"><span class="comment">// const Download = (props: IProps) =&gt; &#123;</span></span><br><span class="line"><span class="comment">//   return (</span></span><br><span class="line"><span class="comment">//     &lt;div&gt;</span></span><br><span class="line"><span class="comment">//       &lt;div&gt;name:&#123;props.name&#125;&lt;/div&gt;</span></span><br><span class="line"><span class="comment">//       &lt;div&gt;age:&#123;props.age&#125;&lt;/div&gt;</span></span><br><span class="line"><span class="comment">//       &lt;div&gt;height:&#123;props.height&#125;&lt;/div&gt;</span></span><br><span class="line"><span class="comment">//     &lt;/div&gt;</span></span><br><span class="line"><span class="comment">//   );</span></span><br><span class="line"><span class="comment">// &#125;;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//方式二：借助ts泛型</span></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">Download</span>: <span class="title class_">React</span>.<span class="property">FC</span>&lt;<span class="title class_">IProps</span>&gt; = <span class="function">(<span class="params">props</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">div</span>&gt;</span>name:&#123;props.name&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">div</span>&gt;</span>age:&#123;props.age&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">div</span>&gt;</span>height:&#123;props.height&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;props.children&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//最好使用memo函数，它的导出性能比较好</span></span><br><span class="line"><span class="comment">// export default Download;</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">memo</span>(<span class="title class_">Download</span>)</span><br></pre></td></tr></table></figure>
-
-<p>1.5react与vue二级路由的不同之处：</p>
-<ul>
-<li>vue的二级路由的path不用加一级路由的路径</li>
-<li>react的二级路由的path需要加一级路由的路径否则会报错（如：&#x2F;discover&#x2F;recommend）<br><a name="XmGJ7"></a></li>
-</ul>
-<h4 id="7-配置react基本代码的一键生成模板"><a href="#7-配置react基本代码的一键生成模板" class="headerlink" title="7.配置react基本代码的一键生成模板"></a>7.配置react基本代码的一键生成模板</h4><p>已知tsx文件基础的模板代码格式如下：</p>
-<figure class="highlight tsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123; memo &#125; <span class="keyword">from</span> <span class="string">&quot;react&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="keyword">type</span> &#123; <span class="variable constant_">FC</span>, <span class="title class_">ReactNode</span> &#125; <span class="keyword">from</span> <span class="string">&quot;react&quot;</span>;</span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">IPprops</span> &#123;</span><br><span class="line">  children?: <span class="title class_">ReactNode</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> <span class="title class_">Djradio</span>: <span class="variable constant_">FC</span>&lt;<span class="title class_">IPprops</span>&gt; = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>Djradio<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">memo</span>(<span class="title class_">Djradio</span>);</span><br></pre></td></tr></table></figure>
-
-<p>利用工具自动生成代码时将可变的文件名称（如：Djradio）改成${1:Home},生成的代码如下：</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;react typescript&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;prefix&quot;</span><span class="punctuation">:</span> <span class="string">&quot;tsreact&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;body&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="string">&quot;import React, &#123; memo &#125; from \&quot;react\&quot;;&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;import type &#123; FC, ReactNode &#125; from \&quot;react\&quot;;&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;interface IPprops &#123;&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;  children?: ReactNode;&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;&#125;&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;const $&#123;1:Home&#125;: FC&lt;IPprops&gt; = () =&gt; &#123;&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;  return &lt;div&gt;$&#123;1:Home&#125;&lt;/div&gt;;&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;&#125;;&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;export default memo($&#123;1:Home&#125;);&quot;</span></span><br><span class="line">  <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;description&quot;</span><span class="punctuation">:</span> <span class="string">&quot;react typescript&quot;</span><span class="punctuation">,</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<p>点击Vscode-&gt;文件-&gt;首选项-&gt;配置用户片段代码-&gt;输入Typescriptreact-&gt;将得到的代码粘贴<br />因为上方代码的prefix的值时tsreact所以在一个新的tsx文件中输入tsreact回车会自动生成react的基础代码。<br><a name="ei0TE"></a></p>
-<h4 id="8-状态管理"><a href="#8-状态管理" class="headerlink" title="8.状态管理"></a>8.状态管理</h4><p>状态管理选择：</p>
-<ul>
-<li>redux:目前React中使用最多的状态管理库；</li>
-<li>@reduxjs&#x2F;toolkit:redux工具，更方便的使用redux</li>
-</ul>
-<p><strong>操作：</strong><br />不需要单独安装redux,只需要如下步骤：<br />npm insatll @reduxjs&#x2F;toolkit react-dom<br />接着在store文件夹中创建index.ts文件,编写store内容：</p>
-<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; configureStore &#125; <span class="keyword">from</span> <span class="string">&quot;@reduxjs/toolkit&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> store = <span class="title function_">configureStore</span>(&#123;</span><br><span class="line">  <span class="attr">reducer</span>: &#123;&#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> store;</span><br></pre></td></tr></table></figure>
-
-<p>在最外层的index.tsx文件中导入store和Provider，Proviindex.tsxder标签位于最外层，使其他页面可以利用store。</p>
-<figure class="highlight tsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span> <span class="keyword">from</span> <span class="string">&quot;react&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">ReactDOM</span> <span class="keyword">from</span> <span class="string">&quot;react-dom/client&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">HashRouter</span> &#125; <span class="keyword">from</span> <span class="string">&quot;react-router-dom&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">Provider</span> &#125; <span class="keyword">from</span> <span class="string">&quot;react-redux&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;normalize.css&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;./assets/css/index.less&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">App</span> <span class="keyword">from</span> <span class="string">&quot;@/App&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> store <span class="keyword">from</span> <span class="string">&quot;./store&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> root = <span class="title class_">ReactDOM</span>.<span class="title function_">createRoot</span>(</span><br><span class="line">  <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;root&quot;</span>) <span class="keyword">as</span> <span class="title class_">HTMLElement</span></span><br><span class="line">);</span><br><span class="line">root.<span class="title function_">render</span>(</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">Provider</span> <span class="attr">store</span>=<span class="string">&#123;store&#125;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">HashRouter</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">App</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">HashRouter</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">Provider</span>&gt;</span></span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<p>如果想要保存数据可以在store中创建一个文件夹modules,然后在其下面新建一个ts文件（如counter.ts文件）。<strong>在这个文件中及时initalState（初始化）和reducers中无内容也要书写，因为他们和name是必写内容，否则会报错。</strong></p>
-<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createSlice &#125; <span class="keyword">from</span> <span class="string">&quot;@reduxjs/toolkit&quot;</span>;</span><br><span class="line"><span class="keyword">const</span> counterSlice = <span class="title function_">createSlice</span>(&#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;counter&quot;</span>,</span><br><span class="line">  <span class="attr">initialState</span>: &#123;</span><br><span class="line">    <span class="attr">count</span>: <span class="number">100</span>,</span><br><span class="line">    <span class="attr">message</span>: <span class="string">&quot;Hello Redux&quot;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">reducers</span>: &#123;&#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> counterSlice.<span class="property">reducer</span></span><br></pre></td></tr></table></figure>
-
-<p>然后导出的内容需要放在store里面否则无效。</p>
-<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; configureStore &#125; <span class="keyword">from</span> <span class="string">&quot;@reduxjs/toolkit&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> counterReducer <span class="keyword">from</span> <span class="string">&quot;./modules/counter&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> store = <span class="title function_">configureStore</span>(&#123;</span><br><span class="line">  <span class="attr">reducer</span>: &#123;</span><br><span class="line">    <span class="attr">counter</span>: counterReducer,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> store;</span><br></pre></td></tr></table></figure>
-
-<p><a name="k85va"></a></p>
-<h4 id="9-网络请求封装axios"><a href="#9-网络请求封装axios" class="headerlink" title="9.网络请求封装axios"></a>9.网络请求封装axios</h4><pre><code>  1. 安装axios
-</code></pre>
-<p>npm install axios<br />由于最新班的axios版本过高会有报错，所以安装1.1版本<br />npm install <a href="mailto:&#x61;&#x78;&#x69;&#x6f;&#115;&#64;&#49;&#46;&#x31;&#x2e;&#48;">&#x61;&#x78;&#x69;&#x6f;&#115;&#64;&#49;&#46;&#x31;&#x2e;&#48;</a></p>
-<pre><code>  2. 1
-     &lt;a name=&quot;sFgV1&quot;&gt;&lt;/a&gt;
-</code></pre>
-<h4 id="10-如何打包项目："><a href="#10-如何打包项目：" class="headerlink" title="10.如何打包项目："></a>10.如何打包项目：</h4><pre><code>  1. npm run build
-  2. 打包完成之后在本地跑起来：npm install -g serve
-  3. 启动服务器以build作为资源：serve -s build
-     &lt;a name=&quot;blAiO&quot;&gt;&lt;/a&gt;
-</code></pre>
-<h4 id="11-css-in-js库"><a href="#11-css-in-js库" class="headerlink" title="11.css-in-js库"></a>11.css-in-js库</h4><p>react是用js写html的框架，为了在react框架中使用js编写一切代码，使用css-in-js库编写css代码，<strong>style-components是近期使用人数最多的css-in-js库</strong>，它的优点如下：</p>
-<ul>
-<li>可以编写实际的CSS代码来设计组件样式，也不需要组件和样式之间的映射，即创建后就是一个正常的React 组件，直接在JSX中引入即可</li>
-<li>在一个组件内会将结构、样式和逻辑写在一起，虽然这违背了关注点分离的原则，但是这有利于组件间的隔离。为了顺应组件化的潮流</li>
-<li>使用styled-components不需要再使用className属性来控制样式，而是将样式写成更具语义化的组件的形式</li>
-<li>使用style-components会随机生成一个class名称，这样不会污染到全局变量，当然因为随机生成，维护会增加难度</li>
-</ul>
-<p><strong>使用步骤：</strong></p>
-<ul>
-<li>安装style-components:npm install styled-components -D</li>
-<li>在引入和使用styled-components之前需要先对其进行类型声明否则会报错。</li>
-</ul>
-<p>类型声明的几种形式：</p>
-<ul>
-<li>typescript内置DOM</li>
-<li>第三方：<ul>
-<li>库内部已经有类型声明（eg：axios）</li>
-<li>react&#x2F;react-dom&#x3D;&gt;@types&#x2F;react @types&#x2F;react-dom</li>
-<li>自己写的类型声明</li>
-</ul>
-</li>
-<li>解决方式： npm i –save-dev @types&#x2F;styled-components<br><a name="uGWID"></a></li>
-</ul>
-<h4 id="12-react的第三方库-antd"><a href="#12-react的第三方库-antd" class="headerlink" title="12.react的第三方库-antd"></a>12.react的第三方库-antd</h4><ul>
-<li>安装antd:npm install antd –save</li>
-<li>如果想要使用图标需要单独再安装一个图标库：npm install –save @ant-design&#x2F;icons<br><a name="W8YPl"></a></li>
-</ul>
-<h4 id="13-动态添加classname"><a href="#13-动态添加classname" class="headerlink" title="13.动态添加classname"></a><a href="https://blog.csdn.net/sheep_yyx/article/details/125661895">13.动态添加classname</a></h4><p>安装classname库，当利用map之类动态数据遍历的时候可以动态添加classname<br />npm install classname</p>
-]]></content>
-      <tags>
-        <tag>React</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>node基础概念</title>
-    <url>/2023/07/29/node%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/</url>
-    <content><![CDATA[<p><a name="IHs7V"></a></p>
-<h4 id="1-跨域产生的原因以及解决方案"><a href="#1-跨域产生的原因以及解决方案" class="headerlink" title="1.跨域产生的原因以及解决方案"></a>1.跨域产生的原因以及解决方案</h4><ol>
-<li>什么是<code>跨域</code>？<ol>
-<li>广义：指一个域下的文档或脚本试图去请求另一个域下的资源</li>
-<li>狭义：浏览器不能执行其他网站的脚本，是由浏览器的<a href="https://baike.baidu.com/item/%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5/3927875">同源策略</a>限制的一类请求场景，从一个域名的网页去请求另一个域名的资源时，域名，端口，协议任一不同，都是跨域。</li>
-</ol>
-</li>
-<li>为什么会产生跨域？</li>
-</ol>
-<p><code>跨域是因为浏览器的同源策略的限制</code>，是浏览器的一种安全机制，服务端之间是不存在跨域的。所谓的同源指的是两个页面具有相同放入<code>协议，主机和端口，三者任一不相同</code>就会产生跨域。<br />跨域举例：<img src="/img/study/%E8%B7%A8%E5%9F%9F.png" alt="image.png"><br>3. 跨域的解决方案</p>
-<pre><code>  1. jsonp跨域
-</code></pre>
-<p><code>jsonp</code>(JSON with Padding),是json的一种“使用模式”，可以让页面跨域读取数据，其本质是利用script标签的开放策略，浏览器传递callback参数到后端，后端返回数据时会将callback参数作为函数名来包裹数据，从而浏览器久可以跨域请求数据并制定函数来自动处理返回数据。</p>
-<pre><code>  2. 跨域资源共享（cors）
-</code></pre>
-<p>跨域资源共享是一个W3C标准，允许浏览器向跨域服务器发送请求，从而客服ajax只能同源使用的限制。CORS需要浏览器和服务器同时支持。目前，所有主流浏览器是同XMLHttpRequest对象都可支持该功能，IE8和IE8需要使用XDomainRequest对象进行兼容。<br />CORS整个通信过程都是浏览器自动完成，浏览器一旦发现ajax请求跨源，就会自动在头信息中增加Origin字段，用来说明本次请求来自哪个源（协议+域名+端口）。因此，实现CORS通信的关键是服务器，需要服务器配置Access-Control-Allow-Origin头信息。当CORS请求需要携带cookie时，需要服务端配置Access-Control-Allow-Credentials头信息，前端也需要设置withCredentials。</p>
-<pre><code>  3. 服务器代理
-</code></pre>
-<p>服务器代理，顾名思义即在发送跨域请求时，后端进行代理中转请求至服务器端，然后将获取的数据返回给前端。<br />一般适用于以下场景：</p>
-<ul>
-<li>针对IE7及以下浏览器摒弃Flash插件的情况，配置代理接口与前端页面同源，并中转目标服务器接口，则ajax请求不存在跨域问题。</li>
-<li>外网前端页面无法访问内网接口，配置代理接口允许前端页面访问，并中转内网接口，则外网前端页面可以跨域访问内网接口。</li>
-</ul>
-<h4 id="2-body-parser这个中间件是做什么用的？"><a href="#2-body-parser这个中间件是做什么用的？" class="headerlink" title="2.body-parser这个中间件是做什么用的？"></a>2.body-parser这个中间件是做什么用的？</h4><p><code>body-parser</code>是一个<code>Node.js中间件</code>，用于解析HTTP请求中的请求体（RequestBody）,并将其转化为JSON格式或其它格式的数据对象。它可以帮助开发者方便的从POST,PUT,DELETE等请求中获取请求体数据，并进行相应的处理。具体来说，body-parser支持以下几种请求体数据格式：</p>
-<pre><code>  1. JSON格式：通过json()方式解析JSON格式的请求体数据，并将其转换为JS对象
-  2. URL编码格式：通过urlencoded()方法解析URL编码格式的请求体数据，并将其转换为JS对象
-  3. 多部分数据格式：通过multipart()方法解析多部份数据格式的请求体数据，并将其转换为JS对象。
-</code></pre>
-<p>例子：简单实用body-parser解析请求体数据的示例代码：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> bodyParser = <span class="built_in">require</span>(<span class="string">&#x27;body-parser&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = <span class="title function_">express</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 解析 URL 编码格式的请求体数据</span></span><br><span class="line">app.<span class="title function_">use</span>(bodyParser.<span class="title function_">urlencoded</span>(&#123; <span class="attr">extended</span>: <span class="literal">false</span> &#125;));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 解析 JSON 格式的请求体数据</span></span><br><span class="line">app.<span class="title function_">use</span>(bodyParser.<span class="title function_">json</span>());</span><br><span class="line"></span><br><span class="line"><span class="comment">// 处理 POST 请求</span></span><br><span class="line">app.<span class="title function_">post</span>(<span class="string">&#x27;/api/login&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; username, password &#125; = req.<span class="property">body</span>;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`username: <span class="subst">$&#123;username&#125;</span>`</span>);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`password: <span class="subst">$&#123;password&#125;</span>`</span>);</span><br><span class="line">  res.<span class="title function_">send</span>(<span class="string">&#x27;Login Success!&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">listen</span>(<span class="number">3000</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Server running on http://localhost:3000&#x27;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>上面使用body-parser中间件分别解析了URL编码格式和JSON格式的请求体数据，并通过<code>req.body获取请求体数据对象</code>。在POST请求处理的函数中，打印了用户输入的用户名和密码，并返回了一个登录成功对的响应消息。<br />在使用body-parser中间件时需要根据实际情况选择合适的解析方法，并注意配置参数，以<code>防止出现安全漏洞和错误数据</code>。同时，在处理HTTP请求时，需要对请求体数据进行有效性验证和安全性检查，以保证数据的可靠性和完整性。<br><a name="cmj9f"></a></p>
-<h4 id="3-什么是Koa"><a href="#3-什么是Koa" class="headerlink" title="3.什么是Koa?"></a>3.什么是Koa?</h4><p>nodejs中除了express框架，另一个非常流行的Node Web服务器框架就是Koa。<br />Koa是一个精简的node框架，最大的特点是独特的中间件流程控制，典型的洋葱模型。<br><a name="vCEni"></a></p>
-<h4 id="4-对Koa洋葱模型的理解"><a href="#4-对Koa洋葱模型的理解" class="headerlink" title="4.对Koa洋葱模型的理解"></a>4.对Koa洋葱模型的理解</h4><p><code>Koa框架</code>是一个Node.js的<code>Web应用程序框架</code>，它通过中间件机制实现了业务逻辑的分层和复用。Koa中使用的中间件机制被称为<code>洋葱模型</code>，其核心思想是将HTTP请求和响应对象一次传递给各个中间件函数，形成一条类似于洋葱的管道，最终返回响应结果。<br />具体来说，Koa 洋葱模型的处理流程可以大致分为四个阶段：</p>
-<ol>
-<li><code>请求阶段</code>：从外到内依次执行请求相关的中间件，例如解析请求体、设置响应头等操作。</li>
-<li><code>业务阶段</code>：执行业务逻辑相关的中间件，例如处理授权、验证身份、路由分发等操作。</li>
-<li><code>响应阶段</code>：从内到外依次执行响应相关的中间件，例如格式化响应数据、设置响应头等操作。</li>
-<li><code>错误处理阶段</code>：如果在前面的中间件过程中出现了错误，则会跳过后续中间件并交给错误处理中间件来处理异常情况。</li>
-</ol>
-<p>在这个过程中，每个中间件都可以根据需要对请求和响应对象进行修改、扩展、封装等操作，并将控制权传递给下一个中间件，形成了一条流水线式的处理模式。这种设计可以大大提高代码的复用和可读性，同时也方便了对程序行为进行监控、调试和优化。<br />总之，Koa 洋葱模型是一种基于中间件机制的 Web 应用程序开发方法，它通过将请求和响应对象依次传递给各个中间件函数，实现了<code>业务逻辑的分层和复用</code>，并且具有灵活、可扩展和高效的特点。</p>
-]]></content>
-      <categories>
-        <category>node</category>
-      </categories>
-      <tags>
-        <tag>node</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>前端面试</title>
     <url>/2023/07/15/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/</url>
     <content><![CDATA[<h4 id="一-闭包与原型："><a href="#一-闭包与原型：" class="headerlink" title="一.闭包与原型："></a>一.闭包与原型：</h4><h5 id="1-什么是闭包？闭包的用途？"><a href="#1-什么是闭包？闭包的用途？" class="headerlink" title="1.什么是闭包？闭包的用途？"></a>1.什么是闭包？闭包的用途？</h5><p>1）闭包指的是那些引用了另一个函数作用域中变量的函数，通常是在嵌套函数中实现的。</p>
@@ -601,6 +352,255 @@
 ]]></content>
       <tags>
         <tag>复习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>React项目搭建</title>
+    <url>/2023/07/15/React%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/</url>
+    <content><![CDATA[<p><a name="RMA4X"></a></p>
+<h4 id="1-工具：搭建React项目的脚手架"><a href="#1-工具：搭建React项目的脚手架" class="headerlink" title="1.工具：搭建React项目的脚手架"></a>1.工具：搭建React项目的脚手架</h4><ul>
+<li>create-react-app 项目名称</li>
+</ul>
+<p>如果采用<strong>create-react-app 项目名称</strong>的方式搭建脚手架则生成的项目中<strong>不含TS配置</strong>需要自己手动搭建TS配置。存在的弊端如下：</p>
+<ul>
+<li>弊端一：项目基于webpack，webpack所有配置是隐藏的</li>
+<li>弊端二：TS React项目配置难度较大。并且将ts代码转化成js代码的编译方式有TS Compiler和Lable两种方式，两者最好都要配置，难度较大。</li>
+<li>**create-react-app 项目名称 –template typescript	**—&gt;利用git bash窗口创建，如果利用黑窗口前面加npm或npx</li>
+</ul>
+<p>上面脚手架配置的好处：</p>
+<ul>
+<li>create-react-app：创建了一个react项目</li>
+<li>后面内容的存在同时配置TS的支持<br><a name="ZEINP"></a></li>
+</ul>
+<h4 id="2-项目配置"><a href="#2-项目配置" class="headerlink" title="2.项目配置"></a>2.项目配置</h4><ul>
+<li><input checked="" disabled="" type="checkbox"> 配置项目的icon</li>
+<li><input checked="" disabled="" type="checkbox"> 配置项目的标题</li>
+<li><input checked="" disabled="" type="checkbox"> 配置项目别名等（craco.config.ts）—&gt;配置src的别名放置出现多个..&#x2F;..&#x2F;的嵌套</li>
+</ul>
+<p>因为别名的配置是基于webpack配置的，它的东西又被隐藏了，所以需要借助craco:create-react-app config。因为react5.0版本太新，所以在安装craco的时候也需要安装最新版本 <strong>npm install @craco&#x2F;craco@alpha -D</strong></p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> 配置tsconfig.json</li>
+</ul>
+<hr>
+<ol>
+<li>配置项目别名步骤<ol>
+<li>安装craco</li>
+</ol>
+</li>
+</ol>
+<p>如果react采用的是4.0版本采用 npm install @craco&#x2F;craco -D<br />如果react采用的是5.0版本使用 npm install @craco&#x2F;craco@alpha -D</p>
+<pre><code>  2. 创建craco.config.js文件
+</code></pre>
+<p>在根目录下即src外层创建该文件；</p>
+<pre><code>  3. 配置文件内容
+</code></pre>
+<p>__dirname:当前目录；<br />craco.config.js文件内容代码配置如下：<br /><img src="https://cdn.nlark.com/yuque/0/2023/png/36149953/1688779766826-45a8cbe1-cce1-4934-bc87-4c7f43b7d959.png#averageHue=%231f1f1e&clientId=u1852a6ab-090d-4&from=paste&height=239&id=VfUjZ&originHeight=358&originWidth=1262&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=40751&status=done&style=none&taskId=u46fe2aaf-0645-43b2-a9a9-fac4e5958f5&title=&width=841.3333333333334" alt="image.png"><br />然后在tsconfig.json文件里配置路径的相关内容，否则在其他文件中无法使用<img src="https://cdn.nlark.com/yuque/0/2023/png/36149953/1688780000886-adf4a7e7-46dd-41ab-874d-cd0e9d9eb97e.png#averageHue=%231f1e1e&clientId=u1852a6ab-090d-4&from=paste&height=211&id=OJNOL&originHeight=439&originWidth=1642&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=81403&status=done&style=none&taskId=u0dac8866-f677-4ad2-95e4-57c7f4dcbc2&title=&width=791" alt="image.png"><br />并且将package.json中前三个的react-script改成craco,进行合并使用，否则在编译生成页面的时候仍会报错<br /><img src="https://cdn.nlark.com/yuque/0/2023/png/36149953/1688780248235-74205790-13db-4768-b459-a36783256b38.png#averageHue=%23201f1f&clientId=u1852a6ab-090d-4&from=paste&height=331&id=rEXck&originHeight=496&originWidth=1376&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=59791&status=done&style=none&taskId=u692a69e1-85cd-4bc8-82cd-b1bc1364a86&title=&width=917.3333333333334" alt="image.png"></p>
+<hr>
+<p><a name="bf73J"></a></p>
+<h4 id="3-代码规范"><a href="#3-代码规范" class="headerlink" title="3.代码规范"></a>3.代码规范</h4><p><a name="KTJUH"></a></p>
+<h5 id="集成editorgonfid配置"><a href="#集成editorgonfid配置" class="headerlink" title="集成editorgonfid配置"></a>集成editorgonfid配置</h5><p>editorConfig配置有助于为不同的IDE编译器上处理同一个项目的多个开发人员维护一致的编码风格。<br />新建.editorconfig文件，无后缀</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># http://editorconfig.org</span></span><br><span class="line"></span><br><span class="line"><span class="string">root</span> <span class="string">=</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">[<span class="string">*</span>] <span class="comment"># 表示所有文件适用</span></span><br><span class="line"><span class="string">charset</span> <span class="string">=</span> <span class="string">utf-8</span> <span class="comment"># 设置文件字符集为 utf-8</span></span><br><span class="line"><span class="string">indent_style</span> <span class="string">=</span> <span class="string">space</span> <span class="comment"># 缩进风格（tab | space）</span></span><br><span class="line"><span class="string">indent_size</span> <span class="string">=</span> <span class="number">2</span> <span class="comment"># 缩进大小</span></span><br><span class="line"><span class="string">end_of_line</span> <span class="string">=</span> <span class="string">lf</span> <span class="comment"># 控制换行类型(lf | cr | crlf)</span></span><br><span class="line"><span class="string">trim_trailing_whitespace</span> <span class="string">=</span> <span class="literal">true</span> <span class="comment"># 去除行尾的任意空白字符</span></span><br><span class="line"><span class="string">insert_final_newline</span> <span class="string">=</span> <span class="literal">true</span> <span class="comment"># 始终在文件末尾插入一个新行</span></span><br><span class="line"></span><br><span class="line">[<span class="string">*.md</span>] <span class="comment"># 表示仅 md 文件适用以下规则</span></span><br><span class="line"><span class="string">max_line_length</span> <span class="string">=</span> <span class="string">off</span></span><br><span class="line"><span class="string">trim_trailing_whitespace</span> <span class="string">=</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<p><a name="RYthi"></a></p>
+<h5 id="prettier"><a href="#prettier" class="headerlink" title="prettier"></a>prettier</h5><p>prettier保持代码的某一种风格，格式化代码，使其更加美观</p>
+<pre><code>  1. 安装prettier:  npm install prettier -D
+  2. 在项目的根目录下创建.prettierrc文件
+  3. 测试prettier是否生效
+     - 在代码中保存代码；
+     - 配置一次性修改的命令
+</code></pre>
+<p>在package.json中配置一个script</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;prettier&quot;</span><span class="punctuation">:</span><span class="string">&quot;prettier --writer .&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>可以输入命令手动格式化所有未被忽略的文件：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">npm run prettier</span><br></pre></td></tr></table></figure>
+
+<p>   1.4**.忽略不被格式化的文件**</p>
+<ul>
+<li>在根目录下创建.prettierignore文件</li>
+<li>在文件中写入要忽略的文件</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># /build/*</span></span><br><span class="line"><span class="comment"># .local</span></span><br><span class="line"><span class="comment"># .output.js</span></span><br><span class="line"><span class="comment"># /node_modules/**</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># **/*.svg</span></span><br><span class="line"><span class="comment"># **/*.sh</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># /public/*</span></span><br></pre></td></tr></table></figure>
+
+<p><a name="Dneg3"></a></p>
+<h5 id="使用EsLint检测"><a href="#使用EsLint检测" class="headerlink" title="使用EsLint检测"></a>使用EsLint检测</h5><pre><code>  1. 安装eslint:  npm install selint -D
+  2. 由于eslint的配置比较多所以采用命令的方式自动生成配置文件
+</code></pre>
+<ul>
+<li>对eslint进行初始化：npx eslint –init</li>
+<li>输入y生成配置文件</li>
+<li>在三个选项中选择第二个，检测错误并发现问题，第三个选项多个一个强制代码转换，由于上面配置过prettier所以不需要</li>
+<li>选择第一个js模块化</li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/png/36149953/1688787438696-77368468-8679-48e6-acd1-fcc007851d99.png#averageHue=%232a2624&clientId=u1852a6ab-090d-4&from=paste&height=86&id=uce8802d4&originHeight=129&originWidth=560&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=18463&status=done&style=none&taskId=ue3d7ef62-1bc2-4b1a-9ff3-8632ea9a94a&title=&width=373.3333333333333" alt="image.png"></p>
+<ul>
+<li>因为这个项目是React项目所以选择React</li>
+<li>因为使用了TS所以是yes</li>
+<li>选择浏览器Browser;选择js文件；选择yes;选择npm</li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/png/36149953/1688787835482-e4f2da1c-14fb-4c6f-8320-fa870ae72fea.png#averageHue=%2321201f&clientId=u1852a6ab-090d-4&from=paste&height=372&id=u919de287&originHeight=558&originWidth=1253&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=89605&status=done&style=none&taskId=u699203ee-314f-40b6-bc7a-3426cc05c11&title=&width=835.3333333333334" alt="image.png"><br />1.3 修改生成的配置文件<br />     由于上方生成的配置文件只选择在浏览器环境下运行，而项目中又参杂了node所以为了保证可以在node环境下进行，需要在配置文件的“env”里加入:</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;node&quot;</span>:<span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>为了使require正常使用要在配置文件的rules中加入如下代码：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;@typescript-eslint/no-var-requires&#x27;</span>: <span class="string">&#x27;off&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>1.4  vsCode需要安装eslint插件<br />1.5解决eslint和prettier冲突的问题：<br />安装插件：（vue在创建项目时，如果选择prettier，那么这两个插件会自动安装。<br />npm install eslint-plugin-prettier eslint-config-prettier -D<br />安装成功之后在.eslintrc.js中增加下方代码：使eslint与prettier代码风格一致。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;plugin:prettier/recommended&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>prettier和eslint存在冲突，暂时不要用尤其是eslint;<br><a name="mZATs"></a></p>
+<h4 id="4-项目目录结构的划分"><a href="#4-项目目录结构的划分" class="headerlink" title="4.项目目录结构的划分"></a>4.项目目录结构的划分</h4><ul>
+<li>assets放置静态资源：例如：css,img</li>
+<li>base-ui多个项目使用的共同组件</li>
+<li>components:存放当前项目中多出使用到的共同组件</li>
+<li>hook:自定义hook———–&gt;一般不单独建文件夹</li>
+<li>router</li>
+<li>store</li>
+<li>service:网络请求</li>
+<li>utils:存放工具，例如：全局自定义弹窗</li>
+<li>views:存放视图，展示不同页面的组件<br><a name="Bya3Z"></a></li>
+</ul>
+<h4 id="5-对CSS样式的重置"><a href="#5-对CSS样式的重置" class="headerlink" title="5.对CSS样式的重置"></a>5.对CSS样式的重置</h4><ul>
+<li>normalize.css:  npm install normalize.css</li>
+</ul>
+<p>在tsx文件中引入normalize.css,从而对默认的css进行重置</p>
+<ul>
+<li>reset.less：自己在静态文件夹下的css文件中建立文档，定义 jk重置的css样式</li>
+</ul>
+<p>如果使用less需要安装指定版本：<br />npm install <a href="mailto:&#99;&#x72;&#97;&#x63;&#x6f;&#45;&#x6c;&#x65;&#115;&#115;&#64;&#50;&#46;&#49;&#46;&#x30;&#45;&#x61;&#108;&#112;&#104;&#97;&#x2e;&#48;">&#99;&#x72;&#97;&#x63;&#x6f;&#45;&#x6c;&#x65;&#115;&#115;&#64;&#50;&#46;&#49;&#46;&#x30;&#45;&#x61;&#108;&#112;&#104;&#97;&#x2e;&#48;</a><br><a name="Q38Z8"></a></p>
+<h4 id="6-路由的配置"><a href="#6-路由的配置" class="headerlink" title="6.路由的配置"></a>6.路由的配置</h4><pre><code>  1. 路由的搭建：npm install react-router-dom
+  2. 在写路由的时候与vue使用compoent不同的是React用的element，并且element后面跟的是组件实例（&lt;Discover /&gt;）而非Discover。由于组件实例属于jsx语法，所以写路有的文件不能是.ts应该是.tsx。凡是tsx文件都需要引入React(import React from &#39;react&#39;)。
+  3. 如果使用路由，最外层的index.tsx中的APP必须被router包裹
+</code></pre>
+<figure class="highlight tsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span> <span class="keyword">from</span> <span class="string">&quot;react&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">ReactDOM</span> <span class="keyword">from</span> <span class="string">&quot;react-dom/client&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">HashRouter</span> &#125; <span class="keyword">from</span> <span class="string">&quot;react-router-dom&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;normalize.css&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;./assets/css/index.less&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">App</span> <span class="keyword">from</span> <span class="string">&quot;@/App&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> root = <span class="title class_">ReactDOM</span>.<span class="title function_">createRoot</span>(</span><br><span class="line">  <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;root&quot;</span>) <span class="keyword">as</span> <span class="title class_">HTMLElement</span></span><br><span class="line">);</span><br><span class="line">root.<span class="title function_">render</span>(</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">HashRouter</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">App</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">HashRouter</span>&gt;</span></span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<pre><code>1.4：写路由组件的一般做法：
+</code></pre>
+<figure class="highlight tsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>,&#123;memo&#125; <span class="keyword">from</span> <span class="string">&quot;react&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="keyword">type</span> &#123; <span class="title class_">ReactNode</span> &#125; <span class="keyword">from</span> <span class="string">&quot;react&quot;</span>;</span><br><span class="line"><span class="comment">//如果想要读取组件中包括的子组件需要定义children,因为props本身中没有children，不能直接读取传入的子组件</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">IProps</span> &#123;</span><br><span class="line">  children?: <span class="title class_">ReactNode</span>; <span class="comment">//传入children写，不传则去掉</span></span><br><span class="line">  <span class="attr">name</span>: <span class="built_in">string</span>;</span><br><span class="line">  <span class="attr">age</span>: <span class="built_in">number</span>;</span><br><span class="line">  height?: <span class="built_in">number</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//方式一：直接对props进行类型约束：props:IProps</span></span><br><span class="line"><span class="comment">// const Download = (props: IProps) =&gt; &#123;</span></span><br><span class="line"><span class="comment">//   return (</span></span><br><span class="line"><span class="comment">//     &lt;div&gt;</span></span><br><span class="line"><span class="comment">//       &lt;div&gt;name:&#123;props.name&#125;&lt;/div&gt;</span></span><br><span class="line"><span class="comment">//       &lt;div&gt;age:&#123;props.age&#125;&lt;/div&gt;</span></span><br><span class="line"><span class="comment">//       &lt;div&gt;height:&#123;props.height&#125;&lt;/div&gt;</span></span><br><span class="line"><span class="comment">//     &lt;/div&gt;</span></span><br><span class="line"><span class="comment">//   );</span></span><br><span class="line"><span class="comment">// &#125;;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//方式二：借助ts泛型</span></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">Download</span>: <span class="title class_">React</span>.<span class="property">FC</span>&lt;<span class="title class_">IProps</span>&gt; = <span class="function">(<span class="params">props</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">div</span>&gt;</span>name:&#123;props.name&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">div</span>&gt;</span>age:&#123;props.age&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">div</span>&gt;</span>height:&#123;props.height&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;props.children&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//最好使用memo函数，它的导出性能比较好</span></span><br><span class="line"><span class="comment">// export default Download;</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">memo</span>(<span class="title class_">Download</span>)</span><br></pre></td></tr></table></figure>
+
+<p>1.5react与vue二级路由的不同之处：</p>
+<ul>
+<li>vue的二级路由的path不用加一级路由的路径</li>
+<li>react的二级路由的path需要加一级路由的路径否则会报错（如：&#x2F;discover&#x2F;recommend）<br><a name="XmGJ7"></a></li>
+</ul>
+<h4 id="7-配置react基本代码的一键生成模板"><a href="#7-配置react基本代码的一键生成模板" class="headerlink" title="7.配置react基本代码的一键生成模板"></a>7.配置react基本代码的一键生成模板</h4><p>已知tsx文件基础的模板代码格式如下：</p>
+<figure class="highlight tsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123; memo &#125; <span class="keyword">from</span> <span class="string">&quot;react&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="keyword">type</span> &#123; <span class="variable constant_">FC</span>, <span class="title class_">ReactNode</span> &#125; <span class="keyword">from</span> <span class="string">&quot;react&quot;</span>;</span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">IPprops</span> &#123;</span><br><span class="line">  children?: <span class="title class_">ReactNode</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> <span class="title class_">Djradio</span>: <span class="variable constant_">FC</span>&lt;<span class="title class_">IPprops</span>&gt; = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>Djradio<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">memo</span>(<span class="title class_">Djradio</span>);</span><br></pre></td></tr></table></figure>
+
+<p>利用工具自动生成代码时将可变的文件名称（如：Djradio）改成${1:Home},生成的代码如下：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;react typescript&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;prefix&quot;</span><span class="punctuation">:</span> <span class="string">&quot;tsreact&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;body&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="string">&quot;import React, &#123; memo &#125; from \&quot;react\&quot;;&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;import type &#123; FC, ReactNode &#125; from \&quot;react\&quot;;&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;interface IPprops &#123;&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;  children?: ReactNode;&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;&#125;&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;const $&#123;1:Home&#125;: FC&lt;IPprops&gt; = () =&gt; &#123;&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;  return &lt;div&gt;$&#123;1:Home&#125;&lt;/div&gt;;&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;&#125;;&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;export default memo($&#123;1:Home&#125;);&quot;</span></span><br><span class="line">  <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;description&quot;</span><span class="punctuation">:</span> <span class="string">&quot;react typescript&quot;</span><span class="punctuation">,</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>点击Vscode-&gt;文件-&gt;首选项-&gt;配置用户片段代码-&gt;输入Typescriptreact-&gt;将得到的代码粘贴<br />因为上方代码的prefix的值时tsreact所以在一个新的tsx文件中输入tsreact回车会自动生成react的基础代码。<br><a name="ei0TE"></a></p>
+<h4 id="8-状态管理"><a href="#8-状态管理" class="headerlink" title="8.状态管理"></a>8.状态管理</h4><p>状态管理选择：</p>
+<ul>
+<li>redux:目前React中使用最多的状态管理库；</li>
+<li>@reduxjs&#x2F;toolkit:redux工具，更方便的使用redux</li>
+</ul>
+<p><strong>操作：</strong><br />不需要单独安装redux,只需要如下步骤：<br />npm insatll @reduxjs&#x2F;toolkit react-dom<br />接着在store文件夹中创建index.ts文件,编写store内容：</p>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; configureStore &#125; <span class="keyword">from</span> <span class="string">&quot;@reduxjs/toolkit&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> store = <span class="title function_">configureStore</span>(&#123;</span><br><span class="line">  <span class="attr">reducer</span>: &#123;&#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> store;</span><br></pre></td></tr></table></figure>
+
+<p>在最外层的index.tsx文件中导入store和Provider，Proviindex.tsxder标签位于最外层，使其他页面可以利用store。</p>
+<figure class="highlight tsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span> <span class="keyword">from</span> <span class="string">&quot;react&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">ReactDOM</span> <span class="keyword">from</span> <span class="string">&quot;react-dom/client&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">HashRouter</span> &#125; <span class="keyword">from</span> <span class="string">&quot;react-router-dom&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">Provider</span> &#125; <span class="keyword">from</span> <span class="string">&quot;react-redux&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;normalize.css&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;./assets/css/index.less&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">App</span> <span class="keyword">from</span> <span class="string">&quot;@/App&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> store <span class="keyword">from</span> <span class="string">&quot;./store&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> root = <span class="title class_">ReactDOM</span>.<span class="title function_">createRoot</span>(</span><br><span class="line">  <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;root&quot;</span>) <span class="keyword">as</span> <span class="title class_">HTMLElement</span></span><br><span class="line">);</span><br><span class="line">root.<span class="title function_">render</span>(</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">Provider</span> <span class="attr">store</span>=<span class="string">&#123;store&#125;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">HashRouter</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">App</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">HashRouter</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">Provider</span>&gt;</span></span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>如果想要保存数据可以在store中创建一个文件夹modules,然后在其下面新建一个ts文件（如counter.ts文件）。<strong>在这个文件中及时initalState（初始化）和reducers中无内容也要书写，因为他们和name是必写内容，否则会报错。</strong></p>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createSlice &#125; <span class="keyword">from</span> <span class="string">&quot;@reduxjs/toolkit&quot;</span>;</span><br><span class="line"><span class="keyword">const</span> counterSlice = <span class="title function_">createSlice</span>(&#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;counter&quot;</span>,</span><br><span class="line">  <span class="attr">initialState</span>: &#123;</span><br><span class="line">    <span class="attr">count</span>: <span class="number">100</span>,</span><br><span class="line">    <span class="attr">message</span>: <span class="string">&quot;Hello Redux&quot;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">reducers</span>: &#123;&#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> counterSlice.<span class="property">reducer</span></span><br></pre></td></tr></table></figure>
+
+<p>然后导出的内容需要放在store里面否则无效。</p>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; configureStore &#125; <span class="keyword">from</span> <span class="string">&quot;@reduxjs/toolkit&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> counterReducer <span class="keyword">from</span> <span class="string">&quot;./modules/counter&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> store = <span class="title function_">configureStore</span>(&#123;</span><br><span class="line">  <span class="attr">reducer</span>: &#123;</span><br><span class="line">    <span class="attr">counter</span>: counterReducer,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> store;</span><br></pre></td></tr></table></figure>
+
+<p><a name="k85va"></a></p>
+<h4 id="9-网络请求封装axios"><a href="#9-网络请求封装axios" class="headerlink" title="9.网络请求封装axios"></a>9.网络请求封装axios</h4><pre><code>  1. 安装axios
+</code></pre>
+<p>npm install axios<br />由于最新班的axios版本过高会有报错，所以安装1.1版本<br />npm install <a href="mailto:&#x61;&#120;&#x69;&#111;&#x73;&#x40;&#49;&#x2e;&#x31;&#46;&#x30;">&#x61;&#120;&#x69;&#111;&#x73;&#x40;&#49;&#x2e;&#x31;&#46;&#x30;</a></p>
+<pre><code>  2. 1
+     &lt;a name=&quot;sFgV1&quot;&gt;&lt;/a&gt;
+</code></pre>
+<h4 id="10-如何打包项目："><a href="#10-如何打包项目：" class="headerlink" title="10.如何打包项目："></a>10.如何打包项目：</h4><pre><code>  1. npm run build
+  2. 打包完成之后在本地跑起来：npm install -g serve
+  3. 启动服务器以build作为资源：serve -s build
+     &lt;a name=&quot;blAiO&quot;&gt;&lt;/a&gt;
+</code></pre>
+<h4 id="11-css-in-js库"><a href="#11-css-in-js库" class="headerlink" title="11.css-in-js库"></a>11.css-in-js库</h4><p>react是用js写html的框架，为了在react框架中使用js编写一切代码，使用css-in-js库编写css代码，<strong>style-components是近期使用人数最多的css-in-js库</strong>，它的优点如下：</p>
+<ul>
+<li>可以编写实际的CSS代码来设计组件样式，也不需要组件和样式之间的映射，即创建后就是一个正常的React 组件，直接在JSX中引入即可</li>
+<li>在一个组件内会将结构、样式和逻辑写在一起，虽然这违背了关注点分离的原则，但是这有利于组件间的隔离。为了顺应组件化的潮流</li>
+<li>使用styled-components不需要再使用className属性来控制样式，而是将样式写成更具语义化的组件的形式</li>
+<li>使用style-components会随机生成一个class名称，这样不会污染到全局变量，当然因为随机生成，维护会增加难度</li>
+</ul>
+<p><strong>使用步骤：</strong></p>
+<ul>
+<li>安装style-components:npm install styled-components -D</li>
+<li>在引入和使用styled-components之前需要先对其进行类型声明否则会报错。</li>
+</ul>
+<p>类型声明的几种形式：</p>
+<ul>
+<li>typescript内置DOM</li>
+<li>第三方：<ul>
+<li>库内部已经有类型声明（eg：axios）</li>
+<li>react&#x2F;react-dom&#x3D;&gt;@types&#x2F;react @types&#x2F;react-dom</li>
+<li>自己写的类型声明</li>
+</ul>
+</li>
+<li>解决方式： npm i –save-dev @types&#x2F;styled-components<br><a name="uGWID"></a></li>
+</ul>
+<h4 id="12-react的第三方库-antd"><a href="#12-react的第三方库-antd" class="headerlink" title="12.react的第三方库-antd"></a>12.react的第三方库-antd</h4><ul>
+<li>安装antd:npm install antd –save</li>
+<li>如果想要使用图标需要单独再安装一个图标库：npm install –save @ant-design&#x2F;icons<br><a name="W8YPl"></a></li>
+</ul>
+<h4 id="13-动态添加classname"><a href="#13-动态添加classname" class="headerlink" title="13.动态添加classname"></a><a href="https://blog.csdn.net/sheep_yyx/article/details/125661895">13.动态添加classname</a></h4><p>安装classname库，当利用map之类动态数据遍历的时候可以动态添加classname<br />npm install classname</p>
+]]></content>
+      <tags>
+        <tag>React</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>node基础概念</title>
+    <url>/2023/07/29/node%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/</url>
+    <content><![CDATA[<p><a name="IHs7V"></a></p>
+<h4 id="1-跨域产生的原因以及解决方案"><a href="#1-跨域产生的原因以及解决方案" class="headerlink" title="1.跨域产生的原因以及解决方案"></a>1.跨域产生的原因以及解决方案</h4><ol>
+<li>什么是<code>跨域</code>？<ol>
+<li>广义：指一个域下的文档或脚本试图去请求另一个域下的资源</li>
+<li>狭义：浏览器不能执行其他网站的脚本，是由浏览器的<a href="https://baike.baidu.com/item/%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5/3927875">同源策略</a>限制的一类请求场景，从一个域名的网页去请求另一个域名的资源时，域名，端口，协议任一不同，都是跨域。</li>
+</ol>
+</li>
+<li>为什么会产生跨域？</li>
+</ol>
+<p><code>跨域是因为浏览器的同源策略的限制</code>，是浏览器的一种安全机制，服务端之间是不存在跨域的。所谓的同源指的是两个页面具有相同放入<code>协议，主机和端口，三者任一不相同</code>就会产生跨域。<br />跨域举例：<img src="/img/study/%E8%B7%A8%E5%9F%9F.png" alt="image.png"><br>3. 跨域的解决方案</p>
+<pre><code>  1. jsonp跨域
+</code></pre>
+<p><code>jsonp</code>(JSON with Padding),是json的一种“使用模式”，可以让页面跨域读取数据，其本质是利用script标签的开放策略，浏览器传递callback参数到后端，后端返回数据时会将callback参数作为函数名来包裹数据，从而浏览器久可以跨域请求数据并制定函数来自动处理返回数据。</p>
+<pre><code>  2. 跨域资源共享（cors）
+</code></pre>
+<p>跨域资源共享是一个W3C标准，允许浏览器向跨域服务器发送请求，从而客服ajax只能同源使用的限制。CORS需要浏览器和服务器同时支持。目前，所有主流浏览器是同XMLHttpRequest对象都可支持该功能，IE8和IE8需要使用XDomainRequest对象进行兼容。<br />CORS整个通信过程都是浏览器自动完成，浏览器一旦发现ajax请求跨源，就会自动在头信息中增加Origin字段，用来说明本次请求来自哪个源（协议+域名+端口）。因此，实现CORS通信的关键是服务器，需要服务器配置Access-Control-Allow-Origin头信息。当CORS请求需要携带cookie时，需要服务端配置Access-Control-Allow-Credentials头信息，前端也需要设置withCredentials。</p>
+<pre><code>  3. 服务器代理
+</code></pre>
+<p>服务器代理，顾名思义即在发送跨域请求时，后端进行代理中转请求至服务器端，然后将获取的数据返回给前端。<br />一般适用于以下场景：</p>
+<ul>
+<li>针对IE7及以下浏览器摒弃Flash插件的情况，配置代理接口与前端页面同源，并中转目标服务器接口，则ajax请求不存在跨域问题。</li>
+<li>外网前端页面无法访问内网接口，配置代理接口允许前端页面访问，并中转内网接口，则外网前端页面可以跨域访问内网接口。</li>
+</ul>
+<h4 id="2-body-parser这个中间件是做什么用的？"><a href="#2-body-parser这个中间件是做什么用的？" class="headerlink" title="2.body-parser这个中间件是做什么用的？"></a>2.body-parser这个中间件是做什么用的？</h4><p><code>body-parser</code>是一个<code>Node.js中间件</code>，用于解析HTTP请求中的请求体（RequestBody）,并将其转化为JSON格式或其它格式的数据对象。它可以帮助开发者方便的从POST,PUT,DELETE等请求中获取请求体数据，并进行相应的处理。具体来说，body-parser支持以下几种请求体数据格式：</p>
+<pre><code>  1. JSON格式：通过json()方式解析JSON格式的请求体数据，并将其转换为JS对象
+  2. URL编码格式：通过urlencoded()方法解析URL编码格式的请求体数据，并将其转换为JS对象
+  3. 多部分数据格式：通过multipart()方法解析多部份数据格式的请求体数据，并将其转换为JS对象。
+</code></pre>
+<p>例子：简单实用body-parser解析请求体数据的示例代码：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> bodyParser = <span class="built_in">require</span>(<span class="string">&#x27;body-parser&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = <span class="title function_">express</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 解析 URL 编码格式的请求体数据</span></span><br><span class="line">app.<span class="title function_">use</span>(bodyParser.<span class="title function_">urlencoded</span>(&#123; <span class="attr">extended</span>: <span class="literal">false</span> &#125;));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 解析 JSON 格式的请求体数据</span></span><br><span class="line">app.<span class="title function_">use</span>(bodyParser.<span class="title function_">json</span>());</span><br><span class="line"></span><br><span class="line"><span class="comment">// 处理 POST 请求</span></span><br><span class="line">app.<span class="title function_">post</span>(<span class="string">&#x27;/api/login&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; username, password &#125; = req.<span class="property">body</span>;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`username: <span class="subst">$&#123;username&#125;</span>`</span>);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`password: <span class="subst">$&#123;password&#125;</span>`</span>);</span><br><span class="line">  res.<span class="title function_">send</span>(<span class="string">&#x27;Login Success!&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">listen</span>(<span class="number">3000</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Server running on http://localhost:3000&#x27;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>上面使用body-parser中间件分别解析了URL编码格式和JSON格式的请求体数据，并通过<code>req.body获取请求体数据对象</code>。在POST请求处理的函数中，打印了用户输入的用户名和密码，并返回了一个登录成功对的响应消息。<br />在使用body-parser中间件时需要根据实际情况选择合适的解析方法，并注意配置参数，以<code>防止出现安全漏洞和错误数据</code>。同时，在处理HTTP请求时，需要对请求体数据进行有效性验证和安全性检查，以保证数据的可靠性和完整性。<br><a name="cmj9f"></a></p>
+<h4 id="3-什么是Koa"><a href="#3-什么是Koa" class="headerlink" title="3.什么是Koa?"></a>3.什么是Koa?</h4><p>nodejs中除了express框架，另一个非常流行的Node Web服务器框架就是Koa。<br />Koa是一个精简的node框架，最大的特点是独特的中间件流程控制，典型的洋葱模型。<br><a name="vCEni"></a></p>
+<h4 id="4-对Koa洋葱模型的理解"><a href="#4-对Koa洋葱模型的理解" class="headerlink" title="4.对Koa洋葱模型的理解"></a>4.对Koa洋葱模型的理解</h4><p><code>Koa框架</code>是一个Node.js的<code>Web应用程序框架</code>，它通过中间件机制实现了业务逻辑的分层和复用。Koa中使用的中间件机制被称为<code>洋葱模型</code>，其核心思想是将HTTP请求和响应对象一次传递给各个中间件函数，形成一条类似于洋葱的管道，最终返回响应结果。<br />具体来说，Koa 洋葱模型的处理流程可以大致分为四个阶段：</p>
+<ol>
+<li><code>请求阶段</code>：从外到内依次执行请求相关的中间件，例如解析请求体、设置响应头等操作。</li>
+<li><code>业务阶段</code>：执行业务逻辑相关的中间件，例如处理授权、验证身份、路由分发等操作。</li>
+<li><code>响应阶段</code>：从内到外依次执行响应相关的中间件，例如格式化响应数据、设置响应头等操作。</li>
+<li><code>错误处理阶段</code>：如果在前面的中间件过程中出现了错误，则会跳过后续中间件并交给错误处理中间件来处理异常情况。</li>
+</ol>
+<p>在这个过程中，每个中间件都可以根据需要对请求和响应对象进行修改、扩展、封装等操作，并将控制权传递给下一个中间件，形成了一条流水线式的处理模式。这种设计可以大大提高代码的复用和可读性，同时也方便了对程序行为进行监控、调试和优化。<br />总之，Koa 洋葱模型是一种基于中间件机制的 Web 应用程序开发方法，它通过将请求和响应对象依次传递给各个中间件函数，实现了<code>业务逻辑的分层和复用</code>，并且具有灵活、可扩展和高效的特点。</p>
+]]></content>
+      <categories>
+        <category>node</category>
+      </categories>
+      <tags>
+        <tag>node</tag>
       </tags>
   </entry>
 </search>
