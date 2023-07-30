@@ -1,58 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>node基础概念</title>
-    <url>/2023/07/29/node%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/</url>
-    <content><![CDATA[<p><a name="IHs7V"></a></p>
-<h4 id="1-跨域产生的原因以及解决方案"><a href="#1-跨域产生的原因以及解决方案" class="headerlink" title="1.跨域产生的原因以及解决方案"></a>1.跨域产生的原因以及解决方案</h4><ol>
-<li>什么是<code>跨域</code>？<ol>
-<li>广义：指一个域下的文档或脚本试图去请求另一个域下的资源</li>
-<li>狭义：浏览器不能执行其他网站的脚本，是由浏览器的<a href="https://baike.baidu.com/item/%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5/3927875">同源策略</a>限制的一类请求场景，从一个域名的网页去请求另一个域名的资源时，域名，端口，协议任一不同，都是跨域。</li>
-</ol>
-</li>
-<li>为什么会产生跨域？</li>
-</ol>
-<p><code>跨域是因为浏览器的同源策略的限制</code>，是浏览器的一种安全机制，服务端之间是不存在跨域的。所谓的同源指的是两个页面具有相同放入<code>协议，主机和端口，三者任一不相同</code>就会产生跨域。<br />跨域举例：<img src="/img/study/%E8%B7%A8%E5%9F%9F.png" alt="image.png"><br>3. 跨域的解决方案</p>
-<pre><code>  1. jsonp跨域
-</code></pre>
-<p><code>jsonp</code>(JSON with Padding),是json的一种“使用模式”，可以让页面跨域读取数据，其本质是利用script标签的开放策略，浏览器传递callback参数到后端，后端返回数据时会将callback参数作为函数名来包裹数据，从而浏览器久可以跨域请求数据并制定函数来自动处理返回数据。</p>
-<pre><code>  2. 跨域资源共享（cors）
-</code></pre>
-<p>跨域资源共享是一个W3C标准，允许浏览器向跨域服务器发送请求，从而客服ajax只能同源使用的限制。CORS需要浏览器和服务器同时支持。目前，所有主流浏览器是同XMLHttpRequest对象都可支持该功能，IE8和IE8需要使用XDomainRequest对象进行兼容。<br />CORS整个通信过程都是浏览器自动完成，浏览器一旦发现ajax请求跨源，就会自动在头信息中增加Origin字段，用来说明本次请求来自哪个源（协议+域名+端口）。因此，实现CORS通信的关键是服务器，需要服务器配置Access-Control-Allow-Origin头信息。当CORS请求需要携带cookie时，需要服务端配置Access-Control-Allow-Credentials头信息，前端也需要设置withCredentials。</p>
-<pre><code>  3. 服务器代理
-</code></pre>
-<p>服务器代理，顾名思义即在发送跨域请求时，后端进行代理中转请求至服务器端，然后将获取的数据返回给前端。<br />一般适用于以下场景：</p>
-<ul>
-<li>针对IE7及以下浏览器摒弃Flash插件的情况，配置代理接口与前端页面同源，并中转目标服务器接口，则ajax请求不存在跨域问题。</li>
-<li>外网前端页面无法访问内网接口，配置代理接口允许前端页面访问，并中转内网接口，则外网前端页面可以跨域访问内网接口。</li>
-</ul>
-<h4 id="2-body-parser这个中间件是做什么用的？"><a href="#2-body-parser这个中间件是做什么用的？" class="headerlink" title="2.body-parser这个中间件是做什么用的？"></a>2.body-parser这个中间件是做什么用的？</h4><p><code>body-parser</code>是一个<code>Node.js中间件</code>，用于解析HTTP请求中的请求体（RequestBody）,并将其转化为JSON格式或其它格式的数据对象。它可以帮助开发者方便的从POST,PUT,DELETE等请求中获取请求体数据，并进行相应的处理。具体来说，body-parser支持以下几种请求体数据格式：</p>
-<pre><code>  1. JSON格式：通过json()方式解析JSON格式的请求体数据，并将其转换为JS对象
-  2. URL编码格式：通过urlencoded()方法解析URL编码格式的请求体数据，并将其转换为JS对象
-  3. 多部分数据格式：通过multipart()方法解析多部份数据格式的请求体数据，并将其转换为JS对象。
-</code></pre>
-<p>例子：简单实用body-parser解析请求体数据的示例代码：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> bodyParser = <span class="built_in">require</span>(<span class="string">&#x27;body-parser&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = <span class="title function_">express</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 解析 URL 编码格式的请求体数据</span></span><br><span class="line">app.<span class="title function_">use</span>(bodyParser.<span class="title function_">urlencoded</span>(&#123; <span class="attr">extended</span>: <span class="literal">false</span> &#125;));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 解析 JSON 格式的请求体数据</span></span><br><span class="line">app.<span class="title function_">use</span>(bodyParser.<span class="title function_">json</span>());</span><br><span class="line"></span><br><span class="line"><span class="comment">// 处理 POST 请求</span></span><br><span class="line">app.<span class="title function_">post</span>(<span class="string">&#x27;/api/login&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; username, password &#125; = req.<span class="property">body</span>;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`username: <span class="subst">$&#123;username&#125;</span>`</span>);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`password: <span class="subst">$&#123;password&#125;</span>`</span>);</span><br><span class="line">  res.<span class="title function_">send</span>(<span class="string">&#x27;Login Success!&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">listen</span>(<span class="number">3000</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Server running on http://localhost:3000&#x27;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>上面使用body-parser中间件分别解析了URL编码格式和JSON格式的请求体数据，并通过<code>req.body获取请求体数据对象</code>。在POST请求处理的函数中，打印了用户输入的用户名和密码，并返回了一个登录成功对的响应消息。<br />在使用body-parser中间件时需要根据实际情况选择合适的解析方法，并注意配置参数，以<code>防止出现安全漏洞和错误数据</code>。同时，在处理HTTP请求时，需要对请求体数据进行有效性验证和安全性检查，以保证数据的可靠性和完整性。<br><a name="cmj9f"></a></p>
-<h4 id="3-什么是Koa"><a href="#3-什么是Koa" class="headerlink" title="3.什么是Koa?"></a>3.什么是Koa?</h4><p>nodejs中除了express框架，另一个非常流行的Node Web服务器框架就是Koa。<br />Koa是一个精简的node框架，最大的特点是独特的中间件流程控制，典型的洋葱模型。<br><a name="vCEni"></a></p>
-<h4 id="4-对Koa洋葱模型的理解"><a href="#4-对Koa洋葱模型的理解" class="headerlink" title="4.对Koa洋葱模型的理解"></a>4.对Koa洋葱模型的理解</h4><p><code>Koa框架</code>是一个Node.js的<code>Web应用程序框架</code>，它通过中间件机制实现了业务逻辑的分层和复用。Koa中使用的中间件机制被称为<code>洋葱模型</code>，其核心思想是将HTTP请求和响应对象一次传递给各个中间件函数，形成一条类似于洋葱的管道，最终返回响应结果。<br />具体来说，Koa 洋葱模型的处理流程可以大致分为四个阶段：</p>
-<ol>
-<li><code>请求阶段</code>：从外到内依次执行请求相关的中间件，例如解析请求体、设置响应头等操作。</li>
-<li><code>业务阶段</code>：执行业务逻辑相关的中间件，例如处理授权、验证身份、路由分发等操作。</li>
-<li><code>响应阶段</code>：从内到外依次执行响应相关的中间件，例如格式化响应数据、设置响应头等操作。</li>
-<li><code>错误处理阶段</code>：如果在前面的中间件过程中出现了错误，则会跳过后续中间件并交给错误处理中间件来处理异常情况。</li>
-</ol>
-<p>在这个过程中，每个中间件都可以根据需要对请求和响应对象进行修改、扩展、封装等操作，并将控制权传递给下一个中间件，形成了一条流水线式的处理模式。这种设计可以大大提高代码的复用和可读性，同时也方便了对程序行为进行监控、调试和优化。<br />总之，Koa 洋葱模型是一种基于中间件机制的 Web 应用程序开发方法，它通过将请求和响应对象依次传递给各个中间件函数，实现了<code>业务逻辑的分层和复用</code>，并且具有灵活、可扩展和高效的特点。</p>
-]]></content>
-      <categories>
-        <category>node</category>
-      </categories>
-      <tags>
-        <tag>node</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>React项目搭建</title>
     <url>/2023/07/15/React%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/</url>
     <content><![CDATA[<p><a name="RMA4X"></a></p>
@@ -164,7 +112,7 @@
 <ul>
 <li>reset.less：自己在静态文件夹下的css文件中建立文档，定义 jk重置的css样式</li>
 </ul>
-<p>如果使用less需要安装指定版本：<br />npm install <a href="mailto:&#99;&#114;&#x61;&#x63;&#x6f;&#x2d;&#x6c;&#x65;&#115;&#x73;&#64;&#x32;&#x2e;&#x31;&#x2e;&#48;&#45;&#97;&#108;&#112;&#104;&#97;&#x2e;&#x30;">&#99;&#114;&#x61;&#x63;&#x6f;&#x2d;&#x6c;&#x65;&#115;&#x73;&#64;&#x32;&#x2e;&#x31;&#x2e;&#48;&#45;&#97;&#108;&#112;&#104;&#97;&#x2e;&#x30;</a><br><a name="Q38Z8"></a></p>
+<p>如果使用less需要安装指定版本：<br />npm install <a href="mailto:&#99;&#x72;&#97;&#x63;&#x6f;&#x2d;&#x6c;&#x65;&#x73;&#115;&#x40;&#x32;&#46;&#x31;&#x2e;&#x30;&#45;&#97;&#x6c;&#x70;&#104;&#x61;&#46;&#x30;">&#99;&#x72;&#97;&#x63;&#x6f;&#x2d;&#x6c;&#x65;&#x73;&#115;&#x40;&#x32;&#46;&#x31;&#x2e;&#x30;&#45;&#97;&#x6c;&#x70;&#104;&#x61;&#46;&#x30;</a><br><a name="Q38Z8"></a></p>
 <h4 id="6-路由的配置"><a href="#6-路由的配置" class="headerlink" title="6.路由的配置"></a>6.路由的配置</h4><pre><code>  1. 路由的搭建：npm install react-router-dom
   2. 在写路由的时候与vue使用compoent不同的是React用的element，并且element后面跟的是组件实例（&lt;Discover /&gt;）而非Discover。由于组件实例属于jsx语法，所以写路有的文件不能是.ts应该是.tsx。凡是tsx文件都需要引入React(import React from &#39;react&#39;)。
   3. 如果使用路由，最外层的index.tsx中的APP必须被router包裹
@@ -207,7 +155,7 @@
 <p><a name="k85va"></a></p>
 <h4 id="9-网络请求封装axios"><a href="#9-网络请求封装axios" class="headerlink" title="9.网络请求封装axios"></a>9.网络请求封装axios</h4><pre><code>  1. 安装axios
 </code></pre>
-<p>npm install axios<br />由于最新班的axios版本过高会有报错，所以安装1.1版本<br />npm install <a href="mailto:&#x61;&#x78;&#x69;&#x6f;&#115;&#x40;&#x31;&#x2e;&#49;&#46;&#x30;">&#x61;&#x78;&#x69;&#x6f;&#115;&#x40;&#x31;&#x2e;&#49;&#46;&#x30;</a></p>
+<p>npm install axios<br />由于最新班的axios版本过高会有报错，所以安装1.1版本<br />npm install <a href="mailto:&#97;&#120;&#x69;&#x6f;&#115;&#x40;&#x31;&#46;&#x31;&#46;&#48;">&#97;&#120;&#x69;&#x6f;&#115;&#x40;&#x31;&#46;&#x31;&#46;&#48;</a></p>
 <pre><code>  2. 1
      &lt;a name=&quot;sFgV1&quot;&gt;&lt;/a&gt;
 </code></pre>
@@ -601,6 +549,58 @@
 ]]></content>
       <tags>
         <tag>复习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>node基础概念</title>
+    <url>/2023/07/29/node%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/</url>
+    <content><![CDATA[<p><a name="IHs7V"></a></p>
+<h4 id="1-跨域产生的原因以及解决方案"><a href="#1-跨域产生的原因以及解决方案" class="headerlink" title="1.跨域产生的原因以及解决方案"></a>1.跨域产生的原因以及解决方案</h4><ol>
+<li>什么是<code>跨域</code>？<ol>
+<li>广义：指一个域下的文档或脚本试图去请求另一个域下的资源</li>
+<li>狭义：浏览器不能执行其他网站的脚本，是由浏览器的<a href="https://baike.baidu.com/item/%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5/3927875">同源策略</a>限制的一类请求场景，从一个域名的网页去请求另一个域名的资源时，域名，端口，协议任一不同，都是跨域。</li>
+</ol>
+</li>
+<li>为什么会产生跨域？</li>
+</ol>
+<p><code>跨域是因为浏览器的同源策略的限制</code>，是浏览器的一种安全机制，服务端之间是不存在跨域的。所谓的同源指的是两个页面具有相同放入<code>协议，主机和端口，三者任一不相同</code>就会产生跨域。<br />跨域举例：<img src="/img/study/%E8%B7%A8%E5%9F%9F.png" alt="image.png"><br>3. 跨域的解决方案</p>
+<pre><code>  1. jsonp跨域
+</code></pre>
+<p><code>jsonp</code>(JSON with Padding),是json的一种“使用模式”，可以让页面跨域读取数据，其本质是利用script标签的开放策略，浏览器传递callback参数到后端，后端返回数据时会将callback参数作为函数名来包裹数据，从而浏览器久可以跨域请求数据并制定函数来自动处理返回数据。</p>
+<pre><code>  2. 跨域资源共享（cors）
+</code></pre>
+<p>跨域资源共享是一个W3C标准，允许浏览器向跨域服务器发送请求，从而客服ajax只能同源使用的限制。CORS需要浏览器和服务器同时支持。目前，所有主流浏览器是同XMLHttpRequest对象都可支持该功能，IE8和IE8需要使用XDomainRequest对象进行兼容。<br />CORS整个通信过程都是浏览器自动完成，浏览器一旦发现ajax请求跨源，就会自动在头信息中增加Origin字段，用来说明本次请求来自哪个源（协议+域名+端口）。因此，实现CORS通信的关键是服务器，需要服务器配置Access-Control-Allow-Origin头信息。当CORS请求需要携带cookie时，需要服务端配置Access-Control-Allow-Credentials头信息，前端也需要设置withCredentials。</p>
+<pre><code>  3. 服务器代理
+</code></pre>
+<p>服务器代理，顾名思义即在发送跨域请求时，后端进行代理中转请求至服务器端，然后将获取的数据返回给前端。<br />一般适用于以下场景：</p>
+<ul>
+<li>针对IE7及以下浏览器摒弃Flash插件的情况，配置代理接口与前端页面同源，并中转目标服务器接口，则ajax请求不存在跨域问题。</li>
+<li>外网前端页面无法访问内网接口，配置代理接口允许前端页面访问，并中转内网接口，则外网前端页面可以跨域访问内网接口。</li>
+</ul>
+<h4 id="2-body-parser这个中间件是做什么用的？"><a href="#2-body-parser这个中间件是做什么用的？" class="headerlink" title="2.body-parser这个中间件是做什么用的？"></a>2.body-parser这个中间件是做什么用的？</h4><p><code>body-parser</code>是一个<code>Node.js中间件</code>，用于解析HTTP请求中的请求体（RequestBody）,并将其转化为JSON格式或其它格式的数据对象。它可以帮助开发者方便的从POST,PUT,DELETE等请求中获取请求体数据，并进行相应的处理。具体来说，body-parser支持以下几种请求体数据格式：</p>
+<pre><code>  1. JSON格式：通过json()方式解析JSON格式的请求体数据，并将其转换为JS对象
+  2. URL编码格式：通过urlencoded()方法解析URL编码格式的请求体数据，并将其转换为JS对象
+  3. 多部分数据格式：通过multipart()方法解析多部份数据格式的请求体数据，并将其转换为JS对象。
+</code></pre>
+<p>例子：简单实用body-parser解析请求体数据的示例代码：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> bodyParser = <span class="built_in">require</span>(<span class="string">&#x27;body-parser&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = <span class="title function_">express</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 解析 URL 编码格式的请求体数据</span></span><br><span class="line">app.<span class="title function_">use</span>(bodyParser.<span class="title function_">urlencoded</span>(&#123; <span class="attr">extended</span>: <span class="literal">false</span> &#125;));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 解析 JSON 格式的请求体数据</span></span><br><span class="line">app.<span class="title function_">use</span>(bodyParser.<span class="title function_">json</span>());</span><br><span class="line"></span><br><span class="line"><span class="comment">// 处理 POST 请求</span></span><br><span class="line">app.<span class="title function_">post</span>(<span class="string">&#x27;/api/login&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; username, password &#125; = req.<span class="property">body</span>;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`username: <span class="subst">$&#123;username&#125;</span>`</span>);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`password: <span class="subst">$&#123;password&#125;</span>`</span>);</span><br><span class="line">  res.<span class="title function_">send</span>(<span class="string">&#x27;Login Success!&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">listen</span>(<span class="number">3000</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Server running on http://localhost:3000&#x27;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>上面使用body-parser中间件分别解析了URL编码格式和JSON格式的请求体数据，并通过<code>req.body获取请求体数据对象</code>。在POST请求处理的函数中，打印了用户输入的用户名和密码，并返回了一个登录成功对的响应消息。<br />在使用body-parser中间件时需要根据实际情况选择合适的解析方法，并注意配置参数，以<code>防止出现安全漏洞和错误数据</code>。同时，在处理HTTP请求时，需要对请求体数据进行有效性验证和安全性检查，以保证数据的可靠性和完整性。<br><a name="cmj9f"></a></p>
+<h4 id="3-什么是Koa"><a href="#3-什么是Koa" class="headerlink" title="3.什么是Koa?"></a>3.什么是Koa?</h4><p>nodejs中除了express框架，另一个非常流行的Node Web服务器框架就是Koa。<br />Koa是一个精简的node框架，最大的特点是独特的中间件流程控制，典型的洋葱模型。<br><a name="vCEni"></a></p>
+<h4 id="4-对Koa洋葱模型的理解"><a href="#4-对Koa洋葱模型的理解" class="headerlink" title="4.对Koa洋葱模型的理解"></a>4.对Koa洋葱模型的理解</h4><p><code>Koa框架</code>是一个Node.js的<code>Web应用程序框架</code>，它通过中间件机制实现了业务逻辑的分层和复用。Koa中使用的中间件机制被称为<code>洋葱模型</code>，其核心思想是将HTTP请求和响应对象一次传递给各个中间件函数，形成一条类似于洋葱的管道，最终返回响应结果。<br />具体来说，Koa 洋葱模型的处理流程可以大致分为四个阶段：</p>
+<ol>
+<li><code>请求阶段</code>：从外到内依次执行请求相关的中间件，例如解析请求体、设置响应头等操作。</li>
+<li><code>业务阶段</code>：执行业务逻辑相关的中间件，例如处理授权、验证身份、路由分发等操作。</li>
+<li><code>响应阶段</code>：从内到外依次执行响应相关的中间件，例如格式化响应数据、设置响应头等操作。</li>
+<li><code>错误处理阶段</code>：如果在前面的中间件过程中出现了错误，则会跳过后续中间件并交给错误处理中间件来处理异常情况。</li>
+</ol>
+<p>在这个过程中，每个中间件都可以根据需要对请求和响应对象进行修改、扩展、封装等操作，并将控制权传递给下一个中间件，形成了一条流水线式的处理模式。这种设计可以大大提高代码的复用和可读性，同时也方便了对程序行为进行监控、调试和优化。<br />总之，Koa 洋葱模型是一种基于中间件机制的 Web 应用程序开发方法，它通过将请求和响应对象依次传递给各个中间件函数，实现了<code>业务逻辑的分层和复用</code>，并且具有灵活、可扩展和高效的特点。</p>
+]]></content>
+      <categories>
+        <category>node</category>
+      </categories>
+      <tags>
+        <tag>node</tag>
       </tags>
   </entry>
 </search>
