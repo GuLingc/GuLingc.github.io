@@ -1,6 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>html面试基础(一)</title>
+    <url>/2023/08/01/html%E9%9D%A2%E8%AF%95%E5%9F%BA%E7%A1%80(%E4%B8%80)/</url>
+    <content><![CDATA[<p><strong>html知识体系图片:</strong><a href="https://juejin.cn/post/6905294475539513352"><strong>https://juejin.cn/post/6905294475539513352</strong></a></p>
+<h3 id="标红重点（考察很多）"><a href="#标红重点（考察很多）" class="headerlink" title="标红重点（考察很多）"></a><label style="color:rgb(223, 42, 63)">标红重点（考察很多）</label></h3><h4 id="src和href的区别："><a href="#src和href的区别：" class="headerlink" title="src和href的区别："></a><label style="color:rgb(223, 42, 63)">src和href的区别：</label></h4><p>src和ref都是用来引入外部的资源，它们的区别如下：</p>
+<ul>
+<li>src:表示对资源的引用，它指向的内容会嵌入到当前标签所在的位置。src会将其指向的资源下载并应用到文档内，如请求js脚本。当浏览器解析到该元素时会暂停其他资源的下载和处理，直到将该资源加载，编译，执行完毕，所以一般js脚本会放到页面的底部。</li>
+<li>href:表示超文本引用，它指向一些网络资源，建立和当前元素或文本的链接关系。当浏览器识别到它指向的文件时，就会并行下载资源不会停止对当前文档的处理。常用在a,link标签上。</li>
+</ul>
+<h4 id="对Html语义化的理解"><a href="#对Html语义化的理解" class="headerlink" title="对Html语义化的理解"></a><label style="color:rgb(223, 42, 63)">对Html语义化的理解</label></h4><p>语义化是根据内容的结构化（内容语义化）,选择合适的标签（代码语义化）。通俗的来讲就是用正确的代码，做正确的事情。<br>语义化的优点：</p>
+<ul>
+<li>对机器友好，带有语义的文字表现力丰富，，更适合搜索引擎的爬虫爬取有效信息，有利于SE0（搜索引擎优化）；</li>
+<li>对开发者友好，使用语义类标签增强了可读性，结构更加清晰，开发者能清晰的看出网页的结构，便于团队的开发和维护。</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">&lt;header&gt;&lt;/header&gt;</span>  <span class="string">头部</span></span><br><span class="line"></span><br><span class="line"><span class="string">&lt;nav&gt;&lt;/nav&gt;</span>  <span class="string">导航栏</span></span><br><span class="line"></span><br><span class="line"><span class="string">&lt;section&gt;&lt;/section&gt;</span>  <span class="string">区块（有语义化的div）</span></span><br><span class="line"></span><br><span class="line"><span class="string">&lt;main&gt;&lt;/main&gt;</span>  <span class="string">主要区域</span></span><br><span class="line"></span><br><span class="line"><span class="string">&lt;article&gt;&lt;/article&gt;</span>  <span class="string">主要内容</span></span><br><span class="line"></span><br><span class="line"><span class="string">&lt;aside&gt;&lt;/aside&gt;</span>  <span class="string">侧边栏</span></span><br><span class="line"></span><br><span class="line"><span class="string">&lt;footer&gt;&lt;/footer&gt;</span>  <span class="string">底部</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="script标签中defer和async的区别"><a href="#script标签中defer和async的区别" class="headerlink" title="script标签中defer和async的区别"></a><label style="color:rgb(223, 42, 63)">script标签中defer和async的区别</label></h4><p><code>如果没有defer或async属性，浏览器会立即加载并执行相应的脚本</code>。它不会等待后续加载的文档元素，读取到就会开始加载和执行，这样就阻塞了后续文档的加载。<br>下图可以直观的看出三者的区别：<br><img src="/img/study/defer.png" alt="image.png"><br>其中蓝色代表js脚本网络加载时间，红色代表js脚本执行时间，绿色代表html解析。<br><strong>defer和async属性都是去异步加载外部的JS脚本文件，它们都不会阻塞页面的解析</strong>，其<code>区别</code>如下：</p>
+<ul>
+<li><code>执行顺序</code>：多个带async属性的标签，不能保证加载的顺序；多个带defer属性的标签，按照加载顺序执行；</li>
+<li><code>脚本是否并行执行</code>：async属性，表示后续文档的加载和执行js脚本的加载和执行时并行进行的，即异步执行；defer属性，加载后续文档的过程和js脚本的加载(此时仅加载不执行)是并行进行的(异步)，js脚本需要等到文档所有元素解析完成之后才执行，DOMContentLoaded事件触发执行之前。</li>
+</ul>
+<h4 id="HTML5有哪些更新"><a href="#HTML5有哪些更新" class="headerlink" title="HTML5有哪些更新"></a><label style="color:rgb(223, 42, 63)">HTML5有哪些更新</label></h4><h5 id="语义化标签"><a href="#语义化标签" class="headerlink" title="语义化标签"></a>语义化标签</h5><ul>
+<li>header：定义文档的页眉（头部）</li>
+<li>nav：定义导航栏链接部分</li>
+<li>footer：定义文档或节的页脚（底部）</li>
+<li>article：定义文章内容</li>
+<li>section：定义文档中的节（section,区段）</li>
+<li>aside：定义所处内容之外的内容（侧边）</li>
+</ul>
+<h5 id="媒体标签"><a href="#媒体标签" class="headerlink" title="媒体标签"></a>媒体标签</h5><h5 id="表单"><a href="#表单" class="headerlink" title="表单"></a>表单</h5><h5 id="进度条，度量器"><a href="#进度条，度量器" class="headerlink" title="进度条，度量器"></a>进度条，度量器</h5><h5 id="DOM查询操作"><a href="#DOM查询操作" class="headerlink" title="DOM查询操作"></a>DOM查询操作</h5><h5 id="Web存储"><a href="#Web存储" class="headerlink" title="Web存储"></a>Web存储</h5><p>HTML5提供了两种在客户端存储数据的新方法：</p>
+<ul>
+<li>localStorage -没有时间限制的数据存储</li>
+<li>sessionStorage -针对一个session的数据存储</li>
+<li>拓展：</li>
+</ul>
+<p><strong><code>LocalStorage:</code></strong><br>存入数据：localStorage.setItem(key,value)调用一次存储一次数据；<br>取出数据：localStorage.getItem(key)<br>全部清除：localStorage.clear()<br>清除单个：localStorage.remove(key)<br><strong><code>SessionStorage:</code></strong><br>存入数据：sessionStorage.setItem(key,value)<br>取出数据：sessionStorage.getItem(key)<br>全部清除：sessionStorage.clear()<br>清除单个：sessionStorage.remove(key)<br><strong><code>localStorage/sessionStorage的共同之处：</code></strong></p>
+<ul>
+<li>存储大小为5M</li>
+<li>不会发送到服务器</li>
+</ul>
+<p><strong><code>两者的区别：</code></strong></p>
+<ul>
+<li>sessionStorage存储数据不仅限制在同源，还限制在同一窗口。可以理解为当取数据的页面和存数据的页面不是同一个取到的数据就是null.</li>
+<li>localStorage存储的数据只要不清除，就永久有效；sessionStorage存储的数据只要窗口一关闭，就失效。</li>
+</ul>
+<h5 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h5><ul>
+<li>拖放：即抓取对象以后拖放到另一个位置。设置元素可拖放：</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">draggable</span>=<span class="string">&quot;true&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>画布(canvas)： canvas 元素使用 JavaScript 在网页上绘制图像。画布是一个矩形区域，可以控制其每一像素。canvas 拥有多种绘制路径、矩形、圆形、字符以及添加图像的方法。</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">&quot;myCanvas&quot;</span> <span class="attr">width</span>=<span class="string">&quot;200&quot;</span> <span class="attr">height</span>=<span class="string">&quot;100&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>SVG：SVG：SVG 指可伸缩矢量图形，用于定义用于网络的基于矢量的图形，使用 XML 格式定义图形，图像在放大或改变尺寸的情况下其图形质量不会有损失，它是万维网联盟的标准</li>
+<li>地理定位：Geolocation（地理定位）用于定位用户的位置。‘</li>
+</ul>
+<h3 id="考察较多"><a href="#考察较多" class="headerlink" title="考察较多"></a><label style="color:rgb(236, 170, 4)">考察较多</label></h3><h4 id="DOCTYPE-文档类型-的作用"><a href="#DOCTYPE-文档类型-的作用" class="headerlink" title="DOCTYPE(文档类型)的作用"></a><label style="color:rgb(236, 170, 4)">DOCTYPE(文档类型)的作用</label></h4><p>DOCTYPE是HTML5中一种标准通用标记语言的文档类型声明，它的目的是<strong>告诉浏览器（解析器）应该以什么样（html或xhtml）的文档类型定义来解析文档</strong>，不同的渲染模式会影响浏览器对 CSS 代码甚⾄ JavaScript 脚本的解析。它必须声明在HTML⽂档的第⼀⾏。<br>浏览器渲染页面的两种模式（可通过document.compatMode获取，比如，语雀官网的文档类型是<strong>CSS1Compat</strong>）：</p>
+<ul>
+<li><strong>CSS1Compat：标准模式（Strick mode）</strong>，默认模式，浏览器使用W3C的标准解析渲染页面。在标准模式中，浏览器以其支持的最高标准呈现页面。</li>
+<li>**BackCompat：怪异模式(混杂模式)(Quick mode)**，浏览器使用自己的怪异模式解析渲染页面。在怪异模式中，页面以一种比较宽松的向后兼容的方式显示。</li>
+</ul>
+<h4 id="简述web-worker"><a href="#简述web-worker" class="headerlink" title="简述web worker"></a><label style="color:rgb(236, 170, 4)">简述web worker</label></h4><p>在HTML页面中，如果在执行脚本时，页面的状态是不可相应的，知道脚本执行完成之后，页面才变成可相应的。web worker是运行在后台的js,独立于其他脚本，不会影响页面的性能。并且通过postMessage将结果回转到主线程。这样在进行复杂操作的时候就不会影响主线程了。<br>如何创建web worker:</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> 1.检测浏览器对于web worker的支持性</li>
+<li><input checked="" disabled="" type="checkbox"> 2.创建web worker文件（js,回调函数等）</li>
+<li><input checked="" disabled="" type="checkbox"> 3.创建web worker对象</li>
+</ul>
+<h4 id="title与h1的区别，b与strong的区别，i与em的区别？"><a href="#title与h1的区别，b与strong的区别，i与em的区别？" class="headerlink" title="title与h1的区别，b与strong的区别，i与em的区别？"></a><label style="color:rgb(236, 170, 4)">title与h1的区别，b与strong的区别，i与em的区别？</label></h4><ul>
+<li>title属性没有明确意义指标的标题，H1则表示层次明确的标题，对页面信息的抓取有很大的影响</li>
+<li>strong标签有语义，是起到加重语气的效果，而b标签是没有的，b标签只是一个简单的加粗标签。b标签之间的字符都设为粗体，strong标签加强字符的语气都是通过粗体来实现的，而搜索引擎（SEO）更侧重strong标签。</li>
+<li><strong>i内容展示为斜体，em便是强调得文本</strong></li>
+</ul>
+<h4 id="head-标签有什么作用，其中什么标签必不可少？"><a href="#head-标签有什么作用，其中什么标签必不可少？" class="headerlink" title="head 标签有什么作用，其中什么标签必不可少？"></a><label style="color:rgb(236, 170, 4)">head 标签有什么作用，其中什么标签必不可少？</label></h4><pre><code> 标签用于定义文档的头部，它是所有头部元素的容器中的元素可以引用脚本、指示浏览器在哪里找到样式表、提供信息等。 
+</code></pre>
+<p>文档的头部描述了文档的各种属性和信息，包括文档的标题、在 Web 中的位置以及和其他文档的关系等。绝大多数文档头部包含的数据都不会真正作为内容显示给读者。<br>下面这些标签可用在 head 部分：<code>&lt;base&gt;, &lt;link&gt;, &lt;meta&gt;, &lt;script&gt;, &lt;style&gt;, &lt;title&gt;</code>。其中 <code>&lt;title&gt;定义文档的标题,它是 head 部分中唯一必需的元素</code>。</p>
+]]></content>
+      <categories>
+        <category>html</category>
+      </categories>
+      <tags>
+        <tag>html</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>React项目搭建</title>
     <url>/2023/07/15/React%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/</url>
     <content><![CDATA[<p><a name="RMA4X"></a></p>
@@ -112,7 +198,7 @@
 <ul>
 <li>reset.less：自己在静态文件夹下的css文件中建立文档，定义 jk重置的css样式</li>
 </ul>
-<p>如果使用less需要安装指定版本：<br />npm install <a href="mailto:&#99;&#114;&#x61;&#99;&#111;&#x2d;&#108;&#101;&#115;&#115;&#x40;&#x32;&#46;&#x31;&#46;&#x30;&#x2d;&#97;&#x6c;&#112;&#104;&#x61;&#x2e;&#x30;">&#99;&#114;&#x61;&#99;&#111;&#x2d;&#108;&#101;&#115;&#115;&#x40;&#x32;&#46;&#x31;&#46;&#x30;&#x2d;&#97;&#x6c;&#112;&#104;&#x61;&#x2e;&#x30;</a><br><a name="Q38Z8"></a></p>
+<p>如果使用less需要安装指定版本：<br />npm install <a href="mailto:&#x63;&#114;&#97;&#x63;&#111;&#x2d;&#108;&#x65;&#115;&#x73;&#x40;&#50;&#x2e;&#x31;&#x2e;&#48;&#45;&#97;&#108;&#x70;&#x68;&#x61;&#46;&#x30;">&#x63;&#114;&#97;&#x63;&#111;&#x2d;&#108;&#x65;&#115;&#x73;&#x40;&#50;&#x2e;&#x31;&#x2e;&#48;&#45;&#97;&#108;&#x70;&#x68;&#x61;&#46;&#x30;</a><br><a name="Q38Z8"></a></p>
 <h4 id="6-路由的配置"><a href="#6-路由的配置" class="headerlink" title="6.路由的配置"></a>6.路由的配置</h4><pre><code>  1. 路由的搭建：npm install react-router-dom
   2. 在写路由的时候与vue使用compoent不同的是React用的element，并且element后面跟的是组件实例（&lt;Discover /&gt;）而非Discover。由于组件实例属于jsx语法，所以写路有的文件不能是.ts应该是.tsx。凡是tsx文件都需要引入React(import React from &#39;react&#39;)。
   3. 如果使用路由，最外层的index.tsx中的APP必须被router包裹
@@ -155,7 +241,7 @@
 <p><a name="k85va"></a></p>
 <h4 id="9-网络请求封装axios"><a href="#9-网络请求封装axios" class="headerlink" title="9.网络请求封装axios"></a>9.网络请求封装axios</h4><pre><code>  1. 安装axios
 </code></pre>
-<p>npm install axios<br />由于最新班的axios版本过高会有报错，所以安装1.1版本<br />npm install <a href="mailto:&#x61;&#120;&#x69;&#x6f;&#x73;&#x40;&#x31;&#46;&#49;&#46;&#48;">&#x61;&#120;&#x69;&#x6f;&#x73;&#x40;&#x31;&#46;&#49;&#46;&#48;</a></p>
+<p>npm install axios<br />由于最新班的axios版本过高会有报错，所以安装1.1版本<br />npm install <a href="mailto:&#97;&#x78;&#x69;&#111;&#x73;&#64;&#x31;&#46;&#49;&#x2e;&#48;">&#97;&#x78;&#x69;&#111;&#x73;&#64;&#x31;&#46;&#49;&#x2e;&#48;</a></p>
 <pre><code>  2. 1
      &lt;a name=&quot;sFgV1&quot;&gt;&lt;/a&gt;
 </code></pre>
@@ -610,89 +696,286 @@
       </tags>
   </entry>
   <entry>
-    <title>html面试基础(一)</title>
-    <url>/2023/08/01/html%E9%9D%A2%E8%AF%95%E5%9F%BA%E7%A1%80(%E4%B8%80)/</url>
-    <content><![CDATA[<p><strong>html知识体系图片:</strong><a href="https://juejin.cn/post/6905294475539513352"><strong>https://juejin.cn/post/6905294475539513352</strong></a></p>
-<h3 id="标红重点（考察很多）"><a href="#标红重点（考察很多）" class="headerlink" title="标红重点（考察很多）"></a><label style="color:rgb(223, 42, 63)">标红重点（考察很多）</label></h3><h4 id="src和href的区别："><a href="#src和href的区别：" class="headerlink" title="src和href的区别："></a><label style="color:rgb(223, 42, 63)">src和href的区别：</label></h4><p>src和ref都是用来引入外部的资源，它们的区别如下：</p>
-<ul>
-<li>src:表示对资源的引用，它指向的内容会嵌入到当前标签所在的位置。src会将其指向的资源下载并应用到文档内，如请求js脚本。当浏览器解析到该元素时会暂停其他资源的下载和处理，直到将该资源加载，编译，执行完毕，所以一般js脚本会放到页面的底部。</li>
-<li>href:表示超文本引用，它指向一些网络资源，建立和当前元素或文本的链接关系。当浏览器识别到它指向的文件时，就会并行下载资源不会停止对当前文档的处理。常用在a,link标签上。</li>
-</ul>
-<h4 id="对Html语义化的理解"><a href="#对Html语义化的理解" class="headerlink" title="对Html语义化的理解"></a><label style="color:rgb(223, 42, 63)">对Html语义化的理解</label></h4><p>语义化是根据内容的结构化（内容语义化）,选择合适的标签（代码语义化）。通俗的来讲就是用正确的代码，做正确的事情。<br>语义化的优点：</p>
-<ul>
-<li>对机器友好，带有语义的文字表现力丰富，，更适合搜索引擎的爬虫爬取有效信息，有利于SE0（搜索引擎优化）；</li>
-<li>对开发者友好，使用语义类标签增强了可读性，结构更加清晰，开发者能清晰的看出网页的结构，便于团队的开发和维护。</li>
-</ul>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">&lt;header&gt;&lt;/header&gt;</span>  <span class="string">头部</span></span><br><span class="line"></span><br><span class="line"><span class="string">&lt;nav&gt;&lt;/nav&gt;</span>  <span class="string">导航栏</span></span><br><span class="line"></span><br><span class="line"><span class="string">&lt;section&gt;&lt;/section&gt;</span>  <span class="string">区块（有语义化的div）</span></span><br><span class="line"></span><br><span class="line"><span class="string">&lt;main&gt;&lt;/main&gt;</span>  <span class="string">主要区域</span></span><br><span class="line"></span><br><span class="line"><span class="string">&lt;article&gt;&lt;/article&gt;</span>  <span class="string">主要内容</span></span><br><span class="line"></span><br><span class="line"><span class="string">&lt;aside&gt;&lt;/aside&gt;</span>  <span class="string">侧边栏</span></span><br><span class="line"></span><br><span class="line"><span class="string">&lt;footer&gt;&lt;/footer&gt;</span>  <span class="string">底部</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+    <title>webpack学习（一）—基础配置</title>
+    <url>/2023/08/08/webpack%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<h4 id="一-了解什么是Webpack？Webpack的作用是什么？"><a href="#一-了解什么是Webpack？Webpack的作用是什么？" class="headerlink" title="一.了解什么是Webpack？Webpack的作用是什么？"></a>一.了解什么是Webpack？Webpack的作用是什么？</h4><p><code>Webpack</code>是一种端资源构建工具，一个<code>静态模块打包器</code>。<br>Webpack的作用就是将在node中写好的代码(后端)解析为在浏览器(前端)可以运行的代码，<code>提高了项目效率和可维护性</code>。</p>
+<h4 id="二-Webpack的5个核心概念"><a href="#二-Webpack的5个核心概念" class="headerlink" title="二.Webpack的5个核心概念"></a>二.Webpack的5个核心概念</h4><p><code>1. entry入口</code></p>
+<p>入口指示Webpack以哪个入口文件开始打包，分析构建内部依赖图</p>
+<p><code>2. output输出</code></p>
+<p>输出指示Webpack打包后的资源bundlex输出到哪里，以及如何命名</p>
+<p><code>3. loader(翻译官的作用)</code></p>
+<p>loader可以让webpack能够处理哪些非js文件（webpack自身只理解js,json,线wenpack5可以处理图片资源）</p>
+<p><code>4. plugins</code></p>
+<p>插件plugins可以用于执行范围更广的任务。插件的范围包括：从打包优化和压缩，一直到重新定义环境中的变量。</p>
+<p><code>5. mode</code></p>
+<p>模块知识Webpack使用相应模式的配置。<br><img src="/img/study/webpack1.png" alt="image.png"></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">  webpack.config.js是webpack的配置文件</span></span><br><span class="line"><span class="comment">  作用：告诉webpack干哪些活（运行webpack指令时，会加载里面的配置）</span></span><br><span class="line"><span class="comment">  所有的构建工具都是基于nodejs平台运行的，模块化默认采用commonjs</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">// resolve用来拼接绝对路径的方法</span></span><br><span class="line"><span class="keyword">const</span> &#123; resolve &#125; = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> <span class="title class_">HtmlWebpackPlugin</span> = <span class="built_in">require</span>(<span class="string">&#x27;html-webpack-plugin&#x27;</span>)</span><br><span class="line"> </span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="comment">// webpack配置</span></span><br><span class="line">  <span class="comment">// 入口文件</span></span><br><span class="line">  <span class="attr">entry</span>: <span class="string">&#x27;./src/index.js&#x27;</span>,</span><br><span class="line">  <span class="comment">// 输出</span></span><br><span class="line">  <span class="attr">output</span>: &#123;</span><br><span class="line">    <span class="comment">// 输出文件名</span></span><br><span class="line">    <span class="attr">filename</span>: <span class="string">&#x27;built.js&#x27;</span>,</span><br><span class="line">    <span class="comment">// 输出路径 __dirname是nodejs的变量，代表当前文件webpack.js目录的绝对路径02打包样式资源</span></span><br><span class="line">    <span class="comment">// 输出到build目录下去</span></span><br><span class="line">    <span class="attr">path</span>: <span class="title function_">resolve</span>(__dirname, <span class="string">&#x27;build&#x27;</span>)</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// loader的配置（1.下载2.使用）</span></span><br><span class="line">  <span class="attr">module</span>: &#123;</span><br><span class="line">    <span class="attr">rules</span>: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="comment">// test:使用正则匹配文件</span></span><br><span class="line">        <span class="attr">test</span>: <span class="regexp">/\.css$/</span>,</span><br><span class="line">        <span class="comment">// use:使用哪些loader进行处理，执行顺序是倒序依次执行，比如会先使用css-loader再使用style-loader</span></span><br><span class="line">        <span class="attr">use</span>: [</span><br><span class="line">          <span class="comment">// style-loader会创建style标签，将js中的样式资源插入进行，添加到head中生效</span></span><br><span class="line">          <span class="string">&#x27;style-loader&#x27;</span>,</span><br><span class="line">          <span class="comment">// css-loader会将css文件变成commonjs模块加载js中，里面内容是样式字符串</span></span><br><span class="line">          <span class="string">&#x27;css-loader&#x27;</span></span><br><span class="line">        ]</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">test</span>: <span class="regexp">/\.less$/</span>,</span><br><span class="line">        <span class="attr">use</span>: [</span><br><span class="line">          <span class="string">&#x27;style-loader&#x27;</span>,</span><br><span class="line">          <span class="string">&#x27;css-loader&#x27;</span>,</span><br><span class="line">          <span class="comment">// 将less文件编译成css文件,需要安装less和less-loader</span></span><br><span class="line">          <span class="string">&#x27;less-loader&#x27;</span></span><br><span class="line">        ]</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="comment">// 处理图片资源【webpack5会自动处理图片资源 ！！加上以下配置反而图片显示不出来，webpack4可以用以下配置】</span></span><br><span class="line">      <span class="comment">// &#123;</span></span><br><span class="line">      <span class="comment">//   test: /\.(jpg|png|gif)$/,</span></span><br><span class="line">      <span class="comment">//   // 使用多个loader时可以用use:[],如果只使用一个loader可以直接写loader:‘xxx’</span></span><br><span class="line">      <span class="comment">//   // url-loader依赖file-loader，所以需要下载两个包</span></span><br><span class="line">      <span class="comment">//   loader: &#x27;url-loader&#x27;,</span></span><br><span class="line">      <span class="comment">//   // 图片配置信息</span></span><br><span class="line">      <span class="comment">//   options: &#123;</span></span><br><span class="line">      <span class="comment">//     // 一般会对小图片进行base64处理，这里是当图片小于8kb时，就会被base64处理成字符串</span></span><br><span class="line">      <span class="comment">//     // 优点：减少请求数量（减轻服务器压力）</span></span><br><span class="line">      <span class="comment">//     // 缺点：图片体积会变大导致问价请求速度变慢</span></span><br><span class="line">      <span class="comment">//     limit: 10 * 1024, //根据项目情况来定，假如项目中小图片是9kb,难么这里可以设置10*1024</span></span><br><span class="line">      <span class="comment">//     // 在webpack4中ulr-loader默认使用es6模块化解析，而html-loader引入图片是commonjs</span></span><br><span class="line">      <span class="comment">//     // 解析时会出现问题：src内容会变为[object module]</span></span><br><span class="line">      <span class="comment">//     // 解决办法：关闭url-loader的es6模块化，使用commonjs解析</span></span><br><span class="line">      <span class="comment">//     esModule: false,</span></span><br><span class="line">      <span class="comment">//     // 打包后的图片的名称是hash值，字符比较长，可以自定义命名</span></span><br><span class="line">      <span class="comment">//     // 意思为：取hash值的前10位，[ext]是指取文件原来扩展名</span></span><br><span class="line">      <span class="comment">//     name: &#x27;[hash:10].[ext]&#x27;</span></span><br><span class="line">      <span class="comment">//   &#125;</span></span><br><span class="line">      <span class="comment">// &#125;,</span></span><br><span class="line">      <span class="comment">// html-loader处理html中的img图片资源（负责引入img标签，然后交由url-loader进行解析处理）</span></span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">test</span>: <span class="regexp">/\.html$/</span>,</span><br><span class="line">        <span class="attr">loader</span>: <span class="string">&#x27;html-loader&#x27;</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="comment">// 打包其他资源(除了html/css/js以外的资源)</span></span><br><span class="line">      &#123;</span><br><span class="line">        <span class="comment">// exclude:排除html，css,js资源的其他资源都适用file-loader（比如字体图标iconfont）</span></span><br><span class="line">        <span class="attr">exclude</span>: <span class="regexp">/\.(html|css|js)$/</span>,</span><br><span class="line">        <span class="attr">loader</span>: <span class="string">&#x27;file-loader&#x27;</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 插件（1.下载2.引入3.使用）</span></span><br><span class="line">  <span class="attr">plugins</span>: [</span><br><span class="line">    <span class="comment">// html-webpack-plugin插件会打包html文件</span></span><br><span class="line">    <span class="comment">// 功能：会默认创建一个空的html，自动引入打包后输出的所有资源（js/css）</span></span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">HtmlWebpackPlugin</span>(&#123;</span><br><span class="line">      <span class="comment">// template模版：意味复制./src/index.html文件，并自动引入打包后输出的所有资源</span></span><br><span class="line">      <span class="attr">template</span>: <span class="string">&#x27;./src/index.html&#x27;</span></span><br><span class="line">    &#125;)</span><br><span class="line">  ],</span><br><span class="line">  <span class="comment">// 模式</span></span><br><span class="line">  <span class="attr">mode</span>: <span class="string">&#x27;development&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h4 id="script标签中defer和async的区别"><a href="#script标签中defer和async的区别" class="headerlink" title="script标签中defer和async的区别"></a><label style="color:rgb(223, 42, 63)">script标签中defer和async的区别</label></h4><p><code>如果没有defer或async属性，浏览器会立即加载并执行相应的脚本</code>。它不会等待后续加载的文档元素，读取到就会开始加载和执行，这样就阻塞了后续文档的加载。<br>下图可以直观的看出三者的区别：<br><img src="/img/study/defer.png" alt="image.png"><br>其中蓝色代表js脚本网络加载时间，红色代表js脚本执行时间，绿色代表html解析。<br><strong>defer和async属性都是去异步加载外部的JS脚本文件，它们都不会阻塞页面的解析</strong>，其<code>区别</code>如下：</p>
-<ul>
-<li><code>执行顺序</code>：多个带async属性的标签，不能保证加载的顺序；多个带defer属性的标签，按照加载顺序执行；</li>
-<li><code>脚本是否并行执行</code>：async属性，表示后续文档的加载和执行js脚本的加载和执行时并行进行的，即异步执行；defer属性，加载后续文档的过程和js脚本的加载(此时仅加载不执行)是并行进行的(异步)，js脚本需要等到文档所有元素解析完成之后才执行，DOMContentLoaded事件触发执行之前。</li>
-</ul>
-<h4 id="HTML5有哪些更新"><a href="#HTML5有哪些更新" class="headerlink" title="HTML5有哪些更新"></a><label style="color:rgb(223, 42, 63)">HTML5有哪些更新</label></h4><h5 id="语义化标签"><a href="#语义化标签" class="headerlink" title="语义化标签"></a>语义化标签</h5><ul>
-<li>header：定义文档的页眉（头部）</li>
-<li>nav：定义导航栏链接部分</li>
-<li>footer：定义文档或节的页脚（底部）</li>
-<li>article：定义文章内容</li>
-<li>section：定义文档中的节（section,区段）</li>
-<li>aside：定义所处内容之外的内容（侧边）</li>
-</ul>
-<h5 id="媒体标签"><a href="#媒体标签" class="headerlink" title="媒体标签"></a>媒体标签</h5><h5 id="表单"><a href="#表单" class="headerlink" title="表单"></a>表单</h5><h5 id="进度条，度量器"><a href="#进度条，度量器" class="headerlink" title="进度条，度量器"></a>进度条，度量器</h5><h5 id="DOM查询操作"><a href="#DOM查询操作" class="headerlink" title="DOM查询操作"></a>DOM查询操作</h5><h5 id="Web存储"><a href="#Web存储" class="headerlink" title="Web存储"></a>Web存储</h5><p>HTML5提供了两种在客户端存储数据的新方法：</p>
-<ul>
-<li>localStorage -没有时间限制的数据存储</li>
-<li>sessionStorage -针对一个session的数据存储</li>
-<li>拓展：</li>
-</ul>
-<p><strong><code>LocalStorage:</code></strong><br>存入数据：localStorage.setItem(key,value)调用一次存储一次数据；<br>取出数据：localStorage.getItem(key)<br>全部清除：localStorage.clear()<br>清除单个：localStorage.remove(key)<br><strong><code>SessionStorage:</code></strong><br>存入数据：sessionStorage.setItem(key,value)<br>取出数据：sessionStorage.getItem(key)<br>全部清除：sessionStorage.clear()<br>清除单个：sessionStorage.remove(key)<br><strong><code>localStorage/sessionStorage的共同之处：</code></strong></p>
-<ul>
-<li>存储大小为5M</li>
-<li>不会发送到服务器</li>
-</ul>
-<p><strong><code>两者的区别：</code></strong></p>
-<ul>
-<li>sessionStorage存储数据不仅限制在同源，还限制在同一窗口。可以理解为当取数据的页面和存数据的页面不是同一个取到的数据就是null.</li>
-<li>localStorage存储的数据只要不清除，就永久有效；sessionStorage存储的数据只要窗口一关闭，就失效。</li>
-</ul>
-<h5 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h5><ul>
-<li>拖放：即抓取对象以后拖放到另一个位置。设置元素可拖放：</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">draggable</span>=<span class="string">&quot;true&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="三-搭建webpack的基础配置"><a href="#三-搭建webpack的基础配置" class="headerlink" title="三.搭建webpack的基础配置"></a>三.搭建webpack的基础配置</h4><ol>
+<li>安装依赖：———–  <code>npm init</code></li>
+<li>安装webpack<ol>
+<li>自从有了webpack4之后如果想要使用webpack必须要安装webpack-cli，-D代表实在开发环境中</li>
+<li>安装<code>npm install webpack webpack-cli -D</code></li>
+</ol>
+</li>
+<li>创建src文件夹，里面创建入口文件main.js编辑需要的内容</li>
+<li>利用webpack对内容进行打包<ol>
+<li>在最外层(src的同级目录)创建webpack.config.js文件（文件名称不可更改）</li>
+<li>webpack.config.js文件内容：</li>
+</ol>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//引入path 导入node.js 中专门操作路径模块</span></span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&quot;path&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用node.js 中的导出语法，向外导出 一个 webpack配置对象</span></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">export</span> = &#123;</span><br><span class="line">  <span class="comment">//入口文件</span></span><br><span class="line">  <span class="attr">entry</span>: <span class="string">&quot;./src/main.js&quot;</span>,</span><br><span class="line">  <span class="comment">//出口文件</span></span><br><span class="line">  <span class="attr">output</span>: &#123;</span><br><span class="line">    <span class="comment">//__dirname:当前目录</span></span><br><span class="line">    <span class="attr">path</span>: path.<span class="title function_">resolve</span>(__dirname, <span class="string">&quot;./build&quot;</span>),</span><br><span class="line">    <span class="comment">//打包生成的文件名</span></span><br><span class="line">    <span class="attr">filename</span>: <span class="string">&quot;bundle.js&quot;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;il</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>画布(canvas)： canvas 元素使用 JavaScript 在网页上绘制图像。画布是一个矩形区域，可以控制其每一像素。canvas 拥有多种绘制路径、矩形、圆形、字符以及添加图像的方法。</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">&quot;myCanvas&quot;</span> <span class="attr">width</span>=<span class="string">&quot;200&quot;</span> <span class="attr">height</span>=<span class="string">&quot;100&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>SVG：SVG：SVG 指可伸缩矢量图形，用于定义用于网络的基于矢量的图形，使用 XML 格式定义图形，图像在放大或改变尺寸的情况下其图形质量不会有损失，它是万维网联盟的标准</li>
-<li>地理定位：Geolocation（地理定位）用于定位用户的位置。‘</li>
-</ul>
-<h3 id="考察较多"><a href="#考察较多" class="headerlink" title="考察较多"></a><label style="color:rgb(236, 170, 4)">考察较多</label></h3><h4 id="DOCTYPE-文档类型-的作用"><a href="#DOCTYPE-文档类型-的作用" class="headerlink" title="DOCTYPE(文档类型)的作用"></a><label style="color:rgb(236, 170, 4)">DOCTYPE(文档类型)的作用</label></h4><p>DOCTYPE是HTML5中一种标准通用标记语言的文档类型声明，它的目的是<strong>告诉浏览器（解析器）应该以什么样（html或xhtml）的文档类型定义来解析文档</strong>，不同的渲染模式会影响浏览器对 CSS 代码甚⾄ JavaScript 脚本的解析。它必须声明在HTML⽂档的第⼀⾏。<br>浏览器渲染页面的两种模式（可通过document.compatMode获取，比如，语雀官网的文档类型是<strong>CSS1Compat</strong>）：</p>
-<ul>
-<li><strong>CSS1Compat：标准模式（Strick mode）</strong>，默认模式，浏览器使用W3C的标准解析渲染页面。在标准模式中，浏览器以其支持的最高标准呈现页面。</li>
-<li>**BackCompat：怪异模式(混杂模式)(Quick mode)**，浏览器使用自己的怪异模式解析渲染页面。在怪异模式中，页面以一种比较宽松的向后兼容的方式显示。</li>
-</ul>
-<h4 id="简述web-worker"><a href="#简述web-worker" class="headerlink" title="简述web worker"></a><label style="color:rgb(236, 170, 4)">简述web worker</label></h4><p>在HTML页面中，如果在执行脚本时，页面的状态是不可相应的，知道脚本执行完成之后，页面才变成可相应的。web worker是运行在后台的js,独立于其他脚本，不会影响页面的性能。并且通过postMessage将结果回转到主线程。这样在进行复杂操作的时候就不会影响主线程了。<br>如何创建web worker:</p>
-<ul>
-<li><input checked="" disabled="" type="checkbox"> 1.检测浏览器对于web worker的支持性</li>
-<li><input checked="" disabled="" type="checkbox"> 2.创建web worker文件（js,回调函数等）</li>
-<li><input checked="" disabled="" type="checkbox"> 3.创建web worker对象</li>
-</ul>
-<h4 id="title与h1的区别，b与strong的区别，i与em的区别？"><a href="#title与h1的区别，b与strong的区别，i与em的区别？" class="headerlink" title="title与h1的区别，b与strong的区别，i与em的区别？"></a><label style="color:rgb(236, 170, 4)">title与h1的区别，b与strong的区别，i与em的区别？</label></h4><ul>
-<li>title属性没有明确意义指标的标题，H1则表示层次明确的标题，对页面信息的抓取有很大的影响</li>
-<li>strong标签有语义，是起到加重语气的效果，而b标签是没有的，b标签只是一个简单的加粗标签。b标签之间的字符都设为粗体，strong标签加强字符的语气都是通过粗体来实现的，而搜索引擎（SEO）更侧重strong标签。</li>
-<li><strong>i内容展示为斜体，em便是强调得文本</strong></li>
-</ul>
-<h4 id="head-标签有什么作用，其中什么标签必不可少？"><a href="#head-标签有什么作用，其中什么标签必不可少？" class="headerlink" title="head 标签有什么作用，其中什么标签必不可少？"></a><label style="color:rgb(236, 170, 4)">head 标签有什么作用，其中什么标签必不可少？</label></h4><pre><code> 标签用于定义文档的头部，它是所有头部元素的容器中的元素可以引用脚本、指示浏览器在哪里找到样式表、提供信息等。 
+<pre><code>  3. 因为初始配置的时候已经安装了webpack，这时你可以在node-modules/.bin文件夹中发现webpack文件夹所以这个时候再次利用webpack只需要在控制台输入`npx webpack`指令就会去bin文件中寻找webpack.
+  4. 注意上方代码可能会报错：Module not found: Error: Can&#39;t resolve &#39;./src&#39; in &#39;D:\Study\Webpack\01-source-map&#39;这是因为新版的webpack比旧版的更加严格，他一般认为index.html或index.js是入口文件，把main改成index即可。
 </code></pre>
-<p>文档的头部描述了文档的各种属性和信息，包括文档的标题、在 Web 中的位置以及和其他文档的关系等。绝大多数文档头部包含的数据都不会真正作为内容显示给读者。<br>下面这些标签可用在 head 部分：<code>&lt;base&gt;, &lt;link&gt;, &lt;meta&gt;, &lt;script&gt;, &lt;style&gt;, &lt;title&gt;</code>。其中 <code>&lt;title&gt;定义文档的标题,它是 head 部分中唯一必需的元素</code>。</p>
-]]></content>
+<h4 id="四-source-map（编译后源文件的映射即编译后的代码）"><a href="#四-source-map（编译后源文件的映射即编译后的代码）" class="headerlink" title="四.source-map（编译后源文件的映射即编译后的代码）"></a>四.source-map（编译后源文件的映射即编译后的代码）</h4><h5 id="认识source-map"><a href="#认识source-map" class="headerlink" title="认识source-map"></a>认识source-map</h5><pre><code>     a.代码通常运行在浏览器上时，是通过**打包压缩**的：
+</code></pre>
+<ul>
+<li>这也就表明了真实跑在浏览器上的代码和我们编写的代码是有差异的；</li>
+<li>比如ES6的代码可能被转化成ES5</li>
+<li>比如对应的代码行号，列号在经过编译后肯定不会一致</li>
+<li>比如代码进行丑化压缩时，会将编码名称等修改</li>
+<li>比如我们使用了TypeScript等方式编写的代码，最终回转换成JS</li>
+</ul>
+<p>b.但是，当代码报错需要调试时，调试转换后的代码时很困难的。<br>c.那么如何可以<strong>调试这种转换后不一致的代码</strong>呢？答案是<strong>source-map</strong></p>
+<ul>
+<li>source-map是从已转换的代码映射到原始的源文件</li>
+<li>使浏览器可以重构原始源并在调试器中显示重建的原始源</li>
+</ul>
+<h5 id="如何使用source-map"><a href="#如何使用source-map" class="headerlink" title="如何使用source-map?"></a>如何使用source-map?</h5><p>可以分为以下两个步骤;</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> 第一步：根据源文件，生成source-map文件，webpack在打包的时候，可以配置生成source-map(即在配置文件中加入;devtool: ‘选定的值’)。配置代码如下：</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&quot;path&quot;</span>); <span class="comment">//引入path</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">devtool</span>: <span class="string">&#x27;source-map&#x27;</span>,</span><br><span class="line">  <span class="comment">//项目入口文件配置</span></span><br><span class="line">  <span class="attr">entry</span>: <span class="string">&quot;./src/index.js&quot;</span>,</span><br><span class="line">  <span class="comment">//项目出口文件配置</span></span><br><span class="line">  <span class="attr">output</span>: &#123;</span><br><span class="line">    <span class="attr">filename</span>: <span class="string">&quot;bundle.js&quot;</span>,</span><br><span class="line">    <span class="attr">path</span>: path.<span class="title function_">resolve</span>(__dirname, <span class="string">&quot;build&quot;</span>)</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">mode</span>: <span class="string">&quot;development&quot;</span>,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><input checked="" disabled="" type="checkbox"> 第二步：在转换后的代码，最后添加一个注释，它指向sourcemap;  一般在转换后的代码中会自动生成：如下代码：</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//即上方提到的注释bundle.js文件名字</span></span><br><span class="line"><span class="comment">//# sourceMappingURL=common.bundle.js.map</span></span><br></pre></td></tr></table></figure>
+
+<p>source-map的好处：<br>浏览器会根据我们的注释查找相应的source-map,并且根据source-map还原我们的代码，方便调试。<br>在Chrome中打开控制台，选择设置，按照如下方式打开source-map:<br><img src="/img/study/sourceMap.png" alt="image.png"></p>
+<h5 id="生成source-map文件"><a href="#生成source-map文件" class="headerlink" title="生成source-map文件"></a>生成source-map文件</h5><ul>
+<li><strong>如何在使用webpack打包的时候，生成对应的source-map?</strong><ul>
+<li>webpack为我们提供了非常多的选项（目前是26个），来处理source-map</li>
+<li>官方文档：<a href="https://www.webpackjs.com/configuration/devtool/">https://www.webpackjs.com/configuration/devtool/</a></li>
+<li>选择不同的值，生成的source-map会稍微有差异，打包过程也会有差异，可能根据不同的情况进行选择；</li>
+</ul>
+</li>
+<li><strong>下面几个值不会生成source-map</strong><ul>
+<li>false：不适用source-map，也就是没有任何和source-map相关的内容</li>
+<li>none：production模式下的默认值（什么值都不写），不生成source-map。</li>
+<li>eval：development模式下的默认值，不生成source-map<ul>
+<li>但是它会在eval执行的代码中，添加&#x2F;&#x2F;#sourceURL&#x3D;</li>
+<li>它会被浏览器在执行时解析，并且调试面板中生成对应的一些文件目录，方便我们调试</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>生成source-map</strong><ul>
+<li>source-map:生成一个独立的source-map文件，并在bundle文件中有一个注释指向source-map文件</li>
+</ul>
+</li>
+</ul>
+<p>其他类型的值了解即可</p>
+<h4 id="五-深入解析Babel-polyfill"><a href="#五-深入解析Babel-polyfill" class="headerlink" title="五.深入解析Babel-polyfill"></a>五.深入解析Babel-polyfill</h4><p>什么是Babel？</p>
+<ul>
+<li>Babel是一个工具链，主要用于旧浏览器或者环境中将ECMAScript 2015+代码转换为向后兼容版本的js</li>
+<li>包括：语法转换，源代码转换，Polyfil实现目标环境缺少的功能等。</li>
+</ul>
+<h5 id="Babel命令执行"><a href="#Babel命令执行" class="headerlink" title="Babel命令执行"></a>Babel命令执行</h5><ul>
+<li>babel本身可以作为一个独立的工具（和postcss一样），不和webpack等构建工具配置单独使用。</li>
+<li>如果希望在命令行尝试使用babel，需要安装如下库：<ul>
+<li><code>@babel/core</code>：babel的核心代码，<code>必须安装</code></li>
+<li>@babel&#x2F;cli：可以让我们在命令行中使用babel;</li>
+</ul>
+</li>
+</ul>
+<p>安装指令：<code>npm install @babel/cli @babel/core</code></p>
+<ul>
+<li>使用babel处理所写的源代码：<ul>
+<li>src：源文件的目录</li>
+<li>–out-dir：指定要输出的文件夹dist;</li>
+</ul>
+</li>
+</ul>
+<p>处理指令：<code>npx babel src --out-dir dist</code></p>
+<ul>
+<li>插件安装：<ul>
+<li>如果需要转换箭头函数，则要安装使用箭头函数转换相关的插件：</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">安装插件指令：npm install @babel/plugin-transform-arrow-functions -D</span><br></pre></td></tr></table></figure>
+
+<p>转换源代码（并转换里面的箭头函数）：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npx babel ./src --out-dir ./build --plugins=@babel/plugin-transform-arrow-functions</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如果需要转换块级作用域（即将const，let转换成var），则要安装转换块级作用域相关的插件：</li>
+</ul>
+<p>安装插件指令：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">npm install @babel/plugin-transform-block-scoping -D</span><br></pre></td></tr></table></figure>
+
+<p>转换源代码（并转换里面的箭头函数和块级作用域）：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npx babel ./src --out-dir ./build --plugins=@babel/plugin-transform-block-scoping,@babel/plugin-transform-arrow-functions</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><strong>Babel的预设preset</strong></p>
+<ul>
+<li>当转换的内容过多的时候，一个个设置比较麻烦，因此可以使用预设（preset）减少步骤</li>
+<li>安装@babel&#x2F;preset-env预设：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install @babel/preset-env -D</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>执行下方命令生成对应文件：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npx babel ./src --out-dir ./bulid --presets=@babel/preset-env</span><br></pre></td></tr></table></figure>
+
+<h5 id="Babel的底层原理-较为重要"><a href="#Babel的底层原理-较为重要" class="headerlink" title="Babel的底层原理(较为重要)"></a>Babel的底层原理(较为重要)</h5><p>Babel拥有编译器的工作流程：</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> 解析阶段（Parsing）</li>
+<li><input checked="" disabled="" type="checkbox"> 转换阶段（Transfromation)</li>
+<li><input checked="" disabled="" type="checkbox"> 生成阶段（Code Generation）</li>
+</ul>
+<p><img src="/img/study/Babel.png" alt="image.png"></p>
+<h5 id="浏览器兼容性配置"><a href="#浏览器兼容性配置" class="headerlink" title="浏览器兼容性配置"></a>浏览器兼容性配置</h5><p>要想实现浏览器的兼容性需要借助Browserslist<br>Browserslist是什么？Browserslist是一个在不同的前端工具之间，共享目标浏览器和Node.js版本的配置</p>
+<ul>
+<li><input disabled="" type="checkbox"> Autoprefixer</li>
+<li><input disabled="" type="checkbox"> Babel</li>
+<li><input disabled="" type="checkbox"> postcss-preset-env</li>
+<li><input disabled="" type="checkbox"> eslint-plugin-compat</li>
+<li><input disabled="" type="checkbox"> stylelint-no-unsupported-broewr-features</li>
+<li><input disabled="" type="checkbox"> postcss-normailze</li>
+<li><input disabled="" type="checkbox"> obsolete-webpack-plugin</li>
+</ul>
+<p><img src="/img/study/Bowerslist1.png" alt="image.png"><br><img src="/img/study/Bowerslist2.png" alt="image.png"><br><strong>配置browserlist</strong></p>
+<ul>
+<li>如何配置browerlist?<ul>
+<li>方案一：在package.json中配置</li>
+<li>方案二：单独的一个配置文件.browserslistrc</li>
+</ul>
+</li>
+<li>方案一：package.json配置：</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;browerslist&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span></span><br><span class="line">  <span class="string">&quot;last 2 version&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="string">&quot;not dead&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="string">&quot;&gt;0.2%&quot;</span></span><br><span class="line"><span class="punctuation">]</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>方案二：.browerslistrc文件:</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; 0.5%</span><br><span class="line">last 2 version</span><br><span class="line">not dead</span><br></pre></td></tr></table></figure>
+
+<p><img src="/img/study/Browerslist3.png" alt="image.png"><br>根据上方条件找到符合情况的所有浏览器，根据浏览器的特性对需要转换打包的代码进行适当的调整。<br><strong>设置目标浏览器的browserlist</strong><br>最终打包的js文件需要跑在目标浏览器上，那么如何告知babel目标浏览器是什么？</p>
+<ul>
+<li>方式一：借助browserslist工具</li>
+<li>方式二：target属性</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">module<span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    rules<span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">      <span class="punctuation">&#123;</span></span><br><span class="line">        test<span class="punctuation">:</span> /\.js$/<span class="punctuation">,</span></span><br><span class="line">        use<span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">          loader<span class="punctuation">:</span> <span class="string">&quot;babel-loader&quot;</span><span class="punctuation">,</span></span><br><span class="line">          options<span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">            presets<span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">              <span class="punctuation">[</span><span class="string">&quot;@babel/preset-env&quot;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span></span><br><span class="line">              <span class="comment">//在开发中针对babel的浏览器兼容查询使用browerslist工具，而不是设置target</span></span><br><span class="line">              <span class="comment">//因为browserslist工具，可以在多个前端工具之间进行浏览器兼容性（postcss/babel）</span></span><br><span class="line">              <span class="comment">// targets: &quot;&gt;5%&quot;</span></span><br><span class="line">              <span class="punctuation">&#125;</span><span class="punctuation">]</span></span><br><span class="line">            <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">          <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line"><span class="punctuation">&#125;</span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>如果两个同时配置产生的效果：</strong></p>
+<ul>
+<li>配置的targets属性会覆盖browerslist；</li>
+<li>但是在 开发过程中，更推荐通过browerslist来配置，因为类似于postcss工具，也会使用broesersliat，进行统一浏览器的适配。</li>
+</ul>
+<h5 id="babel的配置文件"><a href="#babel的配置文件" class="headerlink" title="babel的配置文件"></a>babel的配置文件</h5><ul>
+<li>与大多数配置文件一样，babel的配置信息也可以单独的放在一个独立的文件中。因此，babel给我们提供了两种配置文件的编号：<ul>
+<li>babel.config.json（后缀.json也可以 改成.js,.cjs,.mjs）文件；</li>
+<li>.babelrc.json(后缀.json也可以改成.js,.cjs,.mjs,作者直接写成.babelrc)文件</li>
+<li>例子：</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//相当于以前的webpack.config.js中的options里的内容，将其babel配置单独拿出，比较好管理</span></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">presets</span>: [</span><br><span class="line">    [</span><br><span class="line">      <span class="string">&quot;@babel/preset-env&quot;</span>,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="comment">//在开发中针对babel的浏览器兼容查询使用browerslist工具，而不是设置target</span></span><br><span class="line">        <span class="comment">//因为browserslist工具，可以在多个前端工具之间进行浏览器兼容性（postcss/babel）</span></span><br><span class="line">        <span class="comment">// targets: &quot;&gt;5%&quot;</span></span><br><span class="line">      &#125;,</span><br><span class="line">    ],</span><br><span class="line">  ],</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>上方两种方式的区别？目前很多项目都采用了多包管理的方式（babel本身，element-plus,umi等）；<ul>
+<li>babel.config.json（babel17）：可以直接作用域Monorepos项目的子包，更加推荐；</li>
+<li>.babelrc.json：早期使用较多的配置方式，但是对配置Monorepros项目是比较麻烦的；</li>
+</ul>
+</li>
+</ul>
+<h5 id="babel和polyfill"><a href="#babel和polyfill" class="headerlink" title="babel和polyfill"></a>babel和polyfill</h5><p><strong>polyfill</strong><br><img src="/img/study/polyfill1.png" alt="image.png"></p>
+<ol>
+<li>安装可以使用polyfill插件</li>
+</ol>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">npm</span> <span class="string">install</span> <span class="string">core-js</span> <span class="string">regenerator-runtime</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>在babel.config.js中进行相关配置</li>
+</ol>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">//相当于以前的webpack.config.js中的options里的内容，将其babel配置单独拿出，比较好管理</span></span><br><span class="line"><span class="string">module.exports</span> <span class="string">=</span> &#123;</span><br><span class="line">  <span class="attr">presets:</span> [</span><br><span class="line">    [</span><br><span class="line">      <span class="string">&quot;@babel/preset-env&quot;</span>,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="string">//在开发中针对babel的浏览器兼容查询使用browerslist工具，而不是设置target</span></span><br><span class="line">        <span class="string">//因为browserslist工具，可以在多个前端工具之间进行浏览器兼容性（postcss/babel）</span></span><br><span class="line">        <span class="string">//</span> <span class="attr">targets:</span> <span class="string">&quot;&gt;5%&quot;</span></span><br><span class="line">        <span class="string">//</span> <span class="attr">corejs:</span> <span class="number">3</span>,</span><br><span class="line">        <span class="string">//false表示不使用polyfill进行填充</span></span><br><span class="line">        <span class="attr">useBuiltIns:</span> <span class="literal">false</span></span><br><span class="line">      &#125;,</span><br><span class="line">    ],</span><br><span class="line">  ],</span><br><span class="line">&#125;<span class="string">;</span></span><br></pre></td></tr></table></figure>
+
+<p>注意：当useBuiltIns为false时，corejs需要注释，否则会在控制台提出如下警告：<br><img src="/img/study/polyfill4.png" alt="image.png"><br><img src="/img/study/polyfill2.png" alt="image.png"><br><img src="/img/study/polyfill3.png" alt="image.png"><br>虽然它有三个值可以设置但是尽量使用usage</p>
+<h5 id="React和TS解析"><a href="#React和TS解析" class="headerlink" title="React和TS解析"></a>React和TS解析</h5><p><img src="/img/study/react1.png" alt="image.png"><br><strong>一.如何对React进行打包？</strong></p>
+<ol>
+<li>首先在src下创建存放react组件的文件夹，在里面写react的jsx形式的组件文件</li>
+<li>在入口的index.js中引入react组件并进行编写：</li>
+</ol>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">//引入react组件</span></span><br><span class="line"><span class="string">import</span> <span class="string">React</span> <span class="string">from</span> <span class="string">&#x27;react&#x27;</span><span class="string">;</span></span><br><span class="line"><span class="string">import</span> <span class="string">ReactDOM</span>  <span class="string">from</span> <span class="string">&#x27;react-dom/client&#x27;</span><span class="string">;</span></span><br><span class="line"><span class="string">import</span> <span class="string">App</span> <span class="string">from</span> <span class="string">&#x27;./react/App.jsx&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="string">//编写react代码</span></span><br><span class="line"><span class="string">//在src的同级目录创建一个index.html文件，并创建一个标签作为存放react组件的容器</span></span><br><span class="line"><span class="string">const</span> <span class="string">root=ReactDOM.createRoot(document.querySelector(&quot;#root&quot;))</span></span><br><span class="line"><span class="string">root.render(&lt;App/&gt;)</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>创建react文件前需要先安装react插件</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">npm</span> <span class="string">install</span> <span class="string">react</span> <span class="string">react-dom</span>       </span><br></pre></td></tr></table></figure>
+
+<p>因为以前的配置只是关于js的，React作用的html文件并未对其进行打包，所以要进行html打包的配置</p>
+<ol start="3">
+<li>react所需的html打包的配置</li>
+</ol>
+<ul>
+<li>安装html打包的库</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">npm</span> <span class="string">install</span> <span class="string">html-webpack-plugin</span> <span class="string">-D</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>在webpack.config.js文件中配置html打包所需代码，这样以后只需要用<code>npm run build</code>也可以生成html的打包文件</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">//html打包所引入的库</span></span><br><span class="line"><span class="string">const</span> <span class="string">HtmlWebpackPlugin</span> <span class="string">=</span> <span class="string">require(&quot;html-webpack-plugin&quot;);</span></span><br><span class="line"><span class="string">const</span> <span class="string">path</span> <span class="string">=</span> <span class="string">require(&quot;path&quot;);</span> <span class="string">//引入path</span></span><br><span class="line"></span><br><span class="line"><span class="string">module.exports</span> <span class="string">=</span> &#123;</span><br><span class="line">  <span class="attr">mode:</span> <span class="string">&quot;development&quot;</span>,</span><br><span class="line">  <span class="attr">devtool:</span> <span class="string">&quot;source-map&quot;</span>,</span><br><span class="line">  <span class="string">//项目入口文件配置</span></span><br><span class="line">  <span class="attr">entry:</span> <span class="string">&quot;./src/index.js&quot;</span>,</span><br><span class="line">  <span class="string">//项目出口文件配置</span></span><br><span class="line">  <span class="attr">output:</span> &#123;</span><br><span class="line">    <span class="attr">filename:</span> <span class="string">&quot;bundle.js&quot;</span>,</span><br><span class="line">    <span class="attr">path:</span> <span class="string">path.resolve(__dirname</span>, <span class="string">&quot;build&quot;</span><span class="string">)</span>,</span><br><span class="line">    <span class="string">//</span> <span class="string">重新打包时，先将之前打包得文件夹删除掉</span></span><br><span class="line">    <span class="attr">clean:</span> <span class="literal">true</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">module:</span> &#123;</span><br><span class="line">    <span class="attr">rules:</span> [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">test:</span> <span class="string">/\.jsx?$/</span>, <span class="string">//x?:表示0个或者一个x</span></span><br><span class="line">        <span class="attr">use:</span> &#123;</span><br><span class="line">          <span class="attr">loader:</span> <span class="string">&quot;babel-loader&quot;</span>,</span><br><span class="line">          <span class="string">//</span> <span class="attr">options:</span> &#123;</span><br><span class="line">          <span class="string">//</span>   <span class="attr">presets:</span> [</span><br><span class="line">          <span class="string">//</span>     [<span class="string">&quot;@babel/preset-env&quot;</span>,&#123;</span><br><span class="line">          <span class="string">//</span>     <span class="string">//在开发中针对babel的浏览器兼容查询使用browerslist工具，而不是设置target</span></span><br><span class="line">          <span class="string">//</span>     <span class="string">//因为browserslist工具，可以在多个前端工具之间进行浏览器兼容性（postcss/babel）</span></span><br><span class="line">          <span class="string">//</span>     <span class="string">//</span> <span class="attr">targets:</span> <span class="string">&quot;&gt;5%&quot;</span></span><br><span class="line">          <span class="string">//</span>     &#125;]</span><br><span class="line">          <span class="string">//</span>   ],</span><br><span class="line">          <span class="string">//</span> &#125;,</span><br><span class="line">        &#125;,</span><br><span class="line">      &#125;,</span><br><span class="line">    ],</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">//打包html文件-----------新增的html打包配置</span></span><br><span class="line">  <span class="attr">plugins:</span> [</span><br><span class="line">    <span class="string">new</span> <span class="string">HtmlWebpackPlugin(</span>&#123;</span><br><span class="line">      <span class="attr">template:</span> <span class="string">&quot;./index.html&quot;</span>,</span><br><span class="line">    &#125;<span class="string">)</span>,</span><br><span class="line">  ],</span><br><span class="line">&#125;<span class="string">;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>因为要转换react代码所以需要安装react的预设：</li>
+</ol>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">npm</span> <span class="string">install</span> <span class="string">@babel/preset-react</span> <span class="string">-D</span></span><br></pre></td></tr></table></figure>
+
+<p>相关配置：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">//相当于以前的webpack.config.js中的options里的内容，将其babel配置单独拿出，比较好管理</span></span><br><span class="line"><span class="string">module.exports</span> <span class="string">=</span> &#123;</span><br><span class="line">  <span class="attr">presets:</span> [</span><br><span class="line">    [</span><br><span class="line">      <span class="string">&quot;@babel/preset-env&quot;</span>,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="string">//在开发中针对babel的浏览器兼容查询使用browerslist工具，而不是设置target</span></span><br><span class="line">        <span class="string">//因为browserslist工具，可以在多个前端工具之间进行浏览器兼容性（postcss/babel）</span></span><br><span class="line">        <span class="string">//</span> <span class="attr">targets:</span> <span class="string">&quot;&gt;5%&quot;</span></span><br><span class="line">        <span class="string">//</span> <span class="attr">corejs:</span> <span class="number">3</span>,</span><br><span class="line">        <span class="string">//</span> <span class="attr">useBuiltIns:</span> <span class="string">&quot;usage&quot;</span></span><br><span class="line">      &#125;,</span><br><span class="line">    ],</span><br><span class="line">    <span class="string">//react转换的预设</span></span><br><span class="line">    [<span class="string">&quot;@babel/preset-react&quot;</span>]</span><br><span class="line">  ],</span><br><span class="line">&#125;<span class="string">;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>二.ts编译打包</strong><br><strong>方式一：</strong></p>
+<ol>
+<li>首先在src下创建存放ts文件的文件夹，在里面写.ts形式的文件</li>
+<li>在入口的index.js中引入ts文件并进行编写：</li>
+</ol>
+<p>例如：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">import</span> &#123;<span class="string">sum</span>&#125;  <span class="string">from</span> <span class="string">&#x27;./ts/math.ts&#x27;</span></span><br><span class="line"><span class="string">//使用ts代码</span></span><br><span class="line"><span class="string">console.log(sum(20,30));</span></span><br></pre></td></tr></table></figure>
+
+<p>3.转换ts：<br>首先安装ts相关的转换库让其代码在打包时可以转换成js代码：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">npm</span> <span class="string">install</span> <span class="string">ts-loader</span> <span class="string">-D</span></span><br></pre></td></tr></table></figure>
+
+<p>其次配置ts-loader:</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title class_">HtmlWebpackPlugin</span> = <span class="built_in">require</span>(<span class="string">&quot;html-webpack-plugin&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&quot;path&quot;</span>); <span class="comment">//引入path</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">mode</span>: <span class="string">&quot;development&quot;</span>,</span><br><span class="line">  <span class="attr">devtool</span>: <span class="string">&quot;source-map&quot;</span>,</span><br><span class="line">  <span class="comment">//项目入口文件配置</span></span><br><span class="line">  <span class="attr">entry</span>: <span class="string">&quot;./src/index.js&quot;</span>,</span><br><span class="line">  <span class="comment">//项目出口文件配置</span></span><br><span class="line">  <span class="attr">output</span>: &#123;</span><br><span class="line">    <span class="attr">filename</span>: <span class="string">&quot;bundle.js&quot;</span>,</span><br><span class="line">    <span class="attr">path</span>: path.<span class="title function_">resolve</span>(__dirname, <span class="string">&quot;build&quot;</span>),</span><br><span class="line">    <span class="comment">// 重新打包时，先将之前打包得文件夹删除掉</span></span><br><span class="line">    <span class="attr">clean</span>: <span class="literal">true</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">resolve</span>: &#123;</span><br><span class="line">    <span class="comment">//可以是引入文件的时候不加文件的后缀名</span></span><br><span class="line">    <span class="attr">extensions</span>: [<span class="string">&quot;.js&quot;</span>, <span class="string">&quot;.json&quot;</span>, <span class="string">&quot;.wasm&quot;</span>, <span class="string">&quot;.jsx&quot;</span>, <span class="string">&quot;.vue&quot;</span>,<span class="string">&#x27;.ts&#x27;</span>],</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">module</span>: &#123;</span><br><span class="line">    <span class="attr">rules</span>: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">test</span>: <span class="regexp">/\.jsx?$/</span>, <span class="comment">//x?:表示0个或者一个x</span></span><br><span class="line">        <span class="attr">use</span>: &#123;</span><br><span class="line">          <span class="attr">loader</span>: <span class="string">&quot;babel-loader&quot;</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="comment">//解析ts</span></span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">test</span>: <span class="regexp">/\.ts$/</span>,</span><br><span class="line">        <span class="attr">use</span>: <span class="string">&quot;ts-loader&quot;</span> <span class="comment">//安装ts-loader：npm install ts-loader -D   下一步创建tsconfig文件：tsc --init</span></span><br><span class="line">      &#125;</span><br><span class="line">    ],</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">//打包html文件</span></span><br><span class="line">  <span class="attr">plugins</span>: [</span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">HtmlWebpackPlugin</span>(&#123;</span><br><span class="line">      <span class="attr">template</span>: <span class="string">&quot;./index.html&quot;</span>,</span><br><span class="line">    &#125;),</span><br><span class="line">  ],</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>最后进行打包</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">npm run build</span><br></pre></td></tr></table></figure>
+
+<p><img src="/img/study/ts1.png" alt="image.png"><br>在下方中安装ts-loader时就会自动安装上方的ts<br><img src="/img/study/ts2.png" alt="image.png"><br>除了可以用上方的方式编译ts文件之外也可以用下面的方式。它主要是借用babel。<br><strong>方式二：</strong><br>1.因为在ts文件中可能含有es语言之类的新语法，浏览器可能不认识，所以需要对其进行补丁。如果单纯的借助上方方式并不能实现，需要在babel对ts进行预设，并且转换。</p>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">sum</span>(<span class="params">num1: <span class="built_in">number</span>, num2: <span class="built_in">number</span></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> num1 + num2;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">formatPrice</span>(<span class="params">priceString: <span class="built_in">string</span></span>) &#123;</span><br><span class="line">  <span class="comment">//因为下方的ts中使用了es新推出的includes()方法，为了进行正常的使用所以会对其进行补丁和预设</span></span><br><span class="line">  <span class="keyword">if</span> (priceString.<span class="title function_">includes</span>(<span class="string">&quot;$&quot;</span>)) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;xxxx&quot;</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;yyy&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>2.将webpack.config中的use的值设置为”babel-loader”</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//解析ts</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">test</span>: <span class="regexp">/\.ts$/</span>,</span><br><span class="line">    <span class="comment">// use: &quot;ts-loader&quot; //安装ts-loader：npm install ts-loader -D   下一步创建tsconfig文件：tsc --init</span></span><br><span class="line">    <span class="comment">//为了方便以后的运行配置，或者如果ts文件中出现了es新出的方法进行补丁建议使用babel-loader</span></span><br><span class="line">    <span class="attr">use</span>: <span class="string">&#x27;babel-loader&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>3.安装ts的预设</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">npm</span> <span class="string">install</span> <span class="string">@babel/preset-typescript</span> <span class="string">-D</span></span><br></pre></td></tr></table></figure>
+
+<p>4.在babel.config.js中配置ts的预设和补丁，进行方法填充</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//ts转换的预设</span></span><br><span class="line">[</span><br><span class="line">  (<span class="string">&quot;@babel/preset-typescript&quot;</span>,</span><br><span class="line">   &#123;</span><br><span class="line">     <span class="attr">corejs</span>: <span class="number">3</span>,</span><br><span class="line">     <span class="attr">useBuiltIns</span>: <span class="string">&quot;usage&quot;</span>,</span><br><span class="line">   &#125;)</span><br><span class="line">],</span><br></pre></td></tr></table></figure>
+
+<p><img src="/img/study/ts3.png" alt="image.png"><br><strong>ts-loader与babel-loader的区别：</strong><br><img src="/img/study/ts4.png" alt="image.png"><br>如何在使用Babel的时候也对ts进行实时监听：<br><img src="/img/study/ts5.png" alt="image.png"><br>package.json中的script的代码：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;scripts&quot;</span>: &#123;</span><br><span class="line">  <span class="string">&quot;test&quot;</span>: <span class="string">&quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</span>,</span><br><span class="line">  <span class="string">&quot;build&quot;</span>: <span class="string">&quot;webpack&quot;</span>,</span><br><span class="line">    <span class="comment">//检测ts文件的语法是否正确</span></span><br><span class="line">  <span class="string">&quot;ts-check&quot;</span>: <span class="string">&quot;tsc --noEmit&quot;</span>,</span><br><span class="line">    <span class="comment">//相比于上面这个只要在控制台运行npm run ts-check-watch就会进行实时监听，完全正确之后再ctrl+c进行打包操作</span></span><br><span class="line">  <span class="string">&quot;ts-check-watch&quot;</span>: <span class="string">&quot;tsc --noEmit --watch&quot;</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
-        <category>html</category>
+        <category>webpack</category>
       </categories>
       <tags>
-        <tag>html</tag>
+        <tag>webpack</tag>
       </tags>
   </entry>
 </search>
