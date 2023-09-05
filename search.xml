@@ -1,177 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>js知识体系（一）</title>
-    <url>/2023/08/12/js%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB(%E4%B8%80)/</url>
-    <content><![CDATA[<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><h3 id="考察很多"><a href="#考察很多" class="headerlink" title="考察很多"></a><label style="color:rgb(223, 42, 63)">考察很多</label></h3><h4 id="JS的数据类型，它们的区别？"><a href="#JS的数据类型，它们的区别？" class="headerlink" title="JS的数据类型，它们的区别？"></a><label style="color:rgb(223, 42, 63)">JS的数据类型，它们的区别？</label></h4><p>js共有8种数据类型，分别是Undefined,Null,Boolean,Number,String,Object,Symbol,Bignt。<br>其中Symbol,Bight是ES6中新增的数据类型：</p>
-<ul>
-<li>Symbol代表创建后独一无二且不可变的数据类型，它主要是为了解决可能出现的全局变量冲突的问题。</li>
-<li>Bigint 是一种数字类型的数据，它可以表示任意精度格式的证书，使用BigInt可以安全地存储和操作大整数，即使这个数已经超出Number能够表示地安全整数范围。</li>
-</ul>
-<p>这些数据乐意分为原始数据类型和引用数据类型：</p>
-<ul>
-<li>栈：原始数据类型直接存储在栈中地简单数据段，占据空间小，大小固定，属于被频繁使用数据，所以放入栈中存储。</li>
-<li>堆：引用数据类型（对象，数组，函数）</li>
-</ul>
-<p>两种类型地区别在于<strong>存储位置的不同：</strong></p>
-<ul>
-<li><code>原始数据类型</code>直接<code>存储在栈中</code>的简单数据段，占据空间小，大小固定 ，属于被频繁使用数据，所以放入栈中存储；</li>
-<li><code>引用数据类型</code>存储在<code>堆中</code>的对象，占据空间大，大小不固定。如果存储在栈中，将会影响程序运行的性能；引用数据类型在栈中存储了指针，该指针指向堆中该实体的起始地址。当解释器寻找引用值时，会首先检索其中在栈中地额地址，武德地址后从堆中获得实体。</li>
-</ul>
-<p>堆和栈的概念存在于数据结构和操作系统内存中，在数据结构中：</p>
-<ul>
-<li>在数据结构中，<code>栈</code>中数据的存取方式为<code>先进先出</code></li>
-<li><code>堆</code>是一个优先队列，是按<code>优先级</code>来进行排序的，优先级可以按照大小来规定。</li>
-</ul>
-<p>在操作系统中，内存被分为栈区和堆区：</p>
-<ul>
-<li>栈区内存由编译器自动分配释放，存放函数的参数值，局部变量的值等。其操作方式类似于数据结构中的栈。</li>
-<li>堆区内存一般由开饭分配释放，若开发者不是释放，程序结束时可能由垃圾回收机制回收。</li>
-</ul>
-<h4 id="数据类型检测的方式有哪些？"><a href="#数据类型检测的方式有哪些？" class="headerlink" title="数据类型检测的方式有哪些？"></a><label style="color:rgb(223, 42, 63)">数据类型检测的方式有哪些？</label></h4><pre><code>  1. typeof:其中数组，对象，null都会被判断为object，其它判断都正确。
-  2. instanceof可以正确判断对象的类型，其内部运行机制是判断在其原型链中能否找到该类型的原型。
-</code></pre>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">2</span> <span class="keyword">instanceof</span> <span class="title class_">Number</span>)<span class="comment">//false</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="literal">true</span> <span class="keyword">instanceof</span> <span class="title class_">Boolean</span>)<span class="comment">//false</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;str&#x27;</span> <span class="keyword">instanceof</span> <span class="title class_">String</span>);<span class="comment">//false</span></span><br><span class="line"><span class="comment">//以检测字符串类型false解释原理</span></span><br><span class="line"><span class="comment">//上方放回false，是因为&#x27;str&#x27;本身不是任何一个类的实例，要想检测的结果为false,只能通过new一个String达到目标</span></span><br><span class="line"><span class="keyword">var</span> str=<span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&#x27;abc&#x27;</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(str <span class="keyword">instanceof</span> <span class="title class_">String</span>)<span class="comment">//true</span></span><br><span class="line"><span class="comment">//通过typeof str 检测到str返回的仍是string并不是Object.</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>([] <span class="keyword">instanceof</span> <span class="title class_">Array</span>);<span class="comment">//true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;&#125; <span class="keyword">instanceof</span> <span class="title class_">Function</span>);<span class="comment">//true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(&#123;&#125; <span class="keyword">instanceof</span> object);<span class="comment">//true</span></span><br></pre></td></tr></table></figure>
-
-<p>从上可以看出instanceof只能正确判断引用数据类型，而不能判断基本数据类型。instanceof运算符可以用来测试一个对象在其原型链中是否存在一个构造函数的prototype属性</p>
-<pre><code>  3. constructor
-</code></pre>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>((<span class="number">2</span>).<span class="property">constructor</span> === <span class="title class_">Number</span>); <span class="comment">// true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>((<span class="literal">true</span>).<span class="property">constructor</span> === <span class="title class_">Boolean</span>); <span class="comment">// true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>((<span class="string">&#x27;str&#x27;</span>).<span class="property">constructor</span> === <span class="title class_">String</span>); <span class="comment">// true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(([]).<span class="property">constructor</span> === <span class="title class_">Array</span>); <span class="comment">// true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>((<span class="keyword">function</span>(<span class="params"></span>) &#123;&#125;).<span class="property">constructor</span> === <span class="title class_">Function</span>); <span class="comment">// true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>((&#123;&#125;).<span class="property">constructor</span> === <span class="title class_">Object</span>); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-
-<p>   constructor 有两个作用，一是判断数据的类型，二是对象实例通过constrcutor对象访问它的构造函数。需要注意，如果创建一个对象来改变它的原型，constructor就不能用来判断数据类型了。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">Fn</span>(<span class="params"></span>)&#123;&#125;;</span><br><span class="line"> </span><br><span class="line"><span class="title class_">Fn</span>.<span class="property"><span class="keyword">prototype</span></span> = <span class="keyword">new</span> <span class="title class_">Array</span>();</span><br><span class="line"> </span><br><span class="line"><span class="keyword">var</span> f = <span class="keyword">new</span> <span class="title class_">Fn</span>();</span><br><span class="line"> </span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(f.<span class="property">constructor</span>===<span class="title class_">Fn</span>);    <span class="comment">// false</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(f.<span class="property">constructor</span>===<span class="title class_">Array</span>); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-
-<pre><code>  4. Object.prototype.toString.call()
-</code></pre>
-<p><strong>Object.prototype.toString.call()</strong> 使用 Object 对象的原型方法 toString 来判断数据类型：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="title class_">Object</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">toString</span>;</span><br><span class="line"> </span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a.<span class="title function_">call</span>(<span class="number">2</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a.<span class="title function_">call</span>(<span class="literal">true</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a.<span class="title function_">call</span>(<span class="string">&#x27;str&#x27;</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a.<span class="title function_">call</span>([]));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a.<span class="title function_">call</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;&#125;));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a.<span class="title function_">call</span>(&#123;&#125;));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a.<span class="title function_">call</span>(<span class="literal">undefined</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a.<span class="title function_">call</span>(<span class="literal">null</span>));</span><br></pre></td></tr></table></figure>
-
-<p>同样是检测对象obj调用toString方法，obj.toString()的结果和Object.prototype.toString.call(obj)的结果不一样，这是为什么？<br>这是因为toString是Object的原型方法，而Array、function等<strong>类型作为Object的实例，都重写了toString方法</strong>。不同的对象类型调用toString方法时，根据原型链的知识，调用的是对应的重写之后的toString方法（function类型返回内容为函数体的字符串，Array类型返回元素组成的字符串…），而不会去调用Object上原型toString方法（返回对象的具体类型），所以采用obj.toString()不能得到其对象类型，只能将obj转换为字符串类型；因此，在想要得到对象的具体类型时，应该调用Object原型上的toString方法。</p>
-<h4 id="null与undefined的区别"><a href="#null与undefined的区别" class="headerlink" title="null与undefined的区别"></a><label style="color:rgb(223, 42, 63)">null与undefined的区别</label></h4><p>首先Undefined和Null都是基本数据类型，这两个基本数据类型分别都只有一个值，就是undefined和null。<br>undefined代表的含义是未定义，null代表的含义是空对象。一般变量声明了但还没有定义的时候就会返回undefined,null主要用于赋值给一些可能返回对象的变量，作为初始化。<br>当对这两种类型使用 typeof 进行判断时，Null 类型化会返回 “object”，这是一个历史遗留的问题。当使用双等号对两种类型的值进行比较时会返回 true，使用三个等号时会返回 false。</p>
-<h4 id="instanceof操作符的实现原理及实现。"><a href="#instanceof操作符的实现原理及实现。" class="headerlink" title="instanceof操作符的实现原理及实现。"></a><label style="color:rgb(223, 42, 63)">instanceof操作符的实现原理及实现。</label></h4><p>instanceof 运算符用于判断构造函数的prototype属性是否出现在对象原型链中的任何位置。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">myInstanceof</span>(<span class="params">left,right</span>)&#123;</span><br><span class="line">  <span class="comment">//获取对象的原型</span></span><br><span class="line">  <span class="keyword">let</span> proto=object.<span class="title function_">getPrototypeOf</span>(left)</span><br><span class="line">  <span class="comment">//获取构造函数的prototyped对象</span></span><br><span class="line">  <span class="keyword">let</span> prototype = right.<span class="property"><span class="keyword">prototype</span></span>;</span><br><span class="line"><span class="comment">//判断构造函数的prototype对象是否在对象的原型链上</span></span><br><span class="line">  <span class="keyword">while</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(!proto) <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    <span class="keyword">if</span>(proto === prototype) <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">    <span class="comment">// 如果没有找到，就继续从其原型上找，Object.getPrototypeOf方法用来获取指定对象的原型</span></span><br><span class="line">    proto = <span class="title class_">Object</span>.<span class="title function_">getPrototypeOf</span>(proto);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="Object-is-与比较操作符”-”-”-”的区别？"><a href="#Object-is-与比较操作符”-”-”-”的区别？" class="headerlink" title="Object.is()与比较操作符”&#x3D;&#x3D;”,”&#x3D;&#x3D;&#x3D;”的区别？"></a><label style="color:rgb(223, 42, 63)">Object.is()与比较操作符”&#x3D;&#x3D;”,”&#x3D;&#x3D;&#x3D;”的区别？</label></h4><ul>
-<li>使用&#x3D;&#x3D;进行相等判断时，如果两边的类型不一致，则会进行强制类型转化后在进行比较。</li>
-<li>使用&#x3D;&#x3D;&#x3D;进行相等判断时，如果两边的类型不一致，则不会做强制类型转换，直接返回false</li>
-<li>使用Object.js来进行相等判断时，一般情况下和&#x3D;&#x3D;&#x3D;的判断相同，它处理了一些特殊的情况，比如：-0和+0不再相等，两个NaN是相等的。</li>
-</ul>
-<hr>
-<h3 id="考察较多"><a href="#考察较多" class="headerlink" title="考察较多 "></a><label style="color:rgb(236, 170, 4)">考察较多 </label></h3><h5 id="isNaN和Number-isNaN函数的区别？"><a href="#isNaN和Number-isNaN函数的区别？" class="headerlink" title="isNaN和Number.isNaN函数的区别？"></a><label style="color:rgb(236, 170, 4)">isNaN和Number.isNaN函数的区别？</label></h5><ul>
-<li>函数isNaN接受参数后，会尝试将这个参数转换为数值，任何不能被转换为数值的值都会返回true,因此非数字值传入也会返回true,会影响NaN的判断。</li>
-<li>函数Number.isNaN会首先判断传入参数是否为数字，如果是数字再继续判断是否为NaN，不会进行数据类型的转换，这种方法对NaN的判断更加准确。</li>
-</ul>
-<h5 id="浅谈浅拷贝和深拷贝"><a href="#浅谈浅拷贝和深拷贝" class="headerlink" title="浅谈浅拷贝和深拷贝 "></a><label style="color:rgb(236, 170, 4)">浅谈浅拷贝和深拷贝 </label></h5><p>在js中浅拷贝和深拷贝是两种不同的对象拷贝方式。<br>浅拷贝是指创建一个新对象，然后将原始对象的属性值复制到新对象中。新对象和原始对象共享相同的引用类型属性（如对象，数组等），也就是说，如果修改新对象的引用类型属性，原始对象也会受到影响。<br>深拷贝是指创建一个新对象，然后递归的将原始对象的所有属性值复制到新对象中。新对象和原始对象不共享引用类型属性，也就是说，修改新对象的引用类型属性不会影响原始对象。<br>区别：</p>
-<ul>
-<li>浅拷贝只复制对象的引用，而不是复制引用指向的值本身；深拷贝则会递归地复制对象及引用的值。</li>
-<li>浅拷贝创建的新对象和原始对象共享引用类型属性，而深拷贝创建的新对象和原始对象不共享引用类型属性。</li>
-</ul>
-<p>js深拷贝与浅拷贝是什么？区别又是什么<br>在 JavaScript 中，深拷贝和浅拷贝是两种不同的对象拷贝方式。<br>浅拷贝是指创建一个新对象，然后将原始对象的属性值复制到新对象中。新对象和原始对象共享相同的引用类型属性（如对象、数组等），也就是说，如果修改新对象的引用类型属性，原始对象也会受到影响。<br>深拷贝是指创建一个新对象，然后递归地将原始对象的所有属性值复制到新对象中。新对象和原始对象不共享引用类型属性，也就是说，修改新对象的引用类型属性不会影响原始对象。<br>区别：</p>
-<ul>
-<li>浅拷贝只复制对象的引用，而不复制引用指向的值本身；深拷贝则会递归地复制对象及其引用的值。</li>
-<li>浅拷贝创建的新对象和原始对象共享引用类型属性，而深拷贝创建的新对象和原始对象不共享引用类型属性。</li>
-</ul>
-<p>两种拷贝的实例<br>以下是两种拷贝方式的实例：</p>
-<ol>
-<li><strong>浅拷贝示例：</strong></li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> obj1 = &#123;<span class="attr">name</span>: <span class="string">&#x27;Alice&#x27;</span>, <span class="attr">age</span>: <span class="number">25</span>, <span class="attr">hobbies</span>: [<span class="string">&#x27;reading&#x27;</span>, <span class="string">&#x27;painting&#x27;</span>]&#125;;</span><br><span class="line"><span class="keyword">let</span> obj2 = <span class="title class_">Object</span>.<span class="title function_">assign</span>(&#123;&#125;, obj1);</span><br><span class="line"></span><br><span class="line">obj2.<span class="property">name</span> = <span class="string">&#x27;Bob&#x27;</span>;</span><br><span class="line">obj2.<span class="property">hobbies</span>.<span class="title function_">push</span>(<span class="string">&#x27;running&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj1); <span class="comment">// &#123;name: &#x27;Alice&#x27;, age: 25, hobbies: [&#x27;reading&#x27;, &#x27;painting&#x27;, &#x27;running&#x27;]&#125;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj2); <span class="comment">// &#123;name: &#x27;Bob&#x27;, age: 25, hobbies: [&#x27;reading&#x27;, &#x27;painting&#x27;, &#x27;running&#x27;]&#125;</span></span><br></pre></td></tr></table></figure>
-
-<p>在这个示例中，使用Object.assign()进行浅拷贝。修改了obj2的属性值后，obj1的hobbies属性也被修改了，因为它们共享相同的引用类型属性。<br><strong>2.深拷贝示例：</strong></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> obj1 = &#123;<span class="attr">name</span>: <span class="string">&#x27;Alice&#x27;</span>, <span class="attr">age</span>: <span class="number">25</span>, <span class="attr">hobbies</span>: [<span class="string">&#x27;reading&#x27;</span>, <span class="string">&#x27;painting&#x27;</span>]&#125;;</span><br><span class="line"><span class="keyword">let</span> obj2 = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(obj1));</span><br><span class="line"></span><br><span class="line">obj2.<span class="property">name</span> = <span class="string">&#x27;Bob&#x27;</span>;</span><br><span class="line">obj2.<span class="property">hobbies</span>.<span class="title function_">push</span>(<span class="string">&#x27;running&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj1); <span class="comment">// &#123;name: &#x27;Alice&#x27;, age: 25, hobbies: [&#x27;reading&#x27;, &#x27;painting&#x27;]&#125;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj2); <span class="comment">// &#123;name: &#x27;Bob&#x27;, age: 25, hobbies: [&#x27;reading&#x27;, &#x27;painting&#x27;, &#x27;running&#x27;]&#125;</span></span><br></pre></td></tr></table></figure>
-
-<p>在这个示例中，使用JSON.stringify()将obj1转换为字符串，然后使用JSON.parse()将其转换回对象，从而实现深拷贝。修改了obj2的属性值后，obj1的hobbies属性没有被修改，因为它们不共享引用类型属性。</p>
-<hr>
-<h2 id="ES6"><a href="#ES6" class="headerlink" title="ES6"></a>ES6</h2><h3 id="考察很多-1"><a href="#考察很多-1" class="headerlink" title="考察很多"></a><label style="color:rgb(223, 42, 63)">考察很多</label></h3><h4 id="let-const-var的区别"><a href="#let-const-var的区别" class="headerlink" title="let,const,var的区别"></a><label style="color:rgb(223, 42, 63)">let,const,var的区别</label></h4><ol>
-<li><strong>块级作用域</strong>：块级作用域由{  }包括，let和const具有块级作用域，var不存在块级作用域。块级作用域可以解决ES5中的两个问题：<ol>
-<li>内层变量肯能覆盖外层变量</li>
-<li>用来计数的循环变量泄漏为全局变量</li>
-</ol>
-</li>
-<li><strong>变量提升</strong>：var存在变量提升，let和const不存在变量提升 ，即只能在变量声明之后使用否则会报错</li>
-<li><strong>给全局添加属性</strong>：浏览器的全局对象是window，Node的全局对象是global。var声明的变量可以为全局变量，并且会将改变量添加为全局对象的属性，但是let和const不会。</li>
-<li><strong>重复声明</strong>：var声明变量是，可以重复声明变量，后声明的同名变量会覆盖之前声明的。而const和let不允许重复声明变量。</li>
-<li><strong>暂时性死区</strong>：在使用let、const命令声明变量之前，该变量都是不可用的。这在语法上，称为暂时性死区。使用var声明的变量不存在暂时性死区。</li>
-<li><strong>初始值设置</strong>：在变量声明时，var,let可以不用设置初始值，但是const必须设置初始值。</li>
-<li><strong>指针指向</strong>： let和const都是ES6新增的用于创建变量的语法。 let创建的变量是可以更改指针指向（可以重新赋值）。但const声明的变量是不允许改变指针的指向。</li>
-</ol>
-<p><img src="/img/study/let.png" alt="image.png"></p>
-<h4 id="箭头函数与普通函数的区别"><a href="#箭头函数与普通函数的区别" class="headerlink" title="箭头函数与普通函数的区别"></a><label style="color:rgb(223, 42, 63)">箭头函数与普通函数的区别</label></h4><ol>
-<li><strong>箭头函数比普通函数更加简洁</strong><ol>
-<li>如果没有参数，直接协议可空括号即可</li>
-<li>如果只有一个参数，可以省去参数的括号</li>
-<li>如果由多个参数，用逗号分割</li>
-<li>如果函数体返回值只有一句，可以省略大括号</li>
-<li>如果函数不需要返回值，且只有一句话，可以给这个语句前面加一个void关键字。最常用的就是调用函数：</li>
-</ol>
-</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="title function_">fn</span> = (<span class="params"></span>) =&gt; <span class="keyword">void</span> <span class="title function_">doesNotReturn</span>();</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li><strong>箭头函数没有自己的this</strong></li>
-</ol>
-<p>箭头函数不会创建自己的this,所以它没有自己的this,它只会在自己作用域的上一层继承this。所以箭头函数中this的指向在它定义时已经确定了，之后不会改变。</p>
-<ol start="3">
-<li><strong>箭头函数继承来的this指向永远不会改变</strong></li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> id = <span class="string">&#x27;GLOBAL&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  <span class="attr">id</span>: <span class="string">&#x27;OBJ&#x27;</span>,</span><br><span class="line">  <span class="attr">a</span>: <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">id</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">b</span>: <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">id</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">obj.<span class="title function_">a</span>();    <span class="comment">// &#x27;OBJ&#x27;</span></span><br><span class="line">obj.<span class="title function_">b</span>();    <span class="comment">// &#x27;GLOBAL&#x27;</span></span><br><span class="line"><span class="keyword">new</span> obj.<span class="title function_">a</span>()  <span class="comment">// undefined</span></span><br><span class="line"><span class="keyword">new</span> obj.<span class="title function_">b</span>()  <span class="comment">// Uncaught TypeError: obj.b is not a constructor</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>对象obj的方法b是使用箭头函数定义的，这个函数中的this就永远指向它定义时所处的全局执行环境中的this，即便这个函数是作为对象obj的方法调用，this依旧指向Window对象。需要注意，定义对象的大括号{}是无法形成一个单独的执行环境的，它依旧是处于全局执行环境中。</p>
-<ol start="4">
-<li><strong>call(),apply()，bind()等方法不能改变箭头函数中的this指向</strong></li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> id = <span class="string">&#x27;Global&#x27;</span>;</span><br><span class="line"><span class="keyword">let</span> <span class="title function_">fun1</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">id</span>)</span><br><span class="line">&#125;;</span><br><span class="line"><span class="title function_">fun1</span>();                     <span class="comment">// &#x27;Global&#x27;</span></span><br><span class="line">fun1.<span class="title function_">call</span>(&#123;<span class="attr">id</span>: <span class="string">&#x27;Obj&#x27;</span>&#125;);     <span class="comment">// &#x27;Global&#x27;</span></span><br><span class="line">fun1.<span class="title function_">apply</span>(&#123;<span class="attr">id</span>: <span class="string">&#x27;Obj&#x27;</span>&#125;);    <span class="comment">// &#x27;Global&#x27;</span></span><br><span class="line">fun1.<span class="title function_">bind</span>(&#123;<span class="attr">id</span>: <span class="string">&#x27;Obj&#x27;</span>&#125;)();   <span class="comment">// &#x27;Global&#x27;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ol start="5">
-<li><strong>箭头函数不能作为构造函数使用</strong></li>
-</ol>
-<p>构造函数在new的步骤在上面已经说过了，实际上第二步就是将函数中的this指向该对象。 但是由于箭头函数时没有自己的this的，且this指向外层的执行环境，且不能改变指向，所以不能当做构造函数使用。</p>
-<ol start="6">
-<li><strong>箭头函数没有自己的arguments</strong></li>
-</ol>
-<p>箭头函数没有自己的arguments对象。在箭头函数中访问arguments实际上获得的是它外层函数的arguments值。</p>
-<ol start="7">
-<li><strong>箭头函数没有prototype</strong></li>
-<li><strong>箭头函数不能用作Generatir函数，不能使用yeild关键字</strong></li>
-</ol>
-<h3 id="考察较多-1"><a href="#考察较多-1" class="headerlink" title="考察较多"></a><label style="color:rgb(236, 170, 4)">考察较多</label></h3><h4 id="const对象的属性可以修改吗"><a href="#const对象的属性可以修改吗" class="headerlink" title="const对象的属性可以修改吗"></a><label style="color:rgb(236, 170, 4)">const对象的属性可以修改吗</label></h4><p>const保证的不是变量的值不能改变，而是变量指向的那个内存地址不能改动。对于基本类型的数据（数值，字符串，布尔值），其值就保存在变量指向的那个内存地址，因此等同于常量。<br>但是对于引用类型的数据（主要是对象和数组）来说，变量指向数据的内存地址，保存的只是一个指针，const只能保证这个指针式固定不变的，至于它指向的数据结构式不可变的，就完全不能控制了。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//a为引用类型数据时：</span></span><br><span class="line"><span class="keyword">const</span> a=[<span class="string">&quot;1&quot;</span>,<span class="string">&quot;2&quot;</span>,<span class="string">&quot;3&quot;</span>]</span><br><span class="line">a.<span class="title function_">push</span>(<span class="string">&quot;4&quot;</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a);<span class="comment">//[&#x27;1&#x27;, &#x27;2&#x27;, &#x27;3&#x27;, &#x27;4&#x27;]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//a为基本数据类型时</span></span><br><span class="line"><span class="keyword">const</span> a=<span class="number">1</span></span><br><span class="line">a=<span class="number">2</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a);<span class="comment">//报错，error: Assignment to constant variable.</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="如果new一个箭头函数会产生什么结果？"><a href="#如果new一个箭头函数会产生什么结果？" class="headerlink" title="如果new一个箭头函数会产生什么结果？"></a><label style="color:rgb(236, 170, 4)">如果new一个箭头函数会产生什么结果？</label></h4><p>箭头函数是ES6中新提出来的，它没有自己的this指向，更不可以使用argyments参数，所以并不能够new一个箭头函数。<br>new操作符的实现步骤如下：</p>
-<ul>
-<li>创建一个对象</li>
-<li>将构造函数的租用与赋给新对象（也就是将对象的__proto__属性指向构造函数的prototype属性）</li>
-<li>指向构造函数中的代码，构造函数中的this指向对象（也就是为这个对象添加方法和属性）</li>
-<li>返回新的对象</li>
-</ul>
-<p>因此，由于箭头函数不能执行第二步和第三步所以并不能new一个箭头函数。</p>
-<h4 id="ES6中字符串的处理"><a href="#ES6中字符串的处理" class="headerlink" title="ES6中字符串的处理"></a><label style="color:rgb(236, 170, 4)">ES6中字符串的处理</label></h4><p>随着ES6的发布 ，可以发现它除了新增了模板语法外（例如：<code>aka$&#123;a&#125;uio</code>）外还新增了一系列的字符串方法用于提升开发效率。<br>（1）存在性判定：在过去判断一个字符&#x2F;字符串是否在某字符串中时，只能用indexOf&gt;-1来判断。现在ES6提供了三个方法：includes,startsWith,endWith，它们都会返回一个布尔值来告诉你是否存在。</p>
-<ul>
-<li>includes：判断字符串与字符的包含关系：</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> son = <span class="string">&#x27;haha&#x27;</span> </span><br><span class="line"><span class="keyword">const</span> father = <span class="string">&#x27;xixi haha hehe&#x27;</span></span><br><span class="line">father.<span class="title function_">includes</span>(son) <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>startsWith：判断字符串是否以某个&#x2F;某串字符开头：</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> father = <span class="string">&#x27;xixi haha hehe&#x27;</span></span><br><span class="line">father.<span class="title function_">startsWith</span>(<span class="string">&#x27;haha&#x27;</span>) <span class="comment">// false</span></span><br><span class="line">father.<span class="title function_">startsWith</span>(<span class="string">&#x27;xixi&#x27;</span>) <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>endsWith：判断字符串是否以某个&#x2F;某串字符结尾：</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> father = <span class="string">&#x27;xixi haha hehe&#x27;</span></span><br><span class="line">  father.<span class="title function_">endsWith</span>(<span class="string">&#x27;hehe&#x27;</span>) <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-
-<p>（2）自动重复：可以使用repeat方法来使同一个字符串输出多次（被连续复制）</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> sourceCode = <span class="string">&#x27;repeat for 3 times;&#x27;</span></span><br><span class="line"><span class="keyword">const</span> repeated = sourceCode.<span class="title function_">repeat</span>(<span class="number">3</span>) </span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(repeated) <span class="comment">// repeat for 3 times;repeat for 3 times;repeat for 3 times;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>javaScript</category>
-      </categories>
-      <tags>
-        <tag>javaScript</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>React项目搭建</title>
     <url>/2023/07/15/React%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/</url>
     <content><![CDATA[<p><a name="RMA4X"></a></p>
@@ -283,7 +112,7 @@
 <ul>
 <li>reset.less：自己在静态文件夹下的css文件中建立文档，定义 jk重置的css样式</li>
 </ul>
-<p>如果使用less需要安装指定版本：<br />npm install <a href="mailto:&#x63;&#x72;&#x61;&#x63;&#x6f;&#x2d;&#108;&#x65;&#115;&#115;&#64;&#50;&#46;&#49;&#x2e;&#48;&#x2d;&#97;&#108;&#x70;&#104;&#97;&#x2e;&#x30;">&#x63;&#x72;&#x61;&#x63;&#x6f;&#x2d;&#108;&#x65;&#115;&#115;&#64;&#50;&#46;&#49;&#x2e;&#48;&#x2d;&#97;&#108;&#x70;&#104;&#97;&#x2e;&#x30;</a><br><a name="Q38Z8"></a></p>
+<p>如果使用less需要安装指定版本：<br />npm install <a href="mailto:&#x63;&#x72;&#x61;&#x63;&#111;&#45;&#108;&#x65;&#115;&#115;&#x40;&#x32;&#46;&#x31;&#x2e;&#x30;&#45;&#x61;&#108;&#x70;&#104;&#97;&#x2e;&#x30;">&#x63;&#x72;&#x61;&#x63;&#111;&#45;&#108;&#x65;&#115;&#115;&#x40;&#x32;&#46;&#x31;&#x2e;&#x30;&#45;&#x61;&#108;&#x70;&#104;&#97;&#x2e;&#x30;</a><br><a name="Q38Z8"></a></p>
 <h4 id="6-路由的配置"><a href="#6-路由的配置" class="headerlink" title="6.路由的配置"></a>6.路由的配置</h4><pre><code>  1. 路由的搭建：npm install react-router-dom
   2. 在写路由的时候与vue使用compoent不同的是React用的element，并且element后面跟的是组件实例（&lt;Discover /&gt;）而非Discover。由于组件实例属于jsx语法，所以写路有的文件不能是.ts应该是.tsx。凡是tsx文件都需要引入React(import React from &#39;react&#39;)。
   3. 如果使用路由，最外层的index.tsx中的APP必须被router包裹
@@ -326,7 +155,7 @@
 <p><a name="k85va"></a></p>
 <h4 id="9-网络请求封装axios"><a href="#9-网络请求封装axios" class="headerlink" title="9.网络请求封装axios"></a>9.网络请求封装axios</h4><pre><code>  1. 安装axios
 </code></pre>
-<p>npm install axios<br />由于最新班的axios版本过高会有报错，所以安装1.1版本<br />npm install <a href="mailto:&#97;&#x78;&#105;&#x6f;&#x73;&#x40;&#49;&#x2e;&#x31;&#46;&#x30;">&#97;&#x78;&#105;&#x6f;&#x73;&#x40;&#49;&#x2e;&#x31;&#46;&#x30;</a></p>
+<p>npm install axios<br />由于最新班的axios版本过高会有报错，所以安装1.1版本<br />npm install <a href="mailto:&#97;&#x78;&#x69;&#x6f;&#115;&#64;&#49;&#46;&#x31;&#x2e;&#x30;">&#97;&#x78;&#x69;&#x6f;&#115;&#64;&#49;&#46;&#x31;&#x2e;&#x30;</a></p>
 <pre><code>  2. 1
      &lt;a name=&quot;sFgV1&quot;&gt;&lt;/a&gt;
 </code></pre>
@@ -369,6 +198,602 @@
       </categories>
       <tags>
         <tag>React</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>js知识体系-js基础</title>
+    <url>/2023/09/05/js%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB-js%E5%9F%BA%E7%A1%80/</url>
+    <content><![CDATA[<h2 id="考察很多"><a href="#考察很多" class="headerlink" title="考察很多"></a><label style="color:rgb(223, 42, 63)">考察很多</label></h2><h3 id="new-操作符实现的实现原理"><a href="#new-操作符实现的实现原理" class="headerlink" title="new 操作符实现的实现原理"></a><label style="color:rgb(223, 42, 63)">new 操作符实现的实现原理</label></h3><p><strong>new 操作符的执行过程：</strong></p>
+<ul>
+<li>首先创建一个新的空对象</li>
+<li>设置原型，将对象的原型设置为函数的 prototype 对象</li>
+<li>让函数的 this 指向这个对象，执行构造函数的代码（为这个新对象添加属性）</li>
+<li>判断函数的返回值类型，如果是值类型（值类型通常包括基本的数据类型），返回创建的对象。如果是引用类型，就返回这个引用类型的对象。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">objectFactory</span>(<span class="params"></span>)&#123;</span><br><span class="line">	<span class="keyword">let</span> newObject = <span class="literal">null</span> ;</span><br><span class="line">  <span class="comment">//通过 Array.prototype.shift.call(arguments)，我们将 shift() 方法应用于 arguments 对象，并返回被移除的第一个参数。注意，这会修改 arguments 对象本身，使其少一个参数。</span></span><br><span class="line">  <span class="keyword">let</span> constructor = <span class="title class_">Array</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">shift</span>.<span class="title function_">call</span>(<span class="variable language_">arguments</span>);</span><br><span class="line">  <span class="keyword">let</span> result = <span class="literal">null</span>;</span><br><span class="line">  <span class="comment">//判断参数是否是一个函数</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> constructor!== <span class="string">&quot;function&quot;</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&quot;type error&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//新建一个空对象，对象的原型为构造函数的prototype对象</span></span><br><span class="line">  newObject = <span class="title class_">Object</span>.<span class="title function_">create</span>(constructor.<span class="property"><span class="keyword">prototype</span></span>);</span><br><span class="line">  <span class="comment">//将this指向新建对象，并执行函数</span></span><br><span class="line">  result = constructor.<span class="title function_">apply</span>(newObject,<span class="variable language_">arguments</span>);</span><br><span class="line">  <span class="comment">//判断返回对象</span></span><br><span class="line">  <span class="keyword">let</span> flag = result &amp; (type result === <span class="string">&quot;object&quot;</span> || <span class="keyword">typeof</span> result === <span class="string">&quot;function&quot;</span>);</span><br><span class="line">  <span class="comment">//判断返回结果</span></span><br><span class="line">  result flag ? result : newObject ;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//使用方法</span></span><br><span class="line"><span class="title function_">objectFactory</span>(构造函数,初始化参数);</span><br></pre></td></tr></table></figure>
+
+<h3 id="对类数组对象的理解，如何转化为数组？"><a href="#对类数组对象的理解，如何转化为数组？" class="headerlink" title="对类数组对象的理解，如何转化为数组？"></a><label style="color:rgb(223, 42, 63)">对类数组对象的理解，如何转化为数组？</label></h3><p><strong>什么是类数组对象？</strong><br>一个拥有 length 属性和若干索引属性的对象就可以被称为类数组对象。类数组对象的格式通常如下：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&#123;<span class="number">0</span>:value1,<span class="number">1</span>:value2,<span class="number">2</span>:value3,<span class="attr">length</span>:<span class="number">3</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<p>类数组对象和数组类似，但是不能调用数组的方法。常见的类数组对象有 arguments 和 DOM 方法的返回结果，还有一个函数也可以被看作是类数组对象，因为它含有 length 属性，代表可以接收到参数的个数。<br><strong>常见的类数组转换成数组的方法：</strong><br><code>（1）通过 call 调用数组的 slice 方法来实现转换</code></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Array</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">slice</span>.<span class="title function_">call</span>(arrayLike);</span><br></pre></td></tr></table></figure>
+
+<p><code>(2)通过 call 调用数组的 splice 方法来实现转换</code></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Array</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">split</span>.<span class="title function_">call</span>(arrayLike, <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+
+<p><code>(3) 通过 apply 调用数组的 concat 方法来实现转换</code></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Array</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">concat</span>.<span class="title function_">apply</span>([], arrayLike);</span><br></pre></td></tr></table></figure>
+
+<p><code>(4) 通过 Array.from 方法来实现转换</code></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Array</span>.<span class="title function_">from</span>(arrayLike);</span><br></pre></td></tr></table></figure>
+
+<h3 id="对-Ajax-的理解，实现一个-Ajax-请求"><a href="#对-Ajax-的理解，实现一个-Ajax-请求" class="headerlink" title="对 Ajax 的理解，实现一个 Ajax 请求"></a><label style="color:rgb(223, 42, 63)">对 Ajax 的理解，实现一个 Ajax 请求</label></h3><p><code>Ajax</code> 指的是通过 <code>js的异步通信</code> ，从服务器获取 XML 文档从中提取数据，在更新到当前网页的对应部分，而不用刷新整个网页。<br>创建 Ajax 请求的步骤：</p>
+<ul>
+<li>创建一个<strong>XMLHttpRequest</strong>对象。</li>
+<li>在这个对象上使用<strong>open 方法创建 HTTP 请求</strong>，open 方法所需要的参数是请求方法，请求地址，是否为异步和用户的认证信息。</li>
+<li>在发起请求前，可以为对象<strong>添加一些信息和监听函数</strong>。</li>
+<li>当对象的属性和监听函数设置完成后，最后调用<strong>sent 方法来向服务器发起请求</strong>。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="variable constant_">SERVER_URL</span> = <span class="string">&quot;/server&quot;</span>;</span><br><span class="line"><span class="keyword">let</span> xhr = <span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span>();</span><br><span class="line">xhr.<span class="title function_">open</span>(<span class="string">&quot;GET&quot;</span>, url, <span class="literal">true</span>);</span><br><span class="line">xhr.<span class="property">onreadystatechange</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">readyState</span> !== <span class="number">4</span>) <span class="keyword">return</span>;</span><br><span class="line">  <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">status</span> === <span class="number">200</span>) &#123;</span><br><span class="line">    <span class="title function_">handle</span>(<span class="variable language_">this</span>.<span class="property">response</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">statusText</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">xhr.<span class="property">onerror</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">statusText</span>);</span><br><span class="line">&#125;;</span><br><span class="line">xhr.<span class="property">responseType</span> = <span class="string">&quot;json&quot;</span>;</span><br><span class="line">xhr.<span class="title function_">setRequestHeader</span>(<span class="string">&quot;Accept&quot;</span>, <span class="string">&quot;application/json&quot;</span>);</span><br><span class="line">xhr.<span class="title function_">send</span>(<span class="literal">null</span>);</span><br></pre></td></tr></table></figure>
+
+<p>使用 Promise 封装 Ajax:</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// promise 封装实现：</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">getJSON</span>(<span class="params">url</span>) &#123;</span><br><span class="line">  <span class="comment">// 创建一个 promise 对象</span></span><br><span class="line">  <span class="keyword">let</span> promise = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="keyword">function</span> (<span class="params">resolve, reject</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> xhr = <span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span>();</span><br><span class="line">    <span class="comment">// 新建一个 http 请求</span></span><br><span class="line">    xhr.<span class="title function_">open</span>(<span class="string">&quot;GET&quot;</span>, url, <span class="literal">true</span>);</span><br><span class="line">    <span class="comment">// 设置状态的监听函数</span></span><br><span class="line">    xhr.<span class="property">onreadystatechange</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">readyState</span> !== <span class="number">4</span>) <span class="keyword">return</span>;</span><br><span class="line">      <span class="comment">// 当请求成功或失败时，改变 promise 的状态</span></span><br><span class="line">      <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">status</span> === <span class="number">200</span>) &#123;</span><br><span class="line">        <span class="title function_">resolve</span>(<span class="variable language_">this</span>.<span class="property">response</span>);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="title function_">reject</span>(<span class="keyword">new</span> <span class="title class_">Error</span>(<span class="variable language_">this</span>.<span class="property">statusText</span>));</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="comment">// 设置错误监听函数</span></span><br><span class="line">    xhr.<span class="property">onerror</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="title function_">reject</span>(<span class="keyword">new</span> <span class="title class_">Error</span>(<span class="variable language_">this</span>.<span class="property">statusText</span>));</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="comment">// 设置响应的数据类型</span></span><br><span class="line">    xhr.<span class="property">responseType</span> = <span class="string">&quot;json&quot;</span>;</span><br><span class="line">    <span class="comment">// 设置请求头信息</span></span><br><span class="line">    xhr.<span class="title function_">setRequestHeader</span>(<span class="string">&quot;Accept&quot;</span>, <span class="string">&quot;application/json&quot;</span>);</span><br><span class="line">    <span class="comment">// 发送 http 请求</span></span><br><span class="line">    xhr.<span class="title function_">send</span>(<span class="literal">null</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> promise;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="JS-为什么要进行变量提升？它有什么问题？"><a href="#JS-为什么要进行变量提升？它有什么问题？" class="headerlink" title="JS 为什么要进行变量提升？它有什么问题？"></a><label style="color:rgb(223, 42, 63)">JS 为什么要进行变量提升？它有什么问题？</label></h3><h2 id="考察较多"><a href="#考察较多" class="headerlink" title="考察较多"></a><label style="color:rgb(236, 170, 4)">考察较多</label></h2><h3 id="map-和-object-的区别："><a href="#map-和-object-的区别：" class="headerlink" title="map 和 object 的区别："></a><label style="color:rgb(236, 170, 4)">map 和 object 的区别：</label></h3><p>| Map      | Object                                                                    |<br>| ——– | ————————————————————————- | ————————————————————————— |<br>| 意外的键 | Map 默认情况不包含任何键，只包含显示插入的键                              | Object 有一个原型，原型链上的键名有可能和自己在对象上的设置的键名产生冲突。 |<br>| 键的类型 | Map 的键可以是任意值，包括函数，对象，或任意基本类型                      | Object 的键必须是 String 或是 Symbol                                        |<br>| 键的顺序 | Map 中的 key 是有序的。因此哦，当迭代的时候，Map 对象以插入的顺序返回键值 | object 的键是无序的                                                         |<br>| Size     | Map 的键值对个数可以轻易地通过 size 属性获取                              | Object 地键值对个数只能手动计算                                             |<br>| 迭代     | Map 是 iterable 的,所以可以直接被迭代                                     | 迭代 Object 需要以某种方式获取它的键然后才能迭代                            |<br>| 性能     | 在频繁增删键值对的场景下表现更好                                          | 在频繁增删键值对的场景下未作出优化                                          |</p>
+<h3 id="JS-脚本延迟加载的方式："><a href="#JS-脚本延迟加载的方式：" class="headerlink" title="JS 脚本延迟加载的方式："></a><label style="color:rgb(236, 170, 4)">JS 脚本延迟加载的方式：</label></h3><p>延迟加载就是等页面加载完成之后再加载 JS 文件。JS 延迟加载有利于提高页面加载速度，一般有以下几种方式：</p>
+<ul>
+<li><code>defer</code> 属性（脚本的加载与文档解析同步解析，解析后执行）</li>
+<li><code>async</code> 属性（脚本异步加载。加载成功后立即执行）</li>
+<li>动态创建 <code>DOM</code> 方式</li>
+<li>使用 <code>setTimeout</code> 延迟方式：设置定时器来延迟加载 js 脚本</li>
+<li>让 JS 放到文档底部最后加载。</li>
+</ul>
+<h3 id="数组有哪些原生方法？"><a href="#数组有哪些原生方法？" class="headerlink" title="数组有哪些原生方法？"></a><label style="color:rgb(236, 170, 4)">数组有哪些原生方法？</label></h3><h4 id="数组和字符串的转换方式："><a href="#数组和字符串的转换方式：" class="headerlink" title="数组和字符串的转换方式："></a>数组和字符串的转换方式：</h4><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>toString()</td>
+<td>将数组转化成字符串</td>
+</tr>
+<tr>
+<td>join()</td>
+<td>将数组的元素连接成一个字符串，可以指定转换成字符串时的分隔符；</td>
+</tr>
+</tbody></table>
+<h4 id="数组添加元素操作方法"><a href="#数组添加元素操作方法" class="headerlink" title="数组添加元素操作方法"></a>数组添加元素操作方法</h4><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>解释</th>
+<th>返回值</th>
+<th>是否改变原数组</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>push()</td>
+<td>向数组末尾添加一个或多个元素</td>
+<td>新数组的长度</td>
+<td>是</td>
+</tr>
+<tr>
+<td>unshift()</td>
+<td>向数组的开头添加一个或多个元素</td>
+<td>新数组的长度</td>
+<td>是</td>
+</tr>
+</tbody></table>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> array = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="keyword">let</span> length = array.<span class="title function_">push</span>(<span class="number">4</span>, <span class="number">5</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(length); <span class="comment">//5</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(array); <span class="comment">//[1,2,3,4,5]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> array1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="keyword">let</span> length1 = array1.<span class="title function_">unshift</span>(<span class="number">4</span>, <span class="number">5</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(array1); <span class="comment">//[4,5,1,2,3]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(length1); <span class="comment">//5</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="数组删除元素操作方法"><a href="#数组删除元素操作方法" class="headerlink" title="数组删除元素操作方法"></a>数组删除元素操作方法</h4><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>解释</th>
+<th>返回值</th>
+<th>是否改变原数组</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>pop()</td>
+<td>删除数组的最后一个元素</td>
+<td>删除的元素</td>
+<td>是</td>
+</tr>
+<tr>
+<td>shift()</td>
+<td>删除数组的第一个元素</td>
+<td>删除的元素</td>
+<td>是</td>
+</tr>
+</tbody></table>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> array = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="keyword">let</span> lastElement = array.<span class="title function_">pop</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(array); <span class="comment">// [1, 2]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(lastElement); <span class="comment">// 3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> array1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="keyword">let</span> firstElement = array1.<span class="title function_">shift</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(array1); <span class="comment">// [2, 3]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(firstElement); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="合并数组的操作方法"><a href="#合并数组的操作方法" class="headerlink" title="合并数组的操作方法"></a>合并数组的操作方法</h4><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>解释</th>
+<th>返回值</th>
+<th>是否改变原数组</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>concat()</td>
+<td>将两个或者多个数组合并成一个新的数组</td>
+<td>返回合成的新数组</td>
+<td>否</td>
+</tr>
+</tbody></table>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> array1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="keyword">let</span> array2 = [<span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">let</span> newArray = array1.<span class="title function_">concat</span>(array2);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(newArray); <span class="comment">// [1, 2, 3, 4, 5]</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="数组截取元素操作方法"><a href="#数组截取元素操作方法" class="headerlink" title="数组截取元素操作方法"></a>数组截取元素操作方法</h4><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>解释</th>
+<th>返回值</th>
+<th>是否改变原数组</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>slice()</td>
+<td>用于截取数组的一部分元素，截取元素左闭右开</td>
+<td>一个新的数组（截取的目标元素组成的）</td>
+<td>否</td>
+</tr>
+</tbody></table>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> array = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">let</span> newArray = array.<span class="title function_">slice</span>(<span class="number">1</span>, <span class="number">4</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(newArray); <span class="comment">// [2, 3, 4]</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="数组插入元素操作方法"><a href="#数组插入元素操作方法" class="headerlink" title="数组插入元素操作方法"></a>数组插入元素操作方法</h4><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>解释</th>
+<th>返回值</th>
+<th>是否改变原数组</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>splice()</td>
+<td>从数组中删除，替换或插入元素。</td>
+<td>被删除元素组成的新数组</td>
+<td>是</td>
+</tr>
+<tr>
+<td>fill()</td>
+<td>用指定的值填充数组的元素</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><code>splice() 详解</code>：<br>splice 的使用格式：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">array.splice(startIndex,deleteCount,item1,item2)</span><br></pre></td></tr></table></figure>
+
+<p>参数详解：</p>
+<ul>
+<li>startIndex: 要开始进行修改的索引位置。</li>
+<li>deleteCount: 要删除的元素数量。如果设置为 0，则不会删除任何元素</li>
+<li>item1，item2…..：要添加到数组的元素</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> array = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">let</span> removedElements = array.<span class="title function_">splice</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">6</span>, <span class="number">7</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(array); <span class="comment">// [1, 6, 7, 4, 5]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(removedElements); <span class="comment">// [2, 3]</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="对数组排序操作方法"><a href="#对数组排序操作方法" class="headerlink" title="对数组排序操作方法"></a>对数组排序操作方法</h4><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>解释</th>
+<th>返回值</th>
+<th>是否改变原数组</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>reverse()</td>
+<td>反转数组顺序</td>
+<td>反转后的数组</td>
+<td>是</td>
+</tr>
+<tr>
+<td>sort()</td>
+<td>对数组进行排序</td>
+<td>反转后的数组</td>
+<td>是</td>
+</tr>
+</tbody></table>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> array = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line">array.<span class="title function_">reverse</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(array); <span class="comment">// [5, 4, 3, 2, 1]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> array1 = [<span class="number">3</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">5</span>];</span><br><span class="line">array1.<span class="title function_">sort</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(array1); <span class="comment">// [1, 2, 3, 4, 5]</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="查找特定元素的操作方法"><a href="#查找特定元素的操作方法" class="headerlink" title="查找特定元素的操作方法"></a>查找特定元素的操作方法</h4><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>返回值&#x2F;解释</th>
+<th>是否改变原数组</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>indexOf()</td>
+<td>返回指定元素在数组中第一个匹配的位置的索引</td>
+<td>否</td>
+</tr>
+<tr>
+<td>lastIndexOf()</td>
+<td>返回指定元素在数组中最后一个匹配的位置的索引</td>
+<td>否</td>
+</tr>
+<tr>
+<td>includes()</td>
+<td>(解释：)判断数组是否包含指定元素</td>
+<td>否</td>
+</tr>
+</tbody></table>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> array = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">2</span>];</span><br><span class="line"><span class="keyword">let</span> index = array.<span class="title function_">indexOf</span>(<span class="number">2</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(index); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="迭代的操作方法"><a href="#迭代的操作方法" class="headerlink" title="迭代的操作方法"></a>迭代的操作方法</h4><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>解释</th>
+<th>返回值</th>
+<th>是否改变原数组</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>forEach()</td>
+<td>对数组的每一个元素执行指定的操作</td>
+<td>没有返回值</td>
+<td>否</td>
+</tr>
+<tr>
+<td>map()</td>
+<td>对数组的每一个元素执行指定的操作</td>
+<td>一个新的数组</td>
+<td>否</td>
+</tr>
+<tr>
+<td>filter()</td>
+<td>对数组的每个元素进行筛选</td>
+<td>返回一个累计结果</td>
+<td>否</td>
+</tr>
+<tr>
+<td>every()</td>
+<td>检测数组的每个元素是否符合指定条件</td>
+<td>只要有一个是 false 就返回 false</td>
+<td>否</td>
+</tr>
+<tr>
+<td>some()</td>
+<td>检测数组是否有元素符合指定条件</td>
+<td>只要有一个是 true 就返回 true</td>
+<td>否</td>
+</tr>
+<tr>
+<td>find()</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>返回数组中满足指定条件的第一个元素</td>
+<td>否</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>findIndex()</td>
+<td></td>
+<td>返回数组中满足指定条件的第一个元素的索引</td>
+<td>否</td>
+</tr>
+<tr>
+<td>flatMap()</td>
+<td>对数组的每个元素执行指定的操作并将结果压缩成一个新数组</td>
+<td>返回一个新数组</td>
+<td></td>
+</tr>
+</tbody></table>
+<h4 id="数组的其他操作方法"><a href="#数组的其他操作方法" class="headerlink" title="数组的其他操作方法"></a>数组的其他操作方法</h4><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>flat()</td>
+<td>将多维数组转化成一维数组</td>
+</tr>
+<tr>
+<td>isArray()</td>
+<td>判断一个对象是否为数组</td>
+</tr>
+<tr>
+<td>reduce()</td>
+<td>不改变原数组，reduce()对数组正序操作</td>
+</tr>
+<tr>
+<td>reduceRight()</td>
+<td>不改变原数组，reduceRight()对数组逆序操作</td>
+</tr>
+</tbody></table>
+<h3 id="为什么函数的-arguments-参数是类数组而不是数组？如何遍历类数组？"><a href="#为什么函数的-arguments-参数是类数组而不是数组？如何遍历类数组？" class="headerlink" title="为什么函数的 arguments 参数是类数组而不是数组？如何遍历类数组？"></a><label style="color:rgb(236, 170, 4)">为什么函数的 arguments 参数是类数组而不是数组？如何遍历类数组？</label></h3><p><code>前言：如果想要了解什么是类数组，及其具体内容的话，可以参考上方js基础/考察较多/第二条内容。</code><br>arguments 是一个对象，它的属性是从 0 开始一次递增的数字，还有 callee 和 length 等属性，与数组类似；但是它却没有数组常见的方法舒总，如 forEach , reduce 等，所以叫他们类数组。<br>要<code>遍历类数组</code>有三个方法：<br>（1）将数组的方法应用到类数组上，这个时候就可以使用<code>call 和 apply</code>方法，如：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">foo</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="title class_">Array</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">forEach</span>.<span class="title function_">call</span>(argiments, <span class="function">(<span class="params">a</span>) =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(a));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>(2) 使用 <code>Array.from</code>方法将类数组转化程数组：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">foo</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> arrArgs = <span class="title class_">Areray</span>.<span class="title function_">from</span>(<span class="variable language_">arguments</span>);</span><br><span class="line">  arrArgs.<span class="title function_">forEach</span>(<span class="function">(<span class="params">a</span>) =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(a));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>(3) 使用<code>展开运算符</code>将类数组转化成数组</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">foo</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> arrArgs = [...<span class="variable language_">arguments</span>];</span><br><span class="line">  arrArgs.<span class="title function_">forEach</span>(<span class="function">(<span class="params">a</span>) =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(a));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="ES6-模块与-ComminJS-模块有什么异同？"><a href="#ES6-模块与-ComminJS-模块有什么异同？" class="headerlink" title="ES6 模块与 ComminJS 模块有什么异同？"></a><label style="color:rgb(236, 170, 4)">ES6 模块与 ComminJS 模块有什么异同？</label></h3><p>ES6 Module 和 CommonJS 模块的 <strong>区别</strong>：</p>
+<ul>
+<li>CommonJS 是对模块的浅拷贝，ES6 Module 是对模块的引用，即 ES6 Module 只存只读，不能改变其值，也就是指针指向不能变，类似 const;</li>
+<li>import 的接口是 read-obly（只读状态），不能修改其变量值。即不能修改其变量的指针指向，但可以改变变量内部指针指向，可以对 commonJS 重新赋值（改变指针指向），但是对 ES6 Module 赋值会编译报错。</li>
+</ul>
+<p>ES6 Module 和 CommonJS 模块的 共同点 ：</p>
+<ul>
+<li>CommonJS 和 ES6 Module 都可以对引入的对象进行赋值，即对对象内部属性的值进行改变。</li>
+</ul>
+<h3 id="如何判断一个对象是否属于某个类？"><a href="#如何判断一个对象是否属于某个类？" class="headerlink" title="如何判断一个对象是否属于某个类？"></a><label style="color:rgb(236, 170, 4)">如何判断一个对象是否属于某个类？</label></h3><ul>
+<li>使用<strong>instanceof</strong>运算符来<strong>判断构造函数的 prototypr 属性</strong>是否出现在对象的原型链中的任何位置</li>
+<li>第二种方法，通过对象的<strong>constructor 属性</strong>来判断，对象的 constructor 属性指向该对象的构造函数，但是这种方式不是很安全，因为 constructor 属性可以被改写</li>
+<li>第三种方式，如果需要判断的是某个内置的引用类型的话，可以使用<strong>Object.prototype.toString()方法</strong>来打印对象的[[Class]]属性进行判断。</li>
+</ul>
+<h3 id="for…in-和-for…of-的区别"><a href="#for…in-和-for…of-的区别" class="headerlink" title="for…in 和 for…of 的区别"></a><label style="color:rgb(236, 170, 4)">for…in 和 for…of 的区别</label></h3><p><strong>for…of 是 ES6 新增的遍历方式</strong>，允许遍历一个含有 iterator 接口的数据结构（数组，对象等）并且返回各项的值，和 ES3 中的 for…in 的区别如下：</p>
+<ul>
+<li><strong>for…of <strong>无法直接遍历普通对象的属性的，因为对象不是可迭代。但是它可以遍历类数组对象。对象遍历获取的是对象的</strong>键值</strong>，<strong>for…in</strong> 获取的是对象的<strong>键名</strong>；</li>
+<li><strong>for…in</strong> 会遍历对象的<strong>整个原型链</strong>，性能非常差不推荐使用，而 <strong>for…of <strong>只遍历</strong>当前对象</strong>，不会遍历原型链；</li>
+<li>对于数组的遍历，<strong>for…in <strong>会返回数组中</strong>所有可枚举的属性</strong>（包括原型链上可枚举的属性）；<strong>for…of <strong>只返回数组的下标对应得</strong>属性值</strong></li>
+</ul>
+<p><strong>总结</strong>：<strong>for…in</strong> 循环主要是为了<strong>遍历对象</strong>而生的，不适用于遍历数组；<strong>for..of</strong> 循环可以用来<strong>遍历数组，类数组对象，字符串，Set，Map 以及 Generator 对象</strong>。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123; <span class="attr">a</span>: <span class="number">1</span>, <span class="attr">b</span>: <span class="number">2</span>, <span class="attr">c</span>: <span class="number">3</span> &#125;;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">in</span> obj) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(key); <span class="comment">//a,b,c</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(obj[key]); <span class="comment">//1,2,3</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> value <span class="keyword">of</span> arr) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(value); <span class="comment">//1,2,3</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//对于对象来说，for...of循环是无法直接遍历对象的属性的</span></span><br><span class="line"><span class="comment">//因为对象不是可迭代对象。但是我们可以通过一些方法将对象转换为可迭代对象</span></span><br><span class="line"><span class="comment">//然后再使用for...of循环进行遍历。下面是一个例子：</span></span><br><span class="line"><span class="keyword">const</span> obj = &#123; <span class="attr">a</span>: <span class="number">1</span>, <span class="attr">b</span>: <span class="number">2</span>, <span class="attr">c</span>: <span class="number">3</span> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将对象转换为可迭代对象</span></span><br><span class="line"><span class="keyword">const</span> entries = <span class="title class_">Object</span>.<span class="title function_">entries</span>(obj);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用for...of循环遍历可迭代对象</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> [key, value] <span class="keyword">of</span> entries) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(key); <span class="comment">// 输出：a, b, c</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(value); <span class="comment">// 输出：1, 2, 3</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//在这个例子中，我们使用Object.entries(obj)方法将对象转换为一个包含键值对的数组。然后，我们使用for...of循环遍历这个数组，每次迭代时将键值对解构赋值给变量[key, value]，</span></span><br><span class="line"><span class="comment">//然后可以分别访问键和值。</span></span><br><span class="line"><span class="comment">//需要注意的是，这种方法遍历对象的属性时并不能保证属性的顺序</span></span><br><span class="line"><span class="comment">//因为对象的属性在内部是无序的。如果需要按照特定顺序遍历对象的属性，可以使用for...in循环。</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="如何使用-for…of-遍历对象"><a href="#如何使用-for…of-遍历对象" class="headerlink" title="如何使用 for…of 遍历对象"></a><label style="color:rgb(236, 170, 4)">如何使用 for…of 遍历对象</label></h3><p>for…of 是作为 ES6 新增的遍历方式，允许遍历一个含有 iterator 接口的数据结构(数组，对象等)并且返回各项的值，但是普通的对象用 for…of 遍历会报错。<br>如果需要遍历的对象是类数组对象，用 Array.from 转化成数组即可。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  <span class="number">0</span>: <span class="string">&quot;one&quot;</span>,</span><br><span class="line">  <span class="number">1</span>: <span class="string">&quot;two&quot;</span>,</span><br><span class="line">  <span class="attr">length</span>: <span class="number">2</span>,</span><br><span class="line">&#125;;</span><br><span class="line">obj = <span class="title class_">Array</span>.<span class="title function_">from</span>(obj);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> k <span class="keyword">of</span> obj) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(k);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果不是类数组对象，就给对象添加一个[Symbol.iterator]属性，并指向一个迭代器即可。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//方法一：</span></span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  <span class="attr">a</span>: <span class="number">1</span>,</span><br><span class="line">  <span class="attr">b</span>: <span class="number">2</span>,</span><br><span class="line">  <span class="attr">c</span>: <span class="number">3</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">obj[<span class="title class_">Symbol</span>.<span class="property">iterator</span>] = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> keys = <span class="title class_">Object</span>.<span class="title function_">keys</span>(<span class="variable language_">this</span>);</span><br><span class="line">  <span class="keyword">var</span> count = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="title function_">next</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> (count &lt; keys.<span class="property">length</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> &#123; <span class="attr">value</span>: obj[keys[count++]], <span class="attr">done</span>: <span class="literal">false</span> &#125;;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> &#123; <span class="attr">value</span>: <span class="literal">undefined</span>, <span class="attr">done</span>: <span class="literal">true</span> &#125;;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> k <span class="keyword">of</span> obj) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(k);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 方法二</span></span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  <span class="attr">a</span>: <span class="number">1</span>,</span><br><span class="line">  <span class="attr">b</span>: <span class="number">2</span>,</span><br><span class="line">  <span class="attr">c</span>: <span class="number">3</span>,</span><br><span class="line">&#125;;</span><br><span class="line">obj[<span class="title class_">Symbol</span>.<span class="property">iterator</span>] = <span class="keyword">function</span>* () &#123;</span><br><span class="line">  <span class="keyword">var</span> keys = <span class="title class_">Object</span>.<span class="title function_">keys</span>(obj);</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> k <span class="keyword">of</span> keys) &#123;</span><br><span class="line">    <span class="keyword">yield</span> [k, obj[k]];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> [k, v] <span class="keyword">of</span> obj) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(k, v);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="forEach-和-map-方法有什么区别"><a href="#forEach-和-map-方法有什么区别" class="headerlink" title="forEach 和 map 方法有什么区别"></a><label style="color:rgb(236, 170, 4)">forEach 和 map 方法有什么区别</label></h3><p>这方法都是用来遍历数组的，两者区别如下：</p>
+<ul>
+<li>forEach()方法会针对每一个元素执行提供的函数，对数据的操作会改变原数组，该方法没有返回值；</li>
+<li>map()方法不会改变原数组的值，返回一个新数组，新数组中的值为原数组调用函数处理之后的值。</li>
+</ul>
+<h2 id="考察较少"><a href="#考察较少" class="headerlink" title="考察较少"></a><label style="color:rgb(12,104,202)">考察较少</label></h2><h3 id="常用的正则表达式有哪些？"><a href="#常用的正则表达式有哪些？" class="headerlink" title="常用的正则表达式有哪些？"></a><label style="color:rgb(12,104,202)">常用的正则表达式有哪些？</label></h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// （1）匹配16进制颜色值</span></span><br><span class="line"><span class="keyword">var</span> regex = <span class="regexp">/#([0-9a-fA-F]&#123;6&#125;|([0-9a-fA-F]&#123;3&#125;)/g</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// （2）匹配日期，如yyyy-mm-dd格式</span></span><br><span class="line"><span class="keyword">var</span> regex = <span class="regexp">/^[0-9]&#123;4&#125;-(0[1-9]|1[0-2])-（0[1-9]|[12][1-9]|3[01])$/</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// （3）匹配QQ号</span></span><br><span class="line"><span class="keyword">var</span> regex = <span class="regexp">/^1[345678]\d&#123;9&#125;$/g</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// （4）手机号码正则</span></span><br><span class="line"><span class="keyword">var</span> regex = <span class="regexp">/^1[34578]\d&#123;9&#125;$/g</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// （5）用户名正则</span></span><br><span class="line"><span class="keyword">var</span> regex = <span class="regexp">/^[a-zA-Z\$][a-zA-Z0-9_\$]&#123;4,16&#125;$/</span>;</span><br></pre></td></tr></table></figure>
+
+<p>正则常用符号总结：</p>
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>含义</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>[ ]</td>
+<td>里面的内容表示或运算</td>
+<td>[ab]&#x3D;&#x3D;a&#124;b</td>
+</tr>
+<tr>
+<td>[a-z] : 任意小写字母</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>[^ ]</td>
+<td>表示除了</td>
+<td></td>
+</tr>
+<tr>
+<td>.</td>
+<td>表示任意字符</td>
+<td></td>
+</tr>
+<tr>
+<td>\</td>
+<td>转义字符</td>
+<td>\.表示.</td>
+</tr>
+<tr>
+<td>\w</td>
+<td>任意字母，数字</td>
+<td>等价于[A-z0-9]</td>
+</tr>
+<tr>
+<td>\W</td>
+<td>除了字母，数字</td>
+<td>等价于[^A-z0-9]</td>
+</tr>
+<tr>
+<td>\d</td>
+<td>任意数字</td>
+<td>等价于[0-9]</td>
+</tr>
+<tr>
+<td>\D</td>
+<td>除了数字</td>
+<td>等价于[^0-9]</td>
+</tr>
+<tr>
+<td>\s</td>
+<td>空格</td>
+<td></td>
+</tr>
+<tr>
+<td>\S</td>
+<td>除了空格</td>
+<td></td>
+</tr>
+<tr>
+<td>\b</td>
+<td>单词边界</td>
+<td></td>
+</tr>
+<tr>
+<td>\B</td>
+<td>除了单词边界</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>正则量词表示：</p>
+<table>
+<thead>
+<tr>
+<th>量词</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>n+</td>
+<td>匹配任何包含至少一个 n 的字符串</td>
+</tr>
+<tr>
+<td>n*</td>
+<td>匹配任何包含零个或多个 n 的字符串</td>
+</tr>
+<tr>
+<td>n?</td>
+<td>匹配任何包含零个或一个 n 的字符串</td>
+</tr>
+<tr>
+<td>n{x}</td>
+<td>匹配任何包含 x 个 n 的序列的字符串</td>
+</tr>
+<tr>
+<td>n{x,y}</td>
+<td>匹配任何包含 x 个或 y 个 n 的序列的字符串</td>
+</tr>
+<tr>
+<td>n{x,}</td>
+<td>匹配任何至少包含 x 个 n 的序列的字符串</td>
+</tr>
+<tr>
+<td>n$</td>
+<td>匹配任何结尾为 n 的字符串</td>
+</tr>
+<tr>
+<td>^n</td>
+<td>匹配任何开头为 n 的字符串</td>
+</tr>
+<tr>
+<td>?&#x3D;n</td>
+<td>匹配任何其后紧接指定字符串为 n 的字符串</td>
+</tr>
+<tr>
+<td>?!n</td>
+<td>匹配任何其后没有紧接指定字符串为 n 的字符串</td>
+</tr>
+</tbody></table>
+<p>支持正则表达式的 String 对象的常用方法：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>search</td>
+<td>检索与正则表达式相匹配的值</td>
+</tr>
+<tr>
+<td>match</td>
+<td>找到一个或多个正则表达式的匹配</td>
+</tr>
+<tr>
+<td>replace</td>
+<td>替换与正则表达式匹配的子串</td>
+</tr>
+<tr>
+<td>split</td>
+<td>把字符串分割为字符串数组</td>
+</tr>
+</tbody></table>
+<p>2.对 JSON 的理解<br>JSON 是一种基于文本的轻量级的数据交换格式。它可以被任何的编程语言读取和作为数据格式来传递。<br>因此，在项目开发过程中使用 JSON 作为前后端数据交换的方式。在前端通过将一个符合 JSON 格式的数据结构序列转化为 JSON 的字符串，然后将它传递到后端，后端通过 JSON 格式的字符串解析后生成对应的数据结构，以此来实现前后端数据的一个传递。<br>因为 JSON 的语法是基于 js 的，因此很容易将 JSON 和 js 中的对象弄混，但是应该注意的是 JSON 和 js 中的对象不是一回事，JSON 中对象格式更加严格，比如说在 JSON 中属性值不能为函数，不能出现 NaN 这样的属性值等，因此大多数的 js 对象是不符合 JSON 对象的格式的。<br>在 js 中提供了两个函数来实现 js 数据结构和 JSON 格式的转换处理:</p>
+<ul>
+<li>JSON.stringify()函数 ，通过传入一个符合 JSON 格式的数据结构，将其转换为一个 JSON 字符串。如果传入的数据结构不符合 JSON 格式，那么在序列化的时候会对这些值进行对应的特殊处理，使其符合规范。 在前端向后端发送数据时 ，可以调用这个函数将数据对象转化为 JSON 格式的字符串。</li>
+<li>JSON.parse()函数 ，这个函数用来将 JSON 格式的字符串转换为一个 js 数据结构，如果传入的字符串不是标准的 JSON 格式的字符串的话，将会抛出错误。当 从后端接收到 JSON 格式的字符串时 ，可以通过这个方法来将其解析为一个 js 数据结构，以此来进行数据的访问。</li>
+</ul>
+<h3 id="什么是尾调用，使用尾调用有什么好处？"><a href="#什么是尾调用，使用尾调用有什么好处？" class="headerlink" title="什么是尾调用，使用尾调用有什么好处？"></a><label style="color:rgb(12,104,202)">什么是尾调用，使用尾调用有什么好处？</label></h3><p>尾调用指的是函数的最后异步调用另一个函数。代码执行是基于执行栈的，所以当一个函数里调用另一个函数时，会保留当前执行的上下文，然后再新建另一个执行上下文加入栈中。使用尾调用的话，因为已经是函数的最后一步了，所以这时可以不必再保留当前的执行上下文，从而节省了内存，这就是尾调用优化。但是 ES6 的尾调用优化只在严格模式下开启，正常模式下无效 。</p>
+<h3 id="常见的-DOM-操作有哪些？"><a href="#常见的-DOM-操作有哪些？" class="headerlink" title="常见的 DOM 操作有哪些？"></a><label style="color:rgb(12,104,202)">常见的 DOM 操作有哪些？</label></h3><ul>
+<li>DOM 节点的获取</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">getElementById; <span class="comment">// 按照 id 查询    结果形式=&gt;元素</span></span><br><span class="line">getElementsByTagName; <span class="comment">// 按照标签名查询     结果形式=&gt;集合</span></span><br><span class="line">getElementsByClassName; <span class="comment">// 按照类名查询     结果形式=&gt;集合</span></span><br><span class="line">querySelectorAll; <span class="comment">// 按照 css 选择器查询    结果形式=&gt;集合</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 按照 id 查询</span></span><br><span class="line"><span class="keyword">var</span> imooc = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;imooc&quot;</span>); <span class="comment">// 查询到 id 为 imooc 的元素</span></span><br><span class="line"><span class="comment">// 按照标签名查询</span></span><br><span class="line"><span class="keyword">var</span> pList = <span class="variable language_">document</span>.<span class="title function_">getElementsByTagName</span>(<span class="string">&quot;p&quot;</span>); <span class="comment">// 查询到标签为 p 的集合</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(divList.<span class="property">length</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(divList[<span class="number">0</span>]);</span><br><span class="line"><span class="comment">// 按照类名查询</span></span><br><span class="line"><span class="keyword">var</span> moocList = <span class="variable language_">document</span>.<span class="title function_">getElementsByClassName</span>(<span class="string">&quot;mooc&quot;</span>); <span class="comment">// 查询到类名为 mooc 的集合</span></span><br><span class="line"><span class="comment">// 按照 css 选择器查询</span></span><br><span class="line"><span class="keyword">var</span> pList = <span class="variable language_">document</span>.<span class="title function_">querySelectorAll</span>(<span class="string">&quot;.mooc&quot;</span>); <span class="comment">// 查询到类名为 mooc 的集合</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>DOM 节点的创建</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>DEMO<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">h1</span> <span class="attr">id</span>=<span class="string">&quot;title&quot;</span>&gt;</span>我是标题<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">var</span> container = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;container&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">var</span> targetSpan = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&quot;span&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">      targetSpan.<span class="property">innerHTML</span> = <span class="string">&quot;hello world&quot;</span>;</span></span><br><span class="line"><span class="language-javascript">      container.<span class="title function_">appendChild</span>(targetSpan);</span></span><br><span class="line"><span class="language-javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>DOM 节点的删除</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>DEMO<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">h1</span> <span class="attr">id</span>=<span class="string">&quot;title&quot;</span>&gt;</span>我是标题<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">var</span> container = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;container&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">var</span> targetNode = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;title&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">      container.<span class="title function_">removeChild</span>(targetNode);</span></span><br><span class="line"><span class="language-javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>修改 DOM 元素</li>
+</ul>
+<p>指定交换两个 DOM 元素的位置</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>DEMO<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">h1</span> <span class="attr">id</span>=<span class="string">&quot;title&quot;</span>&gt;</span>我是标题<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">&quot;content&quot;</span>&gt;</span>我是内容<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// 获取父元素</span></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">var</span> container = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;container&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// 获取两个需要被交换的元素</span></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">var</span> title = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;title&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">var</span> content = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;content&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// 交换两个元素，把 content 置于 title 前面</span></span></span><br><span class="line"><span class="language-javascript">      container.<span class="title function_">insertBefore</span>(content, title);</span></span><br><span class="line"><span class="language-javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>添加和移除 CSS 类</li>
+</ul>
+<p>使用 classList 属性的 add()和 remove()方法向元素添加或移除 CSS 类。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">element.<span class="property">classList</span>.<span class="title function_">add</span>(<span class="string">&quot;newClass&quot;</span>);</span><br><span class="line">element.<span class="property">classList</span>.<span class="title function_">remove</span>(<span class="string">&quot;oldClass&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>DOM 操作元素特征</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//操作元素内容</span></span><br><span class="line"><span class="comment">//使用innerHTML属性获取或设置元素的HTML内容</span></span><br><span class="line">element.<span class="property">innerHTML</span> = <span class="string">&quot;New content&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//操作元素文本</span></span><br><span class="line"><span class="comment">//使用textContent属性获取或设置元素的纯文本内容</span></span><br><span class="line">element.<span class="property">textContent</span> = <span class="string">&quot;New text&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//操作元素属性</span></span><br><span class="line"><span class="comment">//使用getAttribute()和setAttribute()方法获取或设置元素的属性值</span></span><br><span class="line"><span class="keyword">const</span> value = element.<span class="title function_">getAttribute</span>(<span class="string">&quot;src&quot;</span>);</span><br><span class="line">element.<span class="title function_">setAttribute</span>(<span class="string">&quot;src&quot;</span>, <span class="string">&quot;newImage.jpg&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//监听事件</span></span><br><span class="line"><span class="comment">//使用addEventListener()方法添加事件监听器，以响应用户操作或其他事件</span></span><br><span class="line">element.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, handleClick);</span><br></pre></td></tr></table></figure>
+
+<h3 id="强类型语言和弱类型语言的区别？"><a href="#强类型语言和弱类型语言的区别？" class="headerlink" title="强类型语言和弱类型语言的区别？"></a><label style="color:rgb(12,104,202)">强类型语言和弱类型语言的区别？</label></h3><ul>
+<li><strong>强类型语言</strong>： 强类型语言也称为强类型定义语言，是一种总是强制类型定义的语言，要求变量使用要严格符合定义，所有变量都必须先定义后使用。 Java 和 C++等语言都是强制类型定义的 ，也就是说，一旦一个变量被指定了某一个数据类型，如果不经过强制类型转换，那么它就永远是这个数据类型。例如：我们定义了一个整数，如果不显式地进行转换，那么这个整数就不能被视为是一个字符串。</li>
+<li><strong>弱类型语言</strong>： 弱类型语言也称为弱类型定义语言，与强类型定义相反。JS 语言就属于弱类型语言。简单理解就是一种变量类型可以被忽略地语言。比如 JS 是弱类型定义的 ，在 JS 中就可以将字符串”12”和整数 3 进行连接得到字符串’123’,在相加的时候会进行强制类型转换。</li>
+<li><strong>区别</strong>：</li>
+</ul>
+<p>两者对比：强类型语言在速度上可能略逊于弱类型语言，但是强类型语带来的严谨性可以有效地避免很多错误。</p>
+<h3 id="ajax、axios、fetch-的区别"><a href="#ajax、axios、fetch-的区别" class="headerlink" title="ajax、axios、fetch 的区别"></a><label style="color:rgb(12,104,202)">ajax、axios、fetch 的区别</label></h3><p><strong>（1）AJAX</strong><br>Ajax 即“AsynchronousJavascriptAndXML”（异步 JavaScript 和 XML），是指一种创建交互式网页应用的网页开发技术。它是一种在无需重新加载整个网页的情况下，能够更新部分网页的技术。通过在后台与服务器进行少量数据交换，Ajax 可以使网页实现异步更新。这意味着可以在不重新加载整个网页的情况下，对网页的某部分进行更新。传统的网页（不使用 Ajax）如果需要更新内容，必须重载整个网页页面。其<strong>缺点</strong>如下：</p>
+<ul>
+<li>本身是针对 MVC 编程，不符合前端 MVVM 的浪潮</li>
+<li>基于原生 XHR 开发，XHR 本身的架构不清晰</li>
+<li>不符合关注分离（Separation of Concerns）的原则</li>
+<li>配置和调用方式非常混乱，而且基于事件的异步模型不友好。</li>
+</ul>
+<p><strong>（2）Fetch</strong><br>fetch 号称是 AJAX 的替代品，是在 ES6 出现的，使用了 ES6 中的 promise 对象。Fetch 是基于 promise 设计的。Fetch 的代码结构比起 ajax 简单多。fetch 不是 ajax 的进一步封装，而是原生 js，没有使用 XMLHttpRequest 对象。<br><strong>fetch 的优点：</strong></p>
+<ul>
+<li>语法简洁，更加语义化</li>
+<li>基于标准 Promise 实现，支持 async&#x2F;await</li>
+<li>更加底层，提供的 API 丰富（request, response）</li>
+<li>脱离了 XHR，是 ES 规范里新的实现方式</li>
+</ul>
+<p><strong>fetch 的缺点：</strong></p>
+<ul>
+<li>fetch 只对网络请求报错，对 400，500 都当做成功的请求，服务器返回 400，500 错误码时并不会 reject，只有网络错误这些导致请求不能完成时，fetch 才会被 reject。</li>
+<li>fetch 默认不会带 cookie，需要添加配置项： fetch(url, {credentials: ‘include’})<br>fetch 不支持 abort，不支持超时控制，使用 setTimeout 及 Promise.reject 的实现的超时控制并不能阻止请求过程继续在后台运行，造成了流量的浪费</li>
+<li>fetch 没有办法原生监测请求的进度，而 XHR 可以</li>
+</ul>
+<p><strong>（3）Axios</strong><br><strong>Axios <strong>是一种</strong>基于 Promise</strong>封装的 HTTP 客户端，其特点如下：</p>
+<ul>
+<li>浏览器端发起 XMLHttpRequests 请求</li>
+<li>node 端发起 http 请求</li>
+<li>支持 Promise API</li>
+<li>监听请求和返回</li>
+<li>对请求和返回进行转化</li>
+<li>取消请求</li>
+<li>自动转换 json 数据</li>
+<li>客户端支持抵御 XSRF 攻击</li>
+</ul>
+]]></content>
+      <categories>
+        <category>javaScript</category>
+      </categories>
+      <tags>
+        <tag>javaScript</tag>
       </tags>
   </entry>
   <entry>
@@ -458,32 +883,6 @@
       </tags>
   </entry>
   <entry>
-    <title>css补漏-prefers-color-scheme切换网站主题色</title>
-    <url>/2023/08/28/css%E8%A1%A5%E6%BC%8F-prefers-color-scheme%E5%88%87%E6%8D%A2%E7%BD%91%E7%AB%99%E4%B8%BB%E9%A2%98%E8%89%B2/</url>
-    <content><![CDATA[<h2 id="前端必备：prefers-color-scheme自由切换网站主题背景色变化"><a href="#前端必备：prefers-color-scheme自由切换网站主题背景色变化" class="headerlink" title="前端必备：prefers-color-scheme自由切换网站主题背景色变化"></a>前端必备：prefers-color-scheme自由切换网站主题背景色变化</h2><p><label style="color:rgb(223, 42, 63)">prefers-color-scheme</label>是css的<code>媒体特性【@media】</code>用于检测用户是否有将<code>操作系统的主题设置</code>为亮色【light】或者暗色【dark】,no-preference 表示获取不到主题时的适配方案。这也是prefers-color-scheme重要属性。W3C在2020年7月31日首次提到css的prefers-color-scheme新特性。<br>例子：</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="keyword">@media</span> (<span class="attribute">prefers-color-scheme</span>: light) &#123;</span><br><span class="line">  <span class="selector-tag">body</span> &#123;  </span><br><span class="line">    <span class="attribute">background</span>:<span class="number">#fff</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#000</span>;  </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@media</span> (<span class="attribute">prefers-color-scheme</span>: dark) &#123;</span><br><span class="line">  <span class="selector-tag">body</span> &#123;  </span><br><span class="line">    <span class="attribute">background</span>:<span class="number">#000</span>;  </span><br><span class="line">    <span class="attribute">color</span>: white;  </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@media</span> (<span class="attribute">prefers-color-scheme</span>: no-preference) &#123;</span><br><span class="line">  <span class="selector-tag">body</span> &#123;  </span><br><span class="line">    <span class="attribute">background</span>:<span class="number">#fff</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#000</span>;  </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><label style="color:rgb(223, 42, 63)">:root表示根元素，拥有更高的优先级，这里可以设置全局样式变量，通过css的var方法来获取对应变量且获得相应的样式。</label><br>例如：</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 整个页面配置为使用用户的配色方案首选项 */</span></span><br><span class="line">       <span class="comment">/* 根元素，优先级最高，与html选择器相同 */</span></span><br><span class="line">       <span class="selector-pseudo">:root</span> &#123;</span><br><span class="line">           <span class="attr">--color-background</span>: <span class="number">#1b1b1b</span>;</span><br><span class="line">           <span class="attr">--color-border</span>: <span class="number">#cacfd5</span>;</span><br><span class="line">           <span class="attr">--color-text-default</span>: <span class="number">#0b1016</span>;</span><br><span class="line">           <span class="attr">--color-base</span>: <span class="number">#f4f5f6</span>;</span><br><span class="line">           <span class="attr">--color-accent</span>: <span class="number">#ba0d37</span>;</span><br><span class="line">           <span class="attr">--white-color-background</span>: <span class="number">#fff</span>;</span><br><span class="line">           <span class="attribute">color</span>-scheme: light dark;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="comment">/* 监听操作系统主题模式 */</span></span><br><span class="line">       <span class="keyword">@media</span> (<span class="attribute">prefers-color-scheme</span>: dark) &#123;</span><br><span class="line">           <span class="selector-tag">body</span> &#123;</span><br><span class="line">               <span class="attribute">background-color</span>: <span class="built_in">var</span>(--color-background);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">@media</span> (<span class="attribute">prefers-color-scheme</span>: light) &#123;</span><br><span class="line">           <span class="selector-tag">body</span> &#123;</span><br><span class="line">               <span class="attribute">background-color</span>: <span class="built_in">var</span>(--white-color-background);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure>
-
-<p>上方所提到的就是根据操作系统的不同深浅模式而是页面渲染出来展现不同的深浅。<br>例如：当操作系统的颜色为浅色时<img src="/img/study/cssLight.png" alt="image.png"><br>则会发现prefers-color-scheme的值为light，此时的页面最初渲染为浅色<img src="/img/study/lightResult.png" alt="image.png"><br>当操作系统的颜色为深色时，页面渲染出来默认是深色。<br>其实除了媒体监听主题变化，还可以自定义主题手动切换，示例代码如下：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;X-UA-Compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;IE=edge&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>系统的主题色设置为亮色或者暗色<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span> <span class="attr">lang</span>=<span class="string">&quot;css&quot;</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">        <span class="comment">/* 整个页面配置为使用用户的配色方案首选项 */</span></span></span><br><span class="line"><span class="language-css">        <span class="comment">/* 根元素，优先级最高，与html选择器相同 */</span></span></span><br><span class="line"><span class="language-css">        <span class="selector-pseudo">:root</span> &#123;</span></span><br><span class="line"><span class="language-css">            <span class="attr">--color-background</span>: <span class="number">#1b1b1b</span>;</span></span><br><span class="line"><span class="language-css">            <span class="attr">--color-border</span>: <span class="number">#cacfd5</span>;</span></span><br><span class="line"><span class="language-css">            <span class="attr">--color-text-default</span>: <span class="number">#0b1016</span>;</span></span><br><span class="line"><span class="language-css">            <span class="attr">--color-base</span>: <span class="number">#f4f5f6</span>;</span></span><br><span class="line"><span class="language-css">            <span class="attr">--color-accent</span>: <span class="number">#ba0d37</span>;</span></span><br><span class="line"><span class="language-css">            <span class="attr">--white-color-background</span>: <span class="number">#fff</span>;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">color</span>-scheme: light dark;</span></span><br><span class="line"><span class="language-css">        &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">        * &#123;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">margin</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">padding</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">        &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">        <span class="selector-tag">body</span> &#123;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">text-align</span>: center;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">height</span>: <span class="number">100vh</span>;</span></span><br><span class="line"><span class="language-css">        &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">        <span class="selector-class">.light-scheme</span> &#123;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">background</span>: <span class="built_in">var</span>(--white-color-background);</span></span><br><span class="line"><span class="language-css">            <span class="attribute">color</span>: <span class="built_in">var</span>(--color-text-default);</span></span><br><span class="line"><span class="language-css">        &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">        <span class="selector-class">.dark-scheme</span> &#123;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">background</span>: <span class="built_in">var</span>(--color-background);</span></span><br><span class="line"><span class="language-css">            <span class="attribute">color</span>: white;</span></span><br><span class="line"><span class="language-css">        &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">        <span class="selector-tag">h2</span> &#123;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">margin</span>: <span class="number">50px</span> auto;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">color</span>: <span class="built_in">var</span>(--color-accent)</span></span><br><span class="line"><span class="language-css">        &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">        <span class="comment">/* 监听操作系统主题模式 */</span></span></span><br><span class="line"><span class="language-css">        <span class="keyword">@media</span> (<span class="attribute">prefers-color-scheme</span>: dark) &#123;</span></span><br><span class="line"><span class="language-css">            <span class="selector-tag">body</span> &#123;</span></span><br><span class="line"><span class="language-css">                <span class="attribute">background-color</span>: <span class="built_in">var</span>(--color-background);</span></span><br><span class="line"><span class="language-css">            &#125;</span></span><br><span class="line"><span class="language-css">        &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">        <span class="keyword">@media</span> (<span class="attribute">prefers-color-scheme</span>: light) &#123;</span></span><br><span class="line"><span class="language-css">            <span class="selector-tag">body</span> &#123;</span></span><br><span class="line"><span class="language-css">                <span class="attribute">background-color</span>: <span class="built_in">var</span>(--white-color-background);</span></span><br><span class="line"><span class="language-css">            &#125;</span></span><br><span class="line"><span class="language-css">        &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">        <span class="selector-class">.tab-type</span> &#123;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">display</span>: flex;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">justify-content</span>: center;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">padding-top</span>: <span class="number">30px</span>;</span></span><br><span class="line"><span class="language-css">        &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">        <span class="selector-class">.tab-type</span>&gt;<span class="selector-tag">li</span> &#123;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">cursor</span>: pointer;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">color</span>: <span class="number">#fff</span>;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">background-color</span>: darkred;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">border-radius</span>: <span class="number">12px</span>;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">padding</span>: <span class="number">5px</span>;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">margin</span>: <span class="number">0px</span> <span class="number">20px</span>;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">max-width</span>: <span class="number">300px</span>;</span></span><br><span class="line"><span class="language-css">        &#125;</span></span><br><span class="line"><span class="language-css">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;content&quot;</span> <span class="attr">id</span>=<span class="string">&quot;content&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">&quot;tab-type&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;light&quot;</span>&gt;</span>浅色主题<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;dark&quot;</span>&gt;</span>暗色主题<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;scheme-tip&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">        <span class="comment">// 手动修改主题颜色</span></span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">const</span> light = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;light&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">const</span> dark = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;dark&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">const</span> content = <span class="variable language_">document</span>.<span class="title function_">getElementsByTagName</span>(<span class="string">&#x27;body&#x27;</span>)[<span class="number">0</span>]</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">const</span> tipText = <span class="variable language_">document</span>.<span class="title function_">getElementsByClassName</span>(<span class="string">&#x27;scheme-tip&#x27;</span>)[<span class="number">0</span>]</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">let</span> lightTip = <span class="string">&#x27;当前自定义主题：light亮色&#x27;</span>, darkTip = <span class="string">&#x27;当前自定义主题：dark暗色&#x27;</span></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">        light.<span class="property">onclick</span> = <span class="keyword">function</span> (<span class="params">params</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">            content.<span class="title function_">setAttribute</span>(<span class="string">&#x27;class&#x27;</span>, <span class="string">&#x27;light-scheme&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">            tipText.<span class="property">innerHTML</span> = lightTip</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript">        dark.<span class="property">onclick</span> = <span class="keyword">function</span> (<span class="params">params</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">            content.<span class="title function_">setAttribute</span>(<span class="string">&#x27;class&#x27;</span>, <span class="string">&#x27;dark-scheme&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">            tipText.<span class="property">innerHTML</span> = darkTip</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">        <span class="comment">// js 监听操作系统主题模式</span></span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">const</span> scheme = <span class="variable language_">window</span>.<span class="title function_">matchMedia</span>(<span class="string">&#x27;(prefers-color-scheme: dark)&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">if</span> (scheme.<span class="property">matches</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="comment">// 深色模式业务处理代码</span></span></span><br><span class="line"><span class="language-javascript">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;深色模式&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">            <span class="variable language_">console</span>.<span class="title function_">log</span>(scheme.<span class="property">matches</span>);</span></span><br><span class="line"><span class="language-javascript">            tipText.<span class="property">innerHTML</span> = darkTip</span></span><br><span class="line"><span class="language-javascript">        &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="comment">// 浅色模式业务处理代码</span></span></span><br><span class="line"><span class="language-javascript">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;浅色模式&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">            <span class="variable language_">console</span>.<span class="title function_">log</span>(scheme.<span class="property">matches</span>);</span></span><br><span class="line"><span class="language-javascript">            tipText.<span class="property">innerHTML</span> = lightTip</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><label style="color:rgb(223, 42, 63)">总结-prefers-color-scheme监听方式：</label></p>
-<ul>
-<li>css里通过@media监听</li>
-<li>js里面通过matchMedia监听</li>
-<li>两种方式都能监听到操作系统主题变化后的值</li>
-</ul>
-]]></content>
-      <categories>
-        <category>CSS</category>
-      </categories>
-      <tags>
-        <tag>CSS</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>node基础概念</title>
     <url>/2023/07/29/node%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/</url>
     <content><![CDATA[<p><a name="IHs7V"></a></p>
@@ -533,6 +932,193 @@
       </categories>
       <tags>
         <tag>node</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>js知识体系-数据类型和ES6</title>
+    <url>/2023/08/12/js%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%92%8CES6/</url>
+    <content><![CDATA[<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><h3 id="考察很多"><a href="#考察很多" class="headerlink" title="考察很多"></a><label style="color:rgb(223, 42, 63)">考察很多</label></h3><h4 id="JS的数据类型，它们的区别？"><a href="#JS的数据类型，它们的区别？" class="headerlink" title="JS的数据类型，它们的区别？"></a><label style="color:rgb(223, 42, 63)">JS的数据类型，它们的区别？</label></h4><p>js共有8种数据类型，分别是Undefined,Null,Boolean,Number,String,Object,Symbol,Bignt。<br>其中Symbol,Bight是ES6中新增的数据类型：</p>
+<ul>
+<li>Symbol代表创建后独一无二且不可变的数据类型，它主要是为了解决可能出现的全局变量冲突的问题。</li>
+<li>Bigint 是一种数字类型的数据，它可以表示任意精度格式的证书，使用BigInt可以安全地存储和操作大整数，即使这个数已经超出Number能够表示地安全整数范围。</li>
+</ul>
+<p>这些数据乐意分为原始数据类型和引用数据类型：</p>
+<ul>
+<li>栈：原始数据类型直接存储在栈中地简单数据段，占据空间小，大小固定，属于被频繁使用数据，所以放入栈中存储。</li>
+<li>堆：引用数据类型（对象，数组，函数）</li>
+</ul>
+<p>两种类型地区别在于<strong>存储位置的不同：</strong></p>
+<ul>
+<li><code>原始数据类型</code>直接<code>存储在栈中</code>的简单数据段，占据空间小，大小固定 ，属于被频繁使用数据，所以放入栈中存储；</li>
+<li><code>引用数据类型</code>存储在<code>堆中</code>的对象，占据空间大，大小不固定。如果存储在栈中，将会影响程序运行的性能；引用数据类型在栈中存储了指针，该指针指向堆中该实体的起始地址。当解释器寻找引用值时，会首先检索其中在栈中地额地址，武德地址后从堆中获得实体。</li>
+</ul>
+<p>堆和栈的概念存在于数据结构和操作系统内存中，在数据结构中：</p>
+<ul>
+<li>在数据结构中，<code>栈</code>中数据的存取方式为<code>先进先出</code></li>
+<li><code>堆</code>是一个优先队列，是按<code>优先级</code>来进行排序的，优先级可以按照大小来规定。</li>
+</ul>
+<p>在操作系统中，内存被分为栈区和堆区：</p>
+<ul>
+<li>栈区内存由编译器自动分配释放，存放函数的参数值，局部变量的值等。其操作方式类似于数据结构中的栈。</li>
+<li>堆区内存一般由开饭分配释放，若开发者不是释放，程序结束时可能由垃圾回收机制回收。</li>
+</ul>
+<h4 id="数据类型检测的方式有哪些？"><a href="#数据类型检测的方式有哪些？" class="headerlink" title="数据类型检测的方式有哪些？"></a><label style="color:rgb(223, 42, 63)">数据类型检测的方式有哪些？</label></h4><pre><code>  1. typeof:其中数组，对象，null都会被判断为object，其它判断都正确。
+  2. instanceof可以正确判断对象的类型，其内部运行机制是判断在其原型链中能否找到该类型的原型。
+</code></pre>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">2</span> <span class="keyword">instanceof</span> <span class="title class_">Number</span>)<span class="comment">//false</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="literal">true</span> <span class="keyword">instanceof</span> <span class="title class_">Boolean</span>)<span class="comment">//false</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;str&#x27;</span> <span class="keyword">instanceof</span> <span class="title class_">String</span>);<span class="comment">//false</span></span><br><span class="line"><span class="comment">//以检测字符串类型false解释原理</span></span><br><span class="line"><span class="comment">//上方放回false，是因为&#x27;str&#x27;本身不是任何一个类的实例，要想检测的结果为false,只能通过new一个String达到目标</span></span><br><span class="line"><span class="keyword">var</span> str=<span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&#x27;abc&#x27;</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(str <span class="keyword">instanceof</span> <span class="title class_">String</span>)<span class="comment">//true</span></span><br><span class="line"><span class="comment">//通过typeof str 检测到str返回的仍是string并不是Object.</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>([] <span class="keyword">instanceof</span> <span class="title class_">Array</span>);<span class="comment">//true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;&#125; <span class="keyword">instanceof</span> <span class="title class_">Function</span>);<span class="comment">//true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(&#123;&#125; <span class="keyword">instanceof</span> object);<span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+
+<p>从上可以看出instanceof只能正确判断引用数据类型，而不能判断基本数据类型。instanceof运算符可以用来测试一个对象在其原型链中是否存在一个构造函数的prototype属性</p>
+<pre><code>  3. constructor
+</code></pre>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>((<span class="number">2</span>).<span class="property">constructor</span> === <span class="title class_">Number</span>); <span class="comment">// true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>((<span class="literal">true</span>).<span class="property">constructor</span> === <span class="title class_">Boolean</span>); <span class="comment">// true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>((<span class="string">&#x27;str&#x27;</span>).<span class="property">constructor</span> === <span class="title class_">String</span>); <span class="comment">// true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(([]).<span class="property">constructor</span> === <span class="title class_">Array</span>); <span class="comment">// true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>((<span class="keyword">function</span>(<span class="params"></span>) &#123;&#125;).<span class="property">constructor</span> === <span class="title class_">Function</span>); <span class="comment">// true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>((&#123;&#125;).<span class="property">constructor</span> === <span class="title class_">Object</span>); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p>   constructor 有两个作用，一是判断数据的类型，二是对象实例通过constrcutor对象访问它的构造函数。需要注意，如果创建一个对象来改变它的原型，constructor就不能用来判断数据类型了。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">Fn</span>(<span class="params"></span>)&#123;&#125;;</span><br><span class="line"> </span><br><span class="line"><span class="title class_">Fn</span>.<span class="property"><span class="keyword">prototype</span></span> = <span class="keyword">new</span> <span class="title class_">Array</span>();</span><br><span class="line"> </span><br><span class="line"><span class="keyword">var</span> f = <span class="keyword">new</span> <span class="title class_">Fn</span>();</span><br><span class="line"> </span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(f.<span class="property">constructor</span>===<span class="title class_">Fn</span>);    <span class="comment">// false</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(f.<span class="property">constructor</span>===<span class="title class_">Array</span>); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<pre><code>  4. Object.prototype.toString.call()
+</code></pre>
+<p><strong>Object.prototype.toString.call()</strong> 使用 Object 对象的原型方法 toString 来判断数据类型：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="title class_">Object</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">toString</span>;</span><br><span class="line"> </span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a.<span class="title function_">call</span>(<span class="number">2</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a.<span class="title function_">call</span>(<span class="literal">true</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a.<span class="title function_">call</span>(<span class="string">&#x27;str&#x27;</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a.<span class="title function_">call</span>([]));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a.<span class="title function_">call</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;&#125;));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a.<span class="title function_">call</span>(&#123;&#125;));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a.<span class="title function_">call</span>(<span class="literal">undefined</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a.<span class="title function_">call</span>(<span class="literal">null</span>));</span><br></pre></td></tr></table></figure>
+
+<p>同样是检测对象obj调用toString方法，obj.toString()的结果和Object.prototype.toString.call(obj)的结果不一样，这是为什么？<br>这是因为toString是Object的原型方法，而Array、function等<strong>类型作为Object的实例，都重写了toString方法</strong>。不同的对象类型调用toString方法时，根据原型链的知识，调用的是对应的重写之后的toString方法（function类型返回内容为函数体的字符串，Array类型返回元素组成的字符串…），而不会去调用Object上原型toString方法（返回对象的具体类型），所以采用obj.toString()不能得到其对象类型，只能将obj转换为字符串类型；因此，在想要得到对象的具体类型时，应该调用Object原型上的toString方法。</p>
+<h4 id="null与undefined的区别"><a href="#null与undefined的区别" class="headerlink" title="null与undefined的区别"></a><label style="color:rgb(223, 42, 63)">null与undefined的区别</label></h4><p>首先Undefined和Null都是基本数据类型，这两个基本数据类型分别都只有一个值，就是undefined和null。<br>undefined代表的含义是未定义，null代表的含义是空对象。一般变量声明了但还没有定义的时候就会返回undefined,null主要用于赋值给一些可能返回对象的变量，作为初始化。<br>当对这两种类型使用 typeof 进行判断时，Null 类型化会返回 “object”，这是一个历史遗留的问题。当使用双等号对两种类型的值进行比较时会返回 true，使用三个等号时会返回 false。</p>
+<h4 id="instanceof操作符的实现原理及实现。"><a href="#instanceof操作符的实现原理及实现。" class="headerlink" title="instanceof操作符的实现原理及实现。"></a><label style="color:rgb(223, 42, 63)">instanceof操作符的实现原理及实现。</label></h4><p>instanceof 运算符用于判断构造函数的prototype属性是否出现在对象原型链中的任何位置。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">myInstanceof</span>(<span class="params">left,right</span>)&#123;</span><br><span class="line">  <span class="comment">//获取对象的原型</span></span><br><span class="line">  <span class="keyword">let</span> proto=object.<span class="title function_">getPrototypeOf</span>(left)</span><br><span class="line">  <span class="comment">//获取构造函数的prototyped对象</span></span><br><span class="line">  <span class="keyword">let</span> prototype = right.<span class="property"><span class="keyword">prototype</span></span>;</span><br><span class="line"><span class="comment">//判断构造函数的prototype对象是否在对象的原型链上</span></span><br><span class="line">  <span class="keyword">while</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(!proto) <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    <span class="keyword">if</span>(proto === prototype) <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">    <span class="comment">// 如果没有找到，就继续从其原型上找，Object.getPrototypeOf方法用来获取指定对象的原型</span></span><br><span class="line">    proto = <span class="title class_">Object</span>.<span class="title function_">getPrototypeOf</span>(proto);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Object-is-与比较操作符”-”-”-”的区别？"><a href="#Object-is-与比较操作符”-”-”-”的区别？" class="headerlink" title="Object.is()与比较操作符”&#x3D;&#x3D;”,”&#x3D;&#x3D;&#x3D;”的区别？"></a><label style="color:rgb(223, 42, 63)">Object.is()与比较操作符”&#x3D;&#x3D;”,”&#x3D;&#x3D;&#x3D;”的区别？</label></h4><ul>
+<li>使用&#x3D;&#x3D;进行相等判断时，如果两边的类型不一致，则会进行强制类型转化后在进行比较。</li>
+<li>使用&#x3D;&#x3D;&#x3D;进行相等判断时，如果两边的类型不一致，则不会做强制类型转换，直接返回false</li>
+<li>使用Object.js来进行相等判断时，一般情况下和&#x3D;&#x3D;&#x3D;的判断相同，它处理了一些特殊的情况，比如：-0和+0不再相等，两个NaN是相等的。</li>
+</ul>
+<hr>
+<h3 id="考察较多"><a href="#考察较多" class="headerlink" title="考察较多 "></a><label style="color:rgb(236, 170, 4)">考察较多 </label></h3><h4 id="isNaN和Number-isNaN函数的区别？"><a href="#isNaN和Number-isNaN函数的区别？" class="headerlink" title="isNaN和Number.isNaN函数的区别？"></a><label style="color:rgb(236, 170, 4)">isNaN和Number.isNaN函数的区别？</label></h4><ul>
+<li>函数isNaN接受参数后，会尝试将这个参数转换为数值，任何不能被转换为数值的值都会返回true,因此非数字值传入也会返回true,会影响NaN的判断。</li>
+<li>函数Number.isNaN会首先判断传入参数是否为数字，如果是数字再继续判断是否为NaN，不会进行数据类型的转换，这种方法对NaN的判断更加准确。</li>
+</ul>
+<h4 id="浅谈浅拷贝和深拷贝"><a href="#浅谈浅拷贝和深拷贝" class="headerlink" title="浅谈浅拷贝和深拷贝 "></a><label style="color:rgb(236, 170, 4)">浅谈浅拷贝和深拷贝 </label></h4><p>在js中浅拷贝和深拷贝是两种不同的对象拷贝方式。<br>浅拷贝是指创建一个新对象，然后将原始对象的属性值复制到新对象中。新对象和原始对象共享相同的引用类型属性（如对象，数组等），也就是说，如果修改新对象的引用类型属性，原始对象也会受到影响。<br>深拷贝是指创建一个新对象，然后递归的将原始对象的所有属性值复制到新对象中。新对象和原始对象不共享引用类型属性，也就是说，修改新对象的引用类型属性不会影响原始对象。<br>区别：</p>
+<ul>
+<li>浅拷贝只复制对象的引用，而不是复制引用指向的值本身；深拷贝则会递归地复制对象及引用的值。</li>
+<li>浅拷贝创建的新对象和原始对象共享引用类型属性，而深拷贝创建的新对象和原始对象不共享引用类型属性。</li>
+</ul>
+<p>js深拷贝与浅拷贝是什么？区别又是什么<br>在 JavaScript 中，深拷贝和浅拷贝是两种不同的对象拷贝方式。<br>浅拷贝是指创建一个新对象，然后将原始对象的属性值复制到新对象中。新对象和原始对象共享相同的引用类型属性（如对象、数组等），也就是说，如果修改新对象的引用类型属性，原始对象也会受到影响。<br>深拷贝是指创建一个新对象，然后递归地将原始对象的所有属性值复制到新对象中。新对象和原始对象不共享引用类型属性，也就是说，修改新对象的引用类型属性不会影响原始对象。<br>区别：</p>
+<ul>
+<li>浅拷贝只复制对象的引用，而不复制引用指向的值本身；深拷贝则会递归地复制对象及其引用的值。</li>
+<li>浅拷贝创建的新对象和原始对象共享引用类型属性，而深拷贝创建的新对象和原始对象不共享引用类型属性。</li>
+</ul>
+<p>两种拷贝的实例<br>以下是两种拷贝方式的实例：</p>
+<ol>
+<li><strong>浅拷贝示例：</strong></li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> obj1 = &#123;<span class="attr">name</span>: <span class="string">&#x27;Alice&#x27;</span>, <span class="attr">age</span>: <span class="number">25</span>, <span class="attr">hobbies</span>: [<span class="string">&#x27;reading&#x27;</span>, <span class="string">&#x27;painting&#x27;</span>]&#125;;</span><br><span class="line"><span class="keyword">let</span> obj2 = <span class="title class_">Object</span>.<span class="title function_">assign</span>(&#123;&#125;, obj1);</span><br><span class="line"></span><br><span class="line">obj2.<span class="property">name</span> = <span class="string">&#x27;Bob&#x27;</span>;</span><br><span class="line">obj2.<span class="property">hobbies</span>.<span class="title function_">push</span>(<span class="string">&#x27;running&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj1); <span class="comment">// &#123;name: &#x27;Alice&#x27;, age: 25, hobbies: [&#x27;reading&#x27;, &#x27;painting&#x27;, &#x27;running&#x27;]&#125;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj2); <span class="comment">// &#123;name: &#x27;Bob&#x27;, age: 25, hobbies: [&#x27;reading&#x27;, &#x27;painting&#x27;, &#x27;running&#x27;]&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>在这个示例中，使用Object.assign()进行浅拷贝。修改了obj2的属性值后，obj1的hobbies属性也被修改了，因为它们共享相同的引用类型属性。<br><strong>2.深拷贝示例：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> obj1 = &#123;<span class="attr">name</span>: <span class="string">&#x27;Alice&#x27;</span>, <span class="attr">age</span>: <span class="number">25</span>, <span class="attr">hobbies</span>: [<span class="string">&#x27;reading&#x27;</span>, <span class="string">&#x27;painting&#x27;</span>]&#125;;</span><br><span class="line"><span class="keyword">let</span> obj2 = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(obj1));</span><br><span class="line"></span><br><span class="line">obj2.<span class="property">name</span> = <span class="string">&#x27;Bob&#x27;</span>;</span><br><span class="line">obj2.<span class="property">hobbies</span>.<span class="title function_">push</span>(<span class="string">&#x27;running&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj1); <span class="comment">// &#123;name: &#x27;Alice&#x27;, age: 25, hobbies: [&#x27;reading&#x27;, &#x27;painting&#x27;]&#125;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj2); <span class="comment">// &#123;name: &#x27;Bob&#x27;, age: 25, hobbies: [&#x27;reading&#x27;, &#x27;painting&#x27;, &#x27;running&#x27;]&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>在这个示例中，使用JSON.stringify()将obj1转换为字符串，然后使用JSON.parse()将其转换回对象，从而实现深拷贝。修改了obj2的属性值后，obj1的hobbies属性没有被修改，因为它们不共享引用类型属性。</p>
+<h3 id="考察较少"><a href="#考察较少" class="headerlink" title="考察较少"></a><label style="color:rgb(12,104,202)">考察较少</label></h3><h4 id="如何获取安全的undefined值？"><a href="#如何获取安全的undefined值？" class="headerlink" title="如何获取安全的undefined值？"></a><label style="color:rgb(12,104,202)">如何获取安全的undefined值？</label></h4><p>因为undefined是一个标识符，所以可以被当作变量来使用和赋值，但是这样会影响undefined的正常判断。表达式void___没有返回值，因此返回的结果是undefined。void并不改变表达式的结果，只是让表达式不返回值。因此可以用 void 0 来获得undefined。</p>
+<h4 id="typeof-NaN的结果是什么？"><a href="#typeof-NaN的结果是什么？" class="headerlink" title="typeof NaN的结果是什么？"></a><label style="color:rgb(12,104,202)">typeof NaN的结果是什么？</label></h4><p>NaN指”不是一个数字“，NaN是一个”警戒值“，用于指出数字类型中的错误情况，即”执行数学运算没有成功，这是失败后返回的结果“。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typeof</span> <span class="title class_">NaN</span>; <span class="comment">//&quot;number&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>注意：NaN是一个特殊值，它和本身不相等，是唯一一个非自反（自反：x&#x3D;&#x3D;&#x3D;x不成立）的值。而NaN!&#x3D;&#x3D;NaN为true。</p>
+<h4 id="object-assgin和扩展运算法是深拷贝还是浅拷贝，两者的区别？"><a href="#object-assgin和扩展运算法是深拷贝还是浅拷贝，两者的区别？" class="headerlink" title="object.assgin和扩展运算法是深拷贝还是浅拷贝，两者的区别？"></a><label style="color:rgb(12,104,202)">object.assgin和扩展运算法是深拷贝还是浅拷贝，两者的区别？</label></h4><p>扩展运算符：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> outObj=&#123;</span><br><span class="line">  <span class="attr">inObj</span>:&#123;<span class="attr">a</span>:<span class="number">1</span>,<span class="attr">b</span>:<span class="number">2</span>&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> newObj=&#123;...outObj&#125;</span><br><span class="line">newObj.<span class="property">inObj</span>.<span class="property">a</span>=<span class="number">2</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(outObj)<span class="comment">//&#123;inObj:&#123;a:2,b:2&#125;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>Object.assgin():</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> outObj=&#123;</span><br><span class="line">  <span class="attr">inObj</span>:&#123;<span class="attr">a</span>:<span class="number">1</span>,<span class="attr">b</span>:<span class="number">2</span>&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> newObj=<span class="title class_">Object</span>.<span class="title function_">assign</span>(&#123;&#125;,outObj)</span><br><span class="line">newObj.<span class="property">inObj</span>.<span class="property">a</span>=<span class="number">2</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(outObj)<span class="comment">//&#123;inObj:&#123;a:2,b:2&#125;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>从上方实例可以看出两者都属于浅拷贝。</p>
+<ul>
+<li>Object.assign()方法接受的第一个参数作为目标对象，后面的所有参数作为源对象。然后把所有的源对象合并到目标对象中。它会修改了一个对象，因此触发ES6 setter。</li>
+<li>扩展运算发(…)使用它时，数组或对象中的每一个值都会被拷贝到一个新的数组或对象中。它不复制继承的属性或类的属性，但是它会复制ES6的symbols属性。</li>
+</ul>
+<hr>
+<h2 id="ES6"><a href="#ES6" class="headerlink" title="ES6"></a>ES6</h2><h3 id="考察很多-1"><a href="#考察很多-1" class="headerlink" title="考察很多"></a><label style="color:rgb(223, 42, 63)">考察很多</label></h3><h4 id="let-const-var的区别"><a href="#let-const-var的区别" class="headerlink" title="let,const,var的区别"></a><label style="color:rgb(223, 42, 63)">let,const,var的区别</label></h4><ol>
+<li><strong>块级作用域</strong>：块级作用域由{  }包括，let和const具有块级作用域，var不存在块级作用域。块级作用域可以解决ES5中的两个问题：<ol>
+<li>内层变量肯能覆盖外层变量</li>
+<li>用来计数的循环变量泄漏为全局变量</li>
+</ol>
+</li>
+<li><strong>变量提升</strong>：var存在变量提升，let和const不存在变量提升 ，即只能在变量声明之后使用否则会报错</li>
+<li><strong>给全局添加属性</strong>：浏览器的全局对象是window，Node的全局对象是global。var声明的变量可以为全局变量，并且会将改变量添加为全局对象的属性，但是let和const不会。</li>
+<li><strong>重复声明</strong>：var声明变量是，可以重复声明变量，后声明的同名变量会覆盖之前声明的。而const和let不允许重复声明变量。</li>
+<li><strong>暂时性死区</strong>：在使用let、const命令声明变量之前，该变量都是不可用的。这在语法上，称为暂时性死区。使用var声明的变量不存在暂时性死区。</li>
+<li><strong>初始值设置</strong>：在变量声明时，var,let可以不用设置初始值，但是const必须设置初始值。</li>
+<li><strong>指针指向</strong>： let和const都是ES6新增的用于创建变量的语法。 let创建的变量是可以更改指针指向（可以重新赋值）。但const声明的变量是不允许改变指针的指向。</li>
+</ol>
+<p><img src="/img/study/let.png" alt="image.png"></p>
+<h4 id="箭头函数与普通函数的区别"><a href="#箭头函数与普通函数的区别" class="headerlink" title="箭头函数与普通函数的区别"></a><label style="color:rgb(223, 42, 63)">箭头函数与普通函数的区别</label></h4><ol>
+<li><strong>箭头函数比普通函数更加简洁</strong><ol>
+<li>如果没有参数，直接协议可空括号即可</li>
+<li>如果只有一个参数，可以省去参数的括号</li>
+<li>如果由多个参数，用逗号分割</li>
+<li>如果函数体返回值只有一句，可以省略大括号</li>
+<li>如果函数不需要返回值，且只有一句话，可以给这个语句前面加一个void关键字。最常用的就是调用函数：</li>
+</ol>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="title function_">fn</span> = (<span class="params"></span>) =&gt; <span class="keyword">void</span> <span class="title function_">doesNotReturn</span>();</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><strong>箭头函数没有自己的this</strong></li>
+</ol>
+<p>箭头函数不会创建自己的this,所以它没有自己的this,它只会在自己作用域的上一层继承this。所以箭头函数中this的指向在它定义时已经确定了，之后不会改变。</p>
+<ol start="3">
+<li><strong>箭头函数继承来的this指向永远不会改变</strong></li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> id = <span class="string">&#x27;GLOBAL&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  <span class="attr">id</span>: <span class="string">&#x27;OBJ&#x27;</span>,</span><br><span class="line">  <span class="attr">a</span>: <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">id</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">b</span>: <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">id</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">obj.<span class="title function_">a</span>();    <span class="comment">// &#x27;OBJ&#x27;</span></span><br><span class="line">obj.<span class="title function_">b</span>();    <span class="comment">// &#x27;GLOBAL&#x27;</span></span><br><span class="line"><span class="keyword">new</span> obj.<span class="title function_">a</span>()  <span class="comment">// undefined</span></span><br><span class="line"><span class="keyword">new</span> obj.<span class="title function_">b</span>()  <span class="comment">// Uncaught TypeError: obj.b is not a constructor</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>对象obj的方法b是使用箭头函数定义的，这个函数中的this就永远指向它定义时所处的全局执行环境中的this，即便这个函数是作为对象obj的方法调用，this依旧指向Window对象。需要注意，定义对象的大括号{}是无法形成一个单独的执行环境的，它依旧是处于全局执行环境中。</p>
+<ol start="4">
+<li><strong>call(),apply()，bind()等方法不能改变箭头函数中的this指向</strong></li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> id = <span class="string">&#x27;Global&#x27;</span>;</span><br><span class="line"><span class="keyword">let</span> <span class="title function_">fun1</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">id</span>)</span><br><span class="line">&#125;;</span><br><span class="line"><span class="title function_">fun1</span>();                     <span class="comment">// &#x27;Global&#x27;</span></span><br><span class="line">fun1.<span class="title function_">call</span>(&#123;<span class="attr">id</span>: <span class="string">&#x27;Obj&#x27;</span>&#125;);     <span class="comment">// &#x27;Global&#x27;</span></span><br><span class="line">fun1.<span class="title function_">apply</span>(&#123;<span class="attr">id</span>: <span class="string">&#x27;Obj&#x27;</span>&#125;);    <span class="comment">// &#x27;Global&#x27;</span></span><br><span class="line">fun1.<span class="title function_">bind</span>(&#123;<span class="attr">id</span>: <span class="string">&#x27;Obj&#x27;</span>&#125;)();   <span class="comment">// &#x27;Global&#x27;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li><strong>箭头函数不能作为构造函数使用</strong></li>
+</ol>
+<p>构造函数在new的步骤在上面已经说过了，实际上第二步就是将函数中的this指向该对象。 但是由于箭头函数时没有自己的this的，且this指向外层的执行环境，且不能改变指向，所以不能当做构造函数使用。</p>
+<ol start="6">
+<li><strong>箭头函数没有自己的arguments</strong></li>
+</ol>
+<p>箭头函数没有自己的arguments对象。在箭头函数中访问arguments实际上获得的是它外层函数的arguments值。</p>
+<ol start="7">
+<li><strong>箭头函数没有prototype</strong></li>
+<li><strong>箭头函数不能用作Generatir函数，不能使用yeild关键字</strong></li>
+</ol>
+<h3 id="考察较多-1"><a href="#考察较多-1" class="headerlink" title="考察较多"></a><label style="color:rgb(236, 170, 4)">考察较多</label></h3><h4 id="const对象的属性可以修改吗"><a href="#const对象的属性可以修改吗" class="headerlink" title="const对象的属性可以修改吗"></a><label style="color:rgb(236, 170, 4)">const对象的属性可以修改吗</label></h4><p>const保证的不是变量的值不能改变，而是变量指向的那个内存地址不能改动。对于基本类型的数据（数值，字符串，布尔值），其值就保存在变量指向的那个内存地址，因此等同于常量。<br>但是对于引用类型的数据（主要是对象和数组）来说，变量指向数据的内存地址，保存的只是一个指针，const只能保证这个指针式固定不变的，至于它指向的数据结构式不可变的，就完全不能控制了。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//a为引用类型数据时：</span></span><br><span class="line"><span class="keyword">const</span> a=[<span class="string">&quot;1&quot;</span>,<span class="string">&quot;2&quot;</span>,<span class="string">&quot;3&quot;</span>]</span><br><span class="line">a.<span class="title function_">push</span>(<span class="string">&quot;4&quot;</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a);<span class="comment">//[&#x27;1&#x27;, &#x27;2&#x27;, &#x27;3&#x27;, &#x27;4&#x27;]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//a为基本数据类型时</span></span><br><span class="line"><span class="keyword">const</span> a=<span class="number">1</span></span><br><span class="line">a=<span class="number">2</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a);<span class="comment">//报错，error: Assignment to constant variable.</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="如果new一个箭头函数会产生什么结果？"><a href="#如果new一个箭头函数会产生什么结果？" class="headerlink" title="如果new一个箭头函数会产生什么结果？"></a><label style="color:rgb(236, 170, 4)">如果new一个箭头函数会产生什么结果？</label></h4><p>箭头函数是ES6中新提出来的，它没有自己的this指向，更不可以使用argyments参数，所以并不能够new一个箭头函数。<br>new操作符的实现步骤如下：</p>
+<ul>
+<li>创建一个对象</li>
+<li>将构造函数的租用与赋给新对象（也就是将对象的__proto__属性指向构造函数的prototype属性）</li>
+<li>指向构造函数中的代码，构造函数中的this指向对象（也就是为这个对象添加方法和属性）</li>
+<li>返回新的对象</li>
+</ul>
+<p>因此，由于箭头函数不能执行第二步和第三步所以并不能new一个箭头函数。</p>
+<h4 id="ES6中字符串的处理"><a href="#ES6中字符串的处理" class="headerlink" title="ES6中字符串的处理"></a><label style="color:rgb(236, 170, 4)">ES6中字符串的处理</label></h4><p>随着ES6的发布 ，可以发现它除了新增了模板语法外（例如：<code>aka$&#123;a&#125;uio</code>）外还新增了一系列的字符串方法用于提升开发效率。<br>（1）存在性判定：在过去判断一个字符&#x2F;字符串是否在某字符串中时，只能用indexOf&gt;-1来判断。现在ES6提供了三个方法：includes,startsWith,endWith，它们都会返回一个布尔值来告诉你是否存在。</p>
+<ul>
+<li>includes：判断字符串与字符的包含关系：</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> son = <span class="string">&#x27;haha&#x27;</span> </span><br><span class="line"><span class="keyword">const</span> father = <span class="string">&#x27;xixi haha hehe&#x27;</span></span><br><span class="line">father.<span class="title function_">includes</span>(son) <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>startsWith：判断字符串是否以某个&#x2F;某串字符开头：</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> father = <span class="string">&#x27;xixi haha hehe&#x27;</span></span><br><span class="line">father.<span class="title function_">startsWith</span>(<span class="string">&#x27;haha&#x27;</span>) <span class="comment">// false</span></span><br><span class="line">father.<span class="title function_">startsWith</span>(<span class="string">&#x27;xixi&#x27;</span>) <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>endsWith：判断字符串是否以某个&#x2F;某串字符结尾：</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> father = <span class="string">&#x27;xixi haha hehe&#x27;</span></span><br><span class="line">  father.<span class="title function_">endsWith</span>(<span class="string">&#x27;hehe&#x27;</span>) <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p>（2）自动重复：可以使用repeat方法来使同一个字符串输出多次（被连续复制）</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> sourceCode = <span class="string">&#x27;repeat for 3 times;&#x27;</span></span><br><span class="line"><span class="keyword">const</span> repeated = sourceCode.<span class="title function_">repeat</span>(<span class="number">3</span>) </span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(repeated) <span class="comment">// repeat for 3 times;repeat for 3 times;repeat for 3 times;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>ES6</category>
+      </categories>
+      <tags>
+        <tag>ES6</tag>
       </tags>
   </entry>
   <entry>
@@ -856,6 +1442,32 @@
       </categories>
       <tags>
         <tag>webpack</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>css补漏-prefers-color-scheme切换网站主题色</title>
+    <url>/2023/08/28/css%E8%A1%A5%E6%BC%8F-prefers-color-scheme%E5%88%87%E6%8D%A2%E7%BD%91%E7%AB%99%E4%B8%BB%E9%A2%98%E8%89%B2/</url>
+    <content><![CDATA[<h2 id="前端必备：prefers-color-scheme自由切换网站主题背景色变化"><a href="#前端必备：prefers-color-scheme自由切换网站主题背景色变化" class="headerlink" title="前端必备：prefers-color-scheme自由切换网站主题背景色变化"></a>前端必备：prefers-color-scheme自由切换网站主题背景色变化</h2><p><label style="color:rgb(223, 42, 63)">prefers-color-scheme</label>是css的<code>媒体特性【@media】</code>用于检测用户是否有将<code>操作系统的主题设置</code>为亮色【light】或者暗色【dark】,no-preference 表示获取不到主题时的适配方案。这也是prefers-color-scheme重要属性。W3C在2020年7月31日首次提到css的prefers-color-scheme新特性。<br>例子：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="keyword">@media</span> (<span class="attribute">prefers-color-scheme</span>: light) &#123;</span><br><span class="line">  <span class="selector-tag">body</span> &#123;  </span><br><span class="line">    <span class="attribute">background</span>:<span class="number">#fff</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#000</span>;  </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@media</span> (<span class="attribute">prefers-color-scheme</span>: dark) &#123;</span><br><span class="line">  <span class="selector-tag">body</span> &#123;  </span><br><span class="line">    <span class="attribute">background</span>:<span class="number">#000</span>;  </span><br><span class="line">    <span class="attribute">color</span>: white;  </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@media</span> (<span class="attribute">prefers-color-scheme</span>: no-preference) &#123;</span><br><span class="line">  <span class="selector-tag">body</span> &#123;  </span><br><span class="line">    <span class="attribute">background</span>:<span class="number">#fff</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#000</span>;  </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><label style="color:rgb(223, 42, 63)">:root表示根元素，拥有更高的优先级，这里可以设置全局样式变量，通过css的var方法来获取对应变量且获得相应的样式。</label><br>例如：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 整个页面配置为使用用户的配色方案首选项 */</span></span><br><span class="line">       <span class="comment">/* 根元素，优先级最高，与html选择器相同 */</span></span><br><span class="line">       <span class="selector-pseudo">:root</span> &#123;</span><br><span class="line">           <span class="attr">--color-background</span>: <span class="number">#1b1b1b</span>;</span><br><span class="line">           <span class="attr">--color-border</span>: <span class="number">#cacfd5</span>;</span><br><span class="line">           <span class="attr">--color-text-default</span>: <span class="number">#0b1016</span>;</span><br><span class="line">           <span class="attr">--color-base</span>: <span class="number">#f4f5f6</span>;</span><br><span class="line">           <span class="attr">--color-accent</span>: <span class="number">#ba0d37</span>;</span><br><span class="line">           <span class="attr">--white-color-background</span>: <span class="number">#fff</span>;</span><br><span class="line">           <span class="attribute">color</span>-scheme: light dark;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="comment">/* 监听操作系统主题模式 */</span></span><br><span class="line">       <span class="keyword">@media</span> (<span class="attribute">prefers-color-scheme</span>: dark) &#123;</span><br><span class="line">           <span class="selector-tag">body</span> &#123;</span><br><span class="line">               <span class="attribute">background-color</span>: <span class="built_in">var</span>(--color-background);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">@media</span> (<span class="attribute">prefers-color-scheme</span>: light) &#123;</span><br><span class="line">           <span class="selector-tag">body</span> &#123;</span><br><span class="line">               <span class="attribute">background-color</span>: <span class="built_in">var</span>(--white-color-background);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure>
+
+<p>上方所提到的就是根据操作系统的不同深浅模式而是页面渲染出来展现不同的深浅。<br>例如：当操作系统的颜色为浅色时<img src="/img/study/cssLight.png" alt="image.png"><br>则会发现prefers-color-scheme的值为light，此时的页面最初渲染为浅色<img src="/img/study/lightResult.png" alt="image.png"><br>当操作系统的颜色为深色时，页面渲染出来默认是深色。<br>其实除了媒体监听主题变化，还可以自定义主题手动切换，示例代码如下：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;X-UA-Compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;IE=edge&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>系统的主题色设置为亮色或者暗色<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span> <span class="attr">lang</span>=<span class="string">&quot;css&quot;</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">        <span class="comment">/* 整个页面配置为使用用户的配色方案首选项 */</span></span></span><br><span class="line"><span class="language-css">        <span class="comment">/* 根元素，优先级最高，与html选择器相同 */</span></span></span><br><span class="line"><span class="language-css">        <span class="selector-pseudo">:root</span> &#123;</span></span><br><span class="line"><span class="language-css">            <span class="attr">--color-background</span>: <span class="number">#1b1b1b</span>;</span></span><br><span class="line"><span class="language-css">            <span class="attr">--color-border</span>: <span class="number">#cacfd5</span>;</span></span><br><span class="line"><span class="language-css">            <span class="attr">--color-text-default</span>: <span class="number">#0b1016</span>;</span></span><br><span class="line"><span class="language-css">            <span class="attr">--color-base</span>: <span class="number">#f4f5f6</span>;</span></span><br><span class="line"><span class="language-css">            <span class="attr">--color-accent</span>: <span class="number">#ba0d37</span>;</span></span><br><span class="line"><span class="language-css">            <span class="attr">--white-color-background</span>: <span class="number">#fff</span>;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">color</span>-scheme: light dark;</span></span><br><span class="line"><span class="language-css">        &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">        * &#123;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">margin</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">padding</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">        &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">        <span class="selector-tag">body</span> &#123;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">text-align</span>: center;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">height</span>: <span class="number">100vh</span>;</span></span><br><span class="line"><span class="language-css">        &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">        <span class="selector-class">.light-scheme</span> &#123;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">background</span>: <span class="built_in">var</span>(--white-color-background);</span></span><br><span class="line"><span class="language-css">            <span class="attribute">color</span>: <span class="built_in">var</span>(--color-text-default);</span></span><br><span class="line"><span class="language-css">        &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">        <span class="selector-class">.dark-scheme</span> &#123;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">background</span>: <span class="built_in">var</span>(--color-background);</span></span><br><span class="line"><span class="language-css">            <span class="attribute">color</span>: white;</span></span><br><span class="line"><span class="language-css">        &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">        <span class="selector-tag">h2</span> &#123;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">margin</span>: <span class="number">50px</span> auto;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">color</span>: <span class="built_in">var</span>(--color-accent)</span></span><br><span class="line"><span class="language-css">        &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">        <span class="comment">/* 监听操作系统主题模式 */</span></span></span><br><span class="line"><span class="language-css">        <span class="keyword">@media</span> (<span class="attribute">prefers-color-scheme</span>: dark) &#123;</span></span><br><span class="line"><span class="language-css">            <span class="selector-tag">body</span> &#123;</span></span><br><span class="line"><span class="language-css">                <span class="attribute">background-color</span>: <span class="built_in">var</span>(--color-background);</span></span><br><span class="line"><span class="language-css">            &#125;</span></span><br><span class="line"><span class="language-css">        &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">        <span class="keyword">@media</span> (<span class="attribute">prefers-color-scheme</span>: light) &#123;</span></span><br><span class="line"><span class="language-css">            <span class="selector-tag">body</span> &#123;</span></span><br><span class="line"><span class="language-css">                <span class="attribute">background-color</span>: <span class="built_in">var</span>(--white-color-background);</span></span><br><span class="line"><span class="language-css">            &#125;</span></span><br><span class="line"><span class="language-css">        &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">        <span class="selector-class">.tab-type</span> &#123;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">display</span>: flex;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">justify-content</span>: center;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">padding-top</span>: <span class="number">30px</span>;</span></span><br><span class="line"><span class="language-css">        &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">        <span class="selector-class">.tab-type</span>&gt;<span class="selector-tag">li</span> &#123;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">cursor</span>: pointer;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">color</span>: <span class="number">#fff</span>;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">background-color</span>: darkred;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">border-radius</span>: <span class="number">12px</span>;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">padding</span>: <span class="number">5px</span>;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">margin</span>: <span class="number">0px</span> <span class="number">20px</span>;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">max-width</span>: <span class="number">300px</span>;</span></span><br><span class="line"><span class="language-css">        &#125;</span></span><br><span class="line"><span class="language-css">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;content&quot;</span> <span class="attr">id</span>=<span class="string">&quot;content&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">&quot;tab-type&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;light&quot;</span>&gt;</span>浅色主题<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;dark&quot;</span>&gt;</span>暗色主题<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;scheme-tip&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">        <span class="comment">// 手动修改主题颜色</span></span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">const</span> light = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;light&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">const</span> dark = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;dark&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">const</span> content = <span class="variable language_">document</span>.<span class="title function_">getElementsByTagName</span>(<span class="string">&#x27;body&#x27;</span>)[<span class="number">0</span>]</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">const</span> tipText = <span class="variable language_">document</span>.<span class="title function_">getElementsByClassName</span>(<span class="string">&#x27;scheme-tip&#x27;</span>)[<span class="number">0</span>]</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">let</span> lightTip = <span class="string">&#x27;当前自定义主题：light亮色&#x27;</span>, darkTip = <span class="string">&#x27;当前自定义主题：dark暗色&#x27;</span></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">        light.<span class="property">onclick</span> = <span class="keyword">function</span> (<span class="params">params</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">            content.<span class="title function_">setAttribute</span>(<span class="string">&#x27;class&#x27;</span>, <span class="string">&#x27;light-scheme&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">            tipText.<span class="property">innerHTML</span> = lightTip</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript">        dark.<span class="property">onclick</span> = <span class="keyword">function</span> (<span class="params">params</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">            content.<span class="title function_">setAttribute</span>(<span class="string">&#x27;class&#x27;</span>, <span class="string">&#x27;dark-scheme&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">            tipText.<span class="property">innerHTML</span> = darkTip</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">        <span class="comment">// js 监听操作系统主题模式</span></span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">const</span> scheme = <span class="variable language_">window</span>.<span class="title function_">matchMedia</span>(<span class="string">&#x27;(prefers-color-scheme: dark)&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">if</span> (scheme.<span class="property">matches</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="comment">// 深色模式业务处理代码</span></span></span><br><span class="line"><span class="language-javascript">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;深色模式&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">            <span class="variable language_">console</span>.<span class="title function_">log</span>(scheme.<span class="property">matches</span>);</span></span><br><span class="line"><span class="language-javascript">            tipText.<span class="property">innerHTML</span> = darkTip</span></span><br><span class="line"><span class="language-javascript">        &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="comment">// 浅色模式业务处理代码</span></span></span><br><span class="line"><span class="language-javascript">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;浅色模式&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">            <span class="variable language_">console</span>.<span class="title function_">log</span>(scheme.<span class="property">matches</span>);</span></span><br><span class="line"><span class="language-javascript">            tipText.<span class="property">innerHTML</span> = lightTip</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><label style="color:rgb(223, 42, 63)">总结-prefers-color-scheme监听方式：</label></p>
+<ul>
+<li>css里通过@media监听</li>
+<li>js里面通过matchMedia监听</li>
+<li>两种方式都能监听到操作系统主题变化后的值</li>
+</ul>
+]]></content>
+      <categories>
+        <category>CSS</category>
+      </categories>
+      <tags>
+        <tag>CSS</tag>
       </tags>
   </entry>
   <entry>
