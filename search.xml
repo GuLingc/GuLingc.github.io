@@ -1827,4 +1827,46 @@
         <tag>复习</tag>
       </tags>
   </entry>
+  <entry>
+    <title>HTTP请求状态码</title>
+    <url>/2024/03/09/HTTP%E8%AF%B7%E6%B1%82%E7%8A%B6%E6%80%81%E7%A0%81/</url>
+    <content><![CDATA[<h3 id="http状态码有哪些？分别代表什么？"><a href="#http状态码有哪些？分别代表什么？" class="headerlink" title="http状态码有哪些？分别代表什么？"></a>http状态码有哪些？分别代表什么？</h3><p><strong>前言：</strong>http请求状态码是指服务器对客户端发起的http请求响应状态的标识。他们用于表示请求的处理结果，一边客户能够了解服务器对请求的处理情况。http状态码是由3位数字组成，分为五个类别：1xx，2xx，3xx，4xx，5xx。<br><strong>状态码分类：</strong><br><strong><label style="color:rgb(223, 42, 63)">1xx类别：信息状态码</label></strong><br><strong>1xx类别的状态码</strong>表示服务器已经接收到请求，正在处理或需要进一步操作。这些状态码并不表示成功或失败，<strong>仅用于传递信息</strong>。</p>
+<ul>
+<li>100 Continue：表示服务器已经接受到请求头部。并且客户端应该继续发送请求的主体部分</li>
+<li>101 Switching Protocols：表示服务器已经理解并接受了客户端的请求，将通过协议升级的方式切换到新的协议</li>
+</ul>
+<p><strong><label style="color:rgb(223, 42, 63)">2xx类别：成功状态码</label></strong><br><strong>2xx类别</strong>的状态码表示<strong>服务器</strong>已经<strong>成功接收</strong>，理解和处理了请求</p>
+<ul>
+<li>200 OK：表示请求成功，服务器已经成功处理了请求</li>
+<li>201 Create: 表示请求成功，并创建了新的资源</li>
+<li>204 No Content：表示请求成功但是服务器没有返回任何内容</li>
+</ul>
+<p><strong><label style="color:rgb(223, 42, 63)">3xx类别：重定向状态码</label></strong><br><strong>3xx类别</strong>的状态码表示<strong>客户端</strong>需要采取进一步的操作才能完成请求</p>
+<ul>
+<li>301 Moved Permanently：表示请求的资源已经永久移动到新的URL</li>
+<li>302 Found：表示请求的资源已经临时移动到新的URL</li>
+<li>304 Not Modified：表示客户端发送的请求资源在服务器上没有修改，可以直接使用本地缓存的副本</li>
+</ul>
+<p><strong><label style="color:rgb(223, 42, 63)">4xx类别：客户端错误状态码</label></strong><br><strong>4xx</strong>类别的状态码表示<strong>客户端</strong>发送的请求错误</p>
+<ul>
+<li>400 Bad Request：表示客户端发送的请求有语法错误，服务器无法理解</li>
+<li>401 Unauthorized：表示客户端要进行身份验证才能获取请求的资源</li>
+<li>403 Forbidden：表示服务器拒绝了客户端的请求</li>
+<li>404 Not Found：表示请求的资源不存在</li>
+</ul>
+<p><strong><label style="color:rgb(223, 42, 63)">5xx类别：服务器错误状态码</label></strong><br><strong>5xx类别</strong>的状态码表示<strong>服务器</strong>在处理请求时发生了<strong>错误</strong></p>
+<ul>
+<li>500 Internal Server Error：表示服务器在处理请求时发生了错误的未知错误</li>
+<li>502 Bad Gateway：表示服务器作为网关或代理，从上游服务器接受到无效的响应</li>
+<li>503 Service Unavailable：表示服务器暂时无法处理请求，通常由于服务器过载或维护</li>
+</ul>
+<p><strong>总结：</strong><br>Http请求状态码用于表示服务器对客户端请求的处理结果。了解http请求状态码对于开发或调试网络应用程序非常的重要。</p>
+]]></content>
+      <categories>
+        <category>HTTP</category>
+      </categories>
+      <tags>
+        <tag>HTTP</tag>
+      </tags>
+  </entry>
 </search>
