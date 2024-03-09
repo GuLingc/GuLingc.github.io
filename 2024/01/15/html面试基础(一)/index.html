@@ -1,0 +1,290 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>html面试基础(一) | 林南而瑜的星球</title><meta name="author" content="林南而瑜"><meta name="copyright" content="林南而瑜"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="html知识体系图片:https:&#x2F;&#x2F;juejin.cn&#x2F;post&#x2F;6905294475539513352 标红重点（考察很多）src和href的区别：src和ref都是用来引入外部的资源，它们的区别如下：  src:表示对资源的引用，它指向的内容会嵌入到当前标签所在的位置。src会将其指向的资源下载并应用到文档内，如请求js脚本。当浏览器解析到该元素时会暂停其他资源的下载和处理，直到将该资源加载">
+<meta property="og:type" content="article">
+<meta property="og:title" content="html面试基础(一)">
+<meta property="og:url" content="http://example.com/2024/01/15/html%E9%9D%A2%E8%AF%95%E5%9F%BA%E7%A1%80(%E4%B8%80)/index.html">
+<meta property="og:site_name" content="林南而瑜的星球">
+<meta property="og:description" content="html知识体系图片:https:&#x2F;&#x2F;juejin.cn&#x2F;post&#x2F;6905294475539513352 标红重点（考察很多）src和href的区别：src和ref都是用来引入外部的资源，它们的区别如下：  src:表示对资源的引用，它指向的内容会嵌入到当前标签所在的位置。src会将其指向的资源下载并应用到文档内，如请求js脚本。当浏览器解析到该元素时会暂停其他资源的下载和处理，直到将该资源加载">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://imgs.aixifan.com/o_1csboq65o1opb11oeb26cni2ib7.jpg">
+<meta property="article:published_time" content="2024-01-15T13:44:08.000Z">
+<meta property="article:modified_time" content="2024-03-09T12:34:16.656Z">
+<meta property="article:author" content="林南而瑜">
+<meta property="article:tag" content="html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://imgs.aixifan.com/o_1csboq65o1opb11oeb26cni2ib7.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2024/01/15/html%E9%9D%A2%E8%AF%95%E5%9F%BA%E7%A1%80(%E4%B8%80)/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 林南而瑜","link":"链接: ","source":"来源: 林南而瑜的星球","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'html面试基础(一)',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-03-09 20:34:16'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpeg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://imgs.aixifan.com/o_1csboq65o1opb11oeb26cni2ib7.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="林南而瑜的星球"><span class="site-name">林南而瑜的星球</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">html面试基础(一)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-01-15T13:44:08.000Z" title="发表于 2024-01-15 21:44:08">2024-01-15</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-03-09T12:34:16.656Z" title="更新于 2024-03-09 20:34:16">2024-03-09</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/html/">html</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="html面试基础(一)"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><strong>html知识体系图片:</strong><a target="_blank" rel="noopener" href="https://juejin.cn/post/6905294475539513352"><strong>https://juejin.cn/post/6905294475539513352</strong></a></p>
+<h3 id="标红重点（考察很多）"><a href="#标红重点（考察很多）" class="headerlink" title="标红重点（考察很多）"></a><label style="color:rgb(223, 42, 63)">标红重点（考察很多）</label></h3><h4 id="src和href的区别："><a href="#src和href的区别：" class="headerlink" title="src和href的区别："></a><label style="color:rgb(223, 42, 63)">src和href的区别：</label></h4><p>src和ref都是用来引入外部的资源，它们的区别如下：</p>
+<ul>
+<li>src:表示对资源的引用，它指向的内容会嵌入到当前标签所在的位置。src会将其指向的资源下载并应用到文档内，如请求js脚本。当浏览器解析到该元素时会暂停其他资源的下载和处理，直到将该资源加载，编译，执行完毕，所以一般js脚本会放到页面的底部。</li>
+<li>href:表示超文本引用，它指向一些网络资源，建立和当前元素或文本的链接关系。当浏览器识别到它指向的文件时，就会并行下载资源不会停止对当前文档的处理。常用在a,link标签上。</li>
+</ul>
+<h4 id="对Html语义化的理解"><a href="#对Html语义化的理解" class="headerlink" title="对Html语义化的理解"></a><label style="color:rgb(223, 42, 63)">对Html语义化的理解</label></h4><p>语义化是根据内容的结构化（内容语义化）,选择合适的标签（代码语义化）。通俗的来讲就是用正确的代码，做正确的事情。<br>语义化的优点：</p>
+<ul>
+<li>对机器友好，带有语义的文字表现力丰富，，更适合搜索引擎的爬虫爬取有效信息，有利于SE0（搜索引擎优化）；</li>
+<li>对开发者友好，使用语义类标签增强了可读性，结构更加清晰，开发者能清晰的看出网页的结构，便于团队的开发和维护。</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&lt;header&gt;&lt;/header&gt;</span>  <span class="string">头部</span></span><br><span class="line"></span><br><span class="line"><span class="string">&lt;nav&gt;&lt;/nav&gt;</span>  <span class="string">导航栏</span></span><br><span class="line"></span><br><span class="line"><span class="string">&lt;section&gt;&lt;/section&gt;</span>  <span class="string">区块（有语义化的div）</span></span><br><span class="line"></span><br><span class="line"><span class="string">&lt;main&gt;&lt;/main&gt;</span>  <span class="string">主要区域</span></span><br><span class="line"></span><br><span class="line"><span class="string">&lt;article&gt;&lt;/article&gt;</span>  <span class="string">主要内容</span></span><br><span class="line"></span><br><span class="line"><span class="string">&lt;aside&gt;&lt;/aside&gt;</span>  <span class="string">侧边栏</span></span><br><span class="line"></span><br><span class="line"><span class="string">&lt;footer&gt;&lt;/footer&gt;</span>  <span class="string">底部</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="script标签中defer和async的区别"><a href="#script标签中defer和async的区别" class="headerlink" title="script标签中defer和async的区别"></a><label style="color:rgb(223, 42, 63)">script标签中defer和async的区别</label></h4><p><code>如果没有defer或async属性，浏览器会立即加载并执行相应的脚本</code>。它不会等待后续加载的文档元素，读取到就会开始加载和执行，这样就阻塞了后续文档的加载。<br>下图可以直观的看出三者的区别：<br><img src="/img/study/defer.png" alt="image.png"><br>其中蓝色代表js脚本网络加载时间，红色代表js脚本执行时间，绿色代表html解析。<br><strong>defer和async属性都是去异步加载外部的JS脚本文件，它们都不会阻塞页面的解析</strong>，其<code>区别</code>如下：</p>
+<ul>
+<li><code>执行顺序</code>：多个带async属性的标签，不能保证加载的顺序；多个带defer属性的标签，按照加载顺序执行；</li>
+<li><code>脚本是否并行执行</code>：async属性，表示后续文档的加载和执行js脚本的加载和执行时并行进行的，即异步执行；defer属性，加载后续文档的过程和js脚本的加载(此时仅加载不执行)是并行进行的(异步)，js脚本需要等到文档所有元素解析完成之后才执行，DOMContentLoaded事件触发执行之前。</li>
+</ul>
+<h4 id="HTML5有哪些更新"><a href="#HTML5有哪些更新" class="headerlink" title="HTML5有哪些更新"></a><label style="color:rgb(223, 42, 63)">HTML5有哪些更新</label></h4><h5 id="语义化标签"><a href="#语义化标签" class="headerlink" title="语义化标签"></a>语义化标签</h5><ul>
+<li>header：定义文档的页眉（头部）</li>
+<li>nav：定义导航栏链接部分</li>
+<li>footer：定义文档或节的页脚（底部）</li>
+<li>article：定义文章内容</li>
+<li>section：定义文档中的节（section,区段）</li>
+<li>aside：定义所处内容之外的内容（侧边）</li>
+</ul>
+<h5 id="媒体标签"><a href="#媒体标签" class="headerlink" title="媒体标签"></a>媒体标签</h5><h5 id="表单"><a href="#表单" class="headerlink" title="表单"></a>表单</h5><h5 id="进度条，度量器"><a href="#进度条，度量器" class="headerlink" title="进度条，度量器"></a>进度条，度量器</h5><h5 id="DOM查询操作"><a href="#DOM查询操作" class="headerlink" title="DOM查询操作"></a>DOM查询操作</h5><h5 id="Web存储"><a href="#Web存储" class="headerlink" title="Web存储"></a>Web存储</h5><p>HTML5提供了两种在客户端存储数据的新方法：</p>
+<ul>
+<li>localStorage -没有时间限制的数据存储</li>
+<li>sessionStorage -针对一个session的数据存储</li>
+<li>拓展：</li>
+</ul>
+<p><strong><code>LocalStorage:</code></strong><br>存入数据：localStorage.setItem(key,value)调用一次存储一次数据；<br>取出数据：localStorage.getItem(key)<br>全部清除：localStorage.clear()<br>清除单个：localStorage.remove(key)<br><strong><code>SessionStorage:</code></strong><br>存入数据：sessionStorage.setItem(key,value)<br>取出数据：sessionStorage.getItem(key)<br>全部清除：sessionStorage.clear()<br>清除单个：sessionStorage.remove(key)<br><strong><code>localStorage/sessionStorage的共同之处：</code></strong></p>
+<ul>
+<li>存储大小为5M</li>
+<li>不会发送到服务器</li>
+</ul>
+<p><strong><code>两者的区别：</code></strong></p>
+<ul>
+<li>sessionStorage存储数据不仅限制在同源，还限制在同一窗口。可以理解为当取数据的页面和存数据的页面不是同一个取到的数据就是null.</li>
+<li>localStorage存储的数据只要不清除，就永久有效；sessionStorage存储的数据只要窗口一关闭，就失效。</li>
+</ul>
+<h5 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h5><ul>
+<li>拖放：即抓取对象以后拖放到另一个位置。设置元素可拖放：</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">draggable</span>=<span class="string">&quot;true&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>画布(canvas)： canvas 元素使用 JavaScript 在网页上绘制图像。画布是一个矩形区域，可以控制其每一像素。canvas 拥有多种绘制路径、矩形、圆形、字符以及添加图像的方法。</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">&quot;myCanvas&quot;</span> <span class="attr">width</span>=<span class="string">&quot;200&quot;</span> <span class="attr">height</span>=<span class="string">&quot;100&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>SVG：SVG：SVG 指可伸缩矢量图形，用于定义用于网络的基于矢量的图形，使用 XML 格式定义图形，图像在放大或改变尺寸的情况下其图形质量不会有损失，它是万维网联盟的标准</li>
+<li>地理定位：Geolocation（地理定位）用于定位用户的位置。‘</li>
+</ul>
+<h3 id="考察较多"><a href="#考察较多" class="headerlink" title="考察较多"></a><label style="color:rgb(236, 170, 4)">考察较多</label></h3><h4 id="DOCTYPE-文档类型-的作用"><a href="#DOCTYPE-文档类型-的作用" class="headerlink" title="DOCTYPE(文档类型)的作用"></a><label style="color:rgb(236, 170, 4)">DOCTYPE(文档类型)的作用</label></h4><p>DOCTYPE是HTML5中一种标准通用标记语言的文档类型声明，它的目的是<strong>告诉浏览器（解析器）应该以什么样（html或xhtml）的文档类型定义来解析文档</strong>，不同的渲染模式会影响浏览器对 CSS 代码甚⾄ JavaScript 脚本的解析。它必须声明在HTML⽂档的第⼀⾏。<br>浏览器渲染页面的两种模式（可通过document.compatMode获取，比如，语雀官网的文档类型是<strong>CSS1Compat</strong>）：</p>
+<ul>
+<li><strong>CSS1Compat：标准模式（Strick mode）</strong>，默认模式，浏览器使用W3C的标准解析渲染页面。在标准模式中，浏览器以其支持的最高标准呈现页面。</li>
+<li>**BackCompat：怪异模式(混杂模式)(Quick mode)**，浏览器使用自己的怪异模式解析渲染页面。在怪异模式中，页面以一种比较宽松的向后兼容的方式显示。</li>
+</ul>
+<h4 id="简述web-worker"><a href="#简述web-worker" class="headerlink" title="简述web worker"></a><label style="color:rgb(236, 170, 4)">简述web worker</label></h4><p>在HTML页面中，如果在执行脚本时，页面的状态是不可相应的，知道脚本执行完成之后，页面才变成可相应的。web worker是运行在后台的js,独立于其他脚本，不会影响页面的性能。并且通过postMessage将结果回转到主线程。这样在进行复杂操作的时候就不会影响主线程了。<br>如何创建web worker:</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> 1.检测浏览器对于web worker的支持性</li>
+<li><input checked="" disabled="" type="checkbox"> 2.创建web worker文件（js,回调函数等）</li>
+<li><input checked="" disabled="" type="checkbox"> 3.创建web worker对象</li>
+</ul>
+<h4 id="title与h1的区别，b与strong的区别，i与em的区别？"><a href="#title与h1的区别，b与strong的区别，i与em的区别？" class="headerlink" title="title与h1的区别，b与strong的区别，i与em的区别？"></a><label style="color:rgb(236, 170, 4)">title与h1的区别，b与strong的区别，i与em的区别？</label></h4><ul>
+<li>title属性没有明确意义指标的标题，H1则表示层次明确的标题，对页面信息的抓取有很大的影响</li>
+<li>strong标签有语义，是起到加重语气的效果，而b标签是没有的，b标签只是一个简单的加粗标签。b标签之间的字符都设为粗体，strong标签加强字符的语气都是通过粗体来实现的，而搜索引擎（SEO）更侧重strong标签。</li>
+<li><strong>i内容展示为斜体，em便是强调得文本</strong></li>
+</ul>
+<h4 id="head-标签有什么作用，其中什么标签必不可少？"><a href="#head-标签有什么作用，其中什么标签必不可少？" class="headerlink" title="head 标签有什么作用，其中什么标签必不可少？"></a><label style="color:rgb(236, 170, 4)">head 标签有什么作用，其中什么标签必不可少？</label></h4><pre><code> 标签用于定义文档的头部，它是所有头部元素的容器中的元素可以引用脚本、指示浏览器在哪里找到样式表、提供信息等。 
+</code></pre>
+<p>文档的头部描述了文档的各种属性和信息，包括文档的标题、在 Web 中的位置以及和其他文档的关系等。绝大多数文档头部包含的数据都不会真正作为内容显示给读者。<br>下面这些标签可用在 head 部分：<code>&lt;base&gt;, &lt;link&gt;, &lt;meta&gt;, &lt;script&gt;, &lt;style&gt;, &lt;title&gt;</code>。其中 <code>&lt;title&gt;定义文档的标题,它是 head 部分中唯一必需的元素</code>。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://example.com">林南而瑜</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2024/01/15/html%E9%9D%A2%E8%AF%95%E5%9F%BA%E7%A1%80(%E4%B8%80)/">http://example.com/2024/01/15/html%E9%9D%A2%E8%AF%95%E5%9F%BA%E7%A1%80(%E4%B8%80)/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">林南而瑜的星球</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/html/">html</a></div><div class="post_share"><div class="social-share" data-image="https://imgs.aixifan.com/o_1csboq65o1opb11oeb26cni2ib7.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/01/24/js%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB-js%E5%9F%BA%E7%A1%80/" title="js知识体系-js基础"><img class="cover" src="/img/js1.jpg" onerror="onerror=null;src='/img/%E8%8A%B1%E5%AB%81%E4%BA%94.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">js知识体系-js基础</div></div></a></div><div class="next-post pull-right"><a href="/2024/01/04/node%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/" title="node基础概念"><img class="cover" src="https://img1.baidu.com/it/u=1909763149,4143884418&amp;fm=253&amp;fmt=auto&amp;app=120&amp;f=JPEG?w=1422&amp;h=800" onerror="onerror=null;src='/img/%E8%8A%B1%E5%AB%81%E4%BA%94.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">node基础概念</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">林南而瑜</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/GuLingc/GuLingc.github.io" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2794957189@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">林南而瑜，与你不期而遇</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%87%E7%BA%A2%E9%87%8D%E7%82%B9%EF%BC%88%E8%80%83%E5%AF%9F%E5%BE%88%E5%A4%9A%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">标红重点（考察很多）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#src%E5%92%8Chref%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9A"><span class="toc-number">1.1.</span> <span class="toc-text">src和href的区别：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%B9Html%E8%AF%AD%E4%B9%89%E5%8C%96%E7%9A%84%E7%90%86%E8%A7%A3"><span class="toc-number">1.2.</span> <span class="toc-text">对Html语义化的理解</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#script%E6%A0%87%E7%AD%BE%E4%B8%ADdefer%E5%92%8Casync%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.3.</span> <span class="toc-text">script标签中defer和async的区别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTML5%E6%9C%89%E5%93%AA%E4%BA%9B%E6%9B%B4%E6%96%B0"><span class="toc-number">1.4.</span> <span class="toc-text">HTML5有哪些更新</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%AF%AD%E4%B9%89%E5%8C%96%E6%A0%87%E7%AD%BE"><span class="toc-number">1.4.1.</span> <span class="toc-text">语义化标签</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AA%92%E4%BD%93%E6%A0%87%E7%AD%BE"><span class="toc-number">1.4.2.</span> <span class="toc-text">媒体标签</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%A1%A8%E5%8D%95"><span class="toc-number">1.4.3.</span> <span class="toc-text">表单</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%BF%9B%E5%BA%A6%E6%9D%A1%EF%BC%8C%E5%BA%A6%E9%87%8F%E5%99%A8"><span class="toc-number">1.4.4.</span> <span class="toc-text">进度条，度量器</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#DOM%E6%9F%A5%E8%AF%A2%E6%93%8D%E4%BD%9C"><span class="toc-number">1.4.5.</span> <span class="toc-text">DOM查询操作</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Web%E5%AD%98%E5%82%A8"><span class="toc-number">1.4.6.</span> <span class="toc-text">Web存储</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%85%B6%E4%BB%96"><span class="toc-number">1.4.7.</span> <span class="toc-text">其他</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%80%83%E5%AF%9F%E8%BE%83%E5%A4%9A"><span class="toc-number">2.</span> <span class="toc-text">考察较多</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DOCTYPE-%E6%96%87%E6%A1%A3%E7%B1%BB%E5%9E%8B-%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-number">2.1.</span> <span class="toc-text">DOCTYPE(文档类型)的作用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%80%E8%BF%B0web-worker"><span class="toc-number">2.2.</span> <span class="toc-text">简述web worker</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#title%E4%B8%8Eh1%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%8Cb%E4%B8%8Estrong%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%8Ci%E4%B8%8Eem%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-number">2.3.</span> <span class="toc-text">title与h1的区别，b与strong的区别，i与em的区别？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#head-%E6%A0%87%E7%AD%BE%E6%9C%89%E4%BB%80%E4%B9%88%E4%BD%9C%E7%94%A8%EF%BC%8C%E5%85%B6%E4%B8%AD%E4%BB%80%E4%B9%88%E6%A0%87%E7%AD%BE%E5%BF%85%E4%B8%8D%E5%8F%AF%E5%B0%91%EF%BC%9F"><span class="toc-number">2.4.</span> <span class="toc-text">head 标签有什么作用，其中什么标签必不可少？</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/03/09/HTTP%E8%AF%B7%E6%B1%82%E7%8A%B6%E6%80%81%E7%A0%81/" title="HTTP请求状态码"><img src="https://img2.baidu.com/it/u=4066857455,1470789914&amp;fm=253&amp;fmt=auto&amp;app=120&amp;f=JPEG?w=569&amp;h=242" onerror="this.onerror=null;this.src='/img/%E8%8A%B1%E5%AB%81%E4%BA%94.jpg'" alt="HTTP请求状态码"/></a><div class="content"><a class="title" href="/2024/03/09/HTTP%E8%AF%B7%E6%B1%82%E7%8A%B6%E6%80%81%E7%A0%81/" title="HTTP请求状态码">HTTP请求状态码</a><time datetime="2024-03-09T12:17:43.000Z" title="发表于 2024-03-09 20:17:43">2024-03-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/02/22/css%E8%A1%A5%E6%BC%8F-prefers-color-scheme%E5%88%87%E6%8D%A2%E7%BD%91%E7%AB%99%E4%B8%BB%E9%A2%98%E8%89%B2/" title="css补漏-prefers-color-scheme切换网站主题色"><img src="https://img2.baidu.com/it/u=3094811639,2942577700&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPEG?w=800&amp;h=500" onerror="this.onerror=null;this.src='/img/%E8%8A%B1%E5%AB%81%E4%BA%94.jpg'" alt="css补漏-prefers-color-scheme切换网站主题色"/></a><div class="content"><a class="title" href="/2024/02/22/css%E8%A1%A5%E6%BC%8F-prefers-color-scheme%E5%88%87%E6%8D%A2%E7%BD%91%E7%AB%99%E4%B8%BB%E9%A2%98%E8%89%B2/" title="css补漏-prefers-color-scheme切换网站主题色">css补漏-prefers-color-scheme切换网站主题色</a><time datetime="2024-02-22T12:04:18.000Z" title="发表于 2024-02-22 20:04:18">2024-02-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/02/06/js%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%92%8CES6/" title="js知识体系-数据类型和ES6"><img src="/img/js1.jpg" onerror="this.onerror=null;this.src='/img/%E8%8A%B1%E5%AB%81%E4%BA%94.jpg'" alt="js知识体系-数据类型和ES6"/></a><div class="content"><a class="title" href="/2024/02/06/js%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%92%8CES6/" title="js知识体系-数据类型和ES6">js知识体系-数据类型和ES6</a><time datetime="2024-02-06T00:58:17.000Z" title="发表于 2024-02-06 08:58:17">2024-02-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/01/24/js%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB-js%E5%9F%BA%E7%A1%80/" title="js知识体系-js基础"><img src="/img/js1.jpg" onerror="this.onerror=null;this.src='/img/%E8%8A%B1%E5%AB%81%E4%BA%94.jpg'" alt="js知识体系-js基础"/></a><div class="content"><a class="title" href="/2024/01/24/js%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB-js%E5%9F%BA%E7%A1%80/" title="js知识体系-js基础">js知识体系-js基础</a><time datetime="2024-01-24T09:02:32.000Z" title="发表于 2024-01-24 17:02:32">2024-01-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/01/15/html%E9%9D%A2%E8%AF%95%E5%9F%BA%E7%A1%80(%E4%B8%80)/" title="html面试基础(一)"><img src="https://imgs.aixifan.com/o_1csboq65o1opb11oeb26cni2ib7.jpg" onerror="this.onerror=null;this.src='/img/%E8%8A%B1%E5%AB%81%E4%BA%94.jpg'" alt="html面试基础(一)"/></a><div class="content"><a class="title" href="/2024/01/15/html%E9%9D%A2%E8%AF%95%E5%9F%BA%E7%A1%80(%E4%B8%80)/" title="html面试基础(一)">html面试基础(一)</a><time datetime="2024-01-15T13:44:08.000Z" title="发表于 2024-01-15 21:44:08">2024-01-15</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2024 By 林南而瑜</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, welcome to my <a target="_blank" rel="noopener" href="https://gulingc.github.io//">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'WUuShLQfPE7yWJjblEAQprdd-gzGzoHsz',
+      appKey: 'OV04qThMaReX1QykhBdwL2V1',
+      avatar: 'monsterid',
+      serverURLs: '',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script><script src="/js/sakura.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-show-text.min.js" data-mobile="false" data-text="Vue,React,Html,JS,Es6,Node" data-fontsize="15px" data-random="false" async="async"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

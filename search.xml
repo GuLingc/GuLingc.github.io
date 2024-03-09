@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>React项目搭建</title>
-    <url>/2023/07/15/React%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/</url>
+    <url>/2023/12/26/React%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/</url>
     <content><![CDATA[<p><a name="RMA4X"></a></p>
 <h4 id="1-工具：搭建React项目的脚手架"><a href="#1-工具：搭建React项目的脚手架" class="headerlink" title="1.工具：搭建React项目的脚手架"></a>1.工具：搭建React项目的脚手架</h4><ul>
 <li>create-react-app 项目名称</li>
@@ -112,7 +112,7 @@
 <ul>
 <li>reset.less：自己在静态文件夹下的css文件中建立文档，定义 jk重置的css样式</li>
 </ul>
-<p>如果使用less需要安装指定版本：<br />npm install <a href="mailto:&#x63;&#x72;&#x61;&#x63;&#111;&#45;&#108;&#x65;&#115;&#115;&#x40;&#x32;&#46;&#x31;&#x2e;&#x30;&#45;&#x61;&#108;&#x70;&#104;&#97;&#x2e;&#x30;">&#x63;&#x72;&#x61;&#x63;&#111;&#45;&#108;&#x65;&#115;&#115;&#x40;&#x32;&#46;&#x31;&#x2e;&#x30;&#45;&#x61;&#108;&#x70;&#104;&#97;&#x2e;&#x30;</a><br><a name="Q38Z8"></a></p>
+<p>如果使用less需要安装指定版本：<br />npm install <a href="mailto:&#x63;&#114;&#x61;&#x63;&#x6f;&#x2d;&#108;&#x65;&#x73;&#115;&#x40;&#50;&#46;&#49;&#46;&#x30;&#45;&#97;&#x6c;&#112;&#x68;&#x61;&#46;&#48;">&#x63;&#114;&#x61;&#x63;&#x6f;&#x2d;&#108;&#x65;&#x73;&#115;&#x40;&#50;&#46;&#49;&#46;&#x30;&#45;&#97;&#x6c;&#112;&#x68;&#x61;&#46;&#48;</a><br><a name="Q38Z8"></a></p>
 <h4 id="6-路由的配置"><a href="#6-路由的配置" class="headerlink" title="6.路由的配置"></a>6.路由的配置</h4><pre><code>  1. 路由的搭建：npm install react-router-dom
   2. 在写路由的时候与vue使用compoent不同的是React用的element，并且element后面跟的是组件实例（&lt;Discover /&gt;）而非Discover。由于组件实例属于jsx语法，所以写路有的文件不能是.ts应该是.tsx。凡是tsx文件都需要引入React(import React from &#39;react&#39;)。
   3. 如果使用路由，最外层的index.tsx中的APP必须被router包裹
@@ -155,7 +155,7 @@
 <p><a name="k85va"></a></p>
 <h4 id="9-网络请求封装axios"><a href="#9-网络请求封装axios" class="headerlink" title="9.网络请求封装axios"></a>9.网络请求封装axios</h4><pre><code>  1. 安装axios
 </code></pre>
-<p>npm install axios<br />由于最新班的axios版本过高会有报错，所以安装1.1版本<br />npm install <a href="mailto:&#97;&#x78;&#x69;&#x6f;&#115;&#64;&#49;&#46;&#x31;&#x2e;&#x30;">&#97;&#x78;&#x69;&#x6f;&#115;&#64;&#49;&#46;&#x31;&#x2e;&#x30;</a></p>
+<p>npm install axios<br />由于最新班的axios版本过高会有报错，所以安装1.1版本<br />npm install <a href="mailto:&#97;&#x78;&#105;&#111;&#115;&#64;&#x31;&#x2e;&#x31;&#46;&#x30;">&#97;&#x78;&#105;&#111;&#115;&#64;&#x31;&#x2e;&#x31;&#46;&#x30;</a></p>
 <pre><code>  2. 1
      &lt;a name=&quot;sFgV1&quot;&gt;&lt;/a&gt;
 </code></pre>
@@ -202,7 +202,7 @@
   </entry>
   <entry>
     <title>js知识体系-js基础</title>
-    <url>/2023/09/05/js%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB-js%E5%9F%BA%E7%A1%80/</url>
+    <url>/2024/01/24/js%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB-js%E5%9F%BA%E7%A1%80/</url>
     <content><![CDATA[<h2 id="考察很多"><a href="#考察很多" class="headerlink" title="考察很多"></a><label style="color:rgb(223, 42, 63)">考察很多</label></h2><h3 id="new-操作符实现的实现原理"><a href="#new-操作符实现的实现原理" class="headerlink" title="new 操作符实现的实现原理"></a><label style="color:rgb(223, 42, 63)">new 操作符实现的实现原理</label></h3><p><strong>new 操作符的执行过程：</strong></p>
 <ul>
 <li>首先创建一个新的空对象</li>
@@ -798,7 +798,7 @@
   </entry>
   <entry>
     <title>html面试基础(一)</title>
-    <url>/2023/08/01/html%E9%9D%A2%E8%AF%95%E5%9F%BA%E7%A1%80(%E4%B8%80)/</url>
+    <url>/2024/01/15/html%E9%9D%A2%E8%AF%95%E5%9F%BA%E7%A1%80(%E4%B8%80)/</url>
     <content><![CDATA[<p><strong>html知识体系图片:</strong><a href="https://juejin.cn/post/6905294475539513352"><strong>https://juejin.cn/post/6905294475539513352</strong></a></p>
 <h3 id="标红重点（考察很多）"><a href="#标红重点（考察很多）" class="headerlink" title="标红重点（考察很多）"></a><label style="color:rgb(223, 42, 63)">标红重点（考察很多）</label></h3><h4 id="src和href的区别："><a href="#src和href的区别：" class="headerlink" title="src和href的区别："></a><label style="color:rgb(223, 42, 63)">src和href的区别：</label></h4><p>src和ref都是用来引入外部的资源，它们的区别如下：</p>
 <ul>
@@ -884,7 +884,7 @@
   </entry>
   <entry>
     <title>node基础概念</title>
-    <url>/2023/07/29/node%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/</url>
+    <url>/2024/01/04/node%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/</url>
     <content><![CDATA[<p><a name="IHs7V"></a></p>
 <h4 id="1-跨域产生的原因以及解决方案"><a href="#1-跨域产生的原因以及解决方案" class="headerlink" title="1.跨域产生的原因以及解决方案"></a>1.跨域产生的原因以及解决方案</h4><ol>
 <li>什么是<code>跨域</code>？<ol>
@@ -936,7 +936,7 @@
   </entry>
   <entry>
     <title>js知识体系-数据类型和ES6</title>
-    <url>/2023/08/12/js%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%92%8CES6/</url>
+    <url>/2024/02/06/js%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%92%8CES6/</url>
     <content><![CDATA[<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><h3 id="考察很多"><a href="#考察很多" class="headerlink" title="考察很多"></a><label style="color:rgb(223, 42, 63)">考察很多</label></h3><h4 id="JS的数据类型，它们的区别？"><a href="#JS的数据类型，它们的区别？" class="headerlink" title="JS的数据类型，它们的区别？"></a><label style="color:rgb(223, 42, 63)">JS的数据类型，它们的区别？</label></h4><p>js共有8种数据类型，分别是Undefined,Null,Boolean,Number,String,Object,Symbol,Bignt。<br>其中Symbol,Bight是ES6中新增的数据类型：</p>
 <ul>
 <li>Symbol代表创建后独一无二且不可变的数据类型，它主要是为了解决可能出现的全局变量冲突的问题。</li>
@@ -1123,7 +1123,7 @@
   </entry>
   <entry>
     <title>webpack学习(一) — 基础配置</title>
-    <url>/2023/08/08/webpack%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE/</url>
+    <url>/2023/12/09/webpack%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE/</url>
     <content><![CDATA[<h4 id="一-了解什么是Webpack？Webpack的作用是什么？"><a href="#一-了解什么是Webpack？Webpack的作用是什么？" class="headerlink" title="一.了解什么是Webpack？Webpack的作用是什么？"></a>一.了解什么是Webpack？Webpack的作用是什么？</h4><p><code>Webpack</code>是一种端资源构建工具，一个<code>静态模块打包器</code>。<br>Webpack的作用就是将在node中写好的代码(后端)解析为在浏览器(前端)可以运行的代码，<code>提高了项目效率和可维护性</code>。</p>
 <h4 id="二-Webpack的5个核心概念"><a href="#二-Webpack的5个核心概念" class="headerlink" title="二.Webpack的5个核心概念"></a>二.Webpack的5个核心概念</h4><p><code>1. entry入口</code></p>
 <p>入口指示Webpack以哪个入口文件开始打包，分析构建内部依赖图</p>
@@ -1406,7 +1406,7 @@
   </entry>
   <entry>
     <title>webpack学习(二) — 服务器开发配置</title>
-    <url>/2023/08/10/webpack%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91%E9%85%8D%E7%BD%AE/</url>
+    <url>/2023/12/16/webpack%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91%E9%85%8D%E7%BD%AE/</url>
     <content><![CDATA[<h3 id="webpack服务器开发配置"><a href="#webpack服务器开发配置" class="headerlink" title="webpack服务器开发配置"></a>webpack服务器开发配置</h3><p><strong>为什么要搭建webpack服务器？</strong><br><img src="/img/study/server.png" alt="image.png"></p>
 <h4 id="本地服务器server"><a href="#本地服务器server" class="headerlink" title="本地服务器server"></a>本地服务器server</h4><p>搭建本地服务器常用上面的第二种方式即 <code>webpack-dev-server </code></p>
 <p> 首先先安装 <code>webpack-dev-server</code> </p>
@@ -1446,7 +1446,7 @@
   </entry>
   <entry>
     <title>css补漏-prefers-color-scheme切换网站主题色</title>
-    <url>/2023/08/28/css%E8%A1%A5%E6%BC%8F-prefers-color-scheme%E5%88%87%E6%8D%A2%E7%BD%91%E7%AB%99%E4%B8%BB%E9%A2%98%E8%89%B2/</url>
+    <url>/2024/02/22/css%E8%A1%A5%E6%BC%8F-prefers-color-scheme%E5%88%87%E6%8D%A2%E7%BD%91%E7%AB%99%E4%B8%BB%E9%A2%98%E8%89%B2/</url>
     <content><![CDATA[<h2 id="前端必备：prefers-color-scheme自由切换网站主题背景色变化"><a href="#前端必备：prefers-color-scheme自由切换网站主题背景色变化" class="headerlink" title="前端必备：prefers-color-scheme自由切换网站主题背景色变化"></a>前端必备：prefers-color-scheme自由切换网站主题背景色变化</h2><p><label style="color:rgb(223, 42, 63)">prefers-color-scheme</label>是css的<code>媒体特性【@media】</code>用于检测用户是否有将<code>操作系统的主题设置</code>为亮色【light】或者暗色【dark】,no-preference 表示获取不到主题时的适配方案。这也是prefers-color-scheme重要属性。W3C在2020年7月31日首次提到css的prefers-color-scheme新特性。<br>例子：</p>
 <figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="keyword">@media</span> (<span class="attribute">prefers-color-scheme</span>: light) &#123;</span><br><span class="line">  <span class="selector-tag">body</span> &#123;  </span><br><span class="line">    <span class="attribute">background</span>:<span class="number">#fff</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#000</span>;  </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@media</span> (<span class="attribute">prefers-color-scheme</span>: dark) &#123;</span><br><span class="line">  <span class="selector-tag">body</span> &#123;  </span><br><span class="line">    <span class="attribute">background</span>:<span class="number">#000</span>;  </span><br><span class="line">    <span class="attribute">color</span>: white;  </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@media</span> (<span class="attribute">prefers-color-scheme</span>: no-preference) &#123;</span><br><span class="line">  <span class="selector-tag">body</span> &#123;  </span><br><span class="line">    <span class="attribute">background</span>:<span class="number">#fff</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#000</span>;  </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -1472,7 +1472,7 @@
   </entry>
   <entry>
     <title>前端面试</title>
-    <url>/2023/07/15/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/</url>
+    <url>/2023/12/18/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/</url>
     <content><![CDATA[<h4 id="一-闭包与原型："><a href="#一-闭包与原型：" class="headerlink" title="一.闭包与原型："></a>一.闭包与原型：</h4><h5 id="1-什么是闭包？闭包的用途？"><a href="#1-什么是闭包？闭包的用途？" class="headerlink" title="1.什么是闭包？闭包的用途？"></a>1.什么是闭包？闭包的用途？</h5><p>1）闭包指的是那些引用了另一个函数作用域中变量的函数，通常是在嵌套函数中实现的。</p>
 <p>2）js中闭包的优点和缺点：</p>
 <p>优点：</p>
